@@ -1,0 +1,15 @@
+﻿@model int
+
+@{
+    ViewBag.Title = "Error";
+    ViewBag.H1 = (Model == 0 ?  "Ett server-fel inträffade!" : $"HTTP-fel: {@Model} inträffade!");
+    ViewBag.H2 = "Var vänlig och försök igen!";
+}
+
+<div class="Container" style="text-align:center">
+
+    <img src="/Photos_and_Icons/SadFaceError2.png" alt="Sad Face Error" />
+    <h1 class="text-danger">@ViewBag.H1</h1>
+    <h2 class="text-danger">@ViewBag.H2</h2>
+
+</div>

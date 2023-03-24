@@ -4,9 +4,11 @@ namespace LWI.Controllers
 {
     public class ErrorController : Controller
     {
-        public IActionResult Index()
+        [HttpGet("error/")]
+        [HttpGet("/error/{statusCode}")]
+        public IActionResult Error(int statusCode)
         {
-            return View();
+            return View(statusCode);
         }
     }
 }
