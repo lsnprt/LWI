@@ -1,17 +1,2 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model CatalogVM[]
-
-@foreach (var course in Model)
-{
-	<div>
-	@course.Id
-	@course.Name
-	@course.Price
-	@course.ImgName
-	@course.ImgAlt
-	@course.Category
-	@course.DescriptionShort
-
-		<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id">Click Me</a>
-	</div>
+﻿
 }
