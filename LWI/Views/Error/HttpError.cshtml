@@ -2,10 +2,14 @@
 
 @{
     ViewBag.Title = "Error";
-    ViewBag.Header = $"HTTP-fel: {@Model} inträffade!";
-    ViewBag.P = "Var vänlig och försök igen!";
+    ViewBag.H1 = $"HTTP-fel: {@Model} inträffade!";
+    ViewBag.H2 = "Var vänlig och försök igen!";
 }
 
+<div class="Container" style="text-align:center">
+
     <img src="/Photos_and_Icons/SadFaceError2.png" alt="Sad Face Error" />
-    <header>Wopsiiie!! @ViewBag.Header</header>
-    <p>@ViewBag.P</p>
+    <h1 class="text-danger">@ViewBag.H1</h1>
+    <h2 class="text-danger">@ViewBag.H2</h2>
+
+</div>
