@@ -4,13 +4,9 @@ namespace LWI.Controllers
 {
     public class ErrorController : Controller
     {
-        [HttpGet("error/exception")]
-        public IActionResult ServerError()
-        {
-            return View();
-        }
-        [HttpGet("/error/http/{statusCode}")]
-        public IActionResult HttpError(int statusCode)
+        [HttpGet("error/")]
+        [HttpGet("/error/{statusCode}")]
+        public IActionResult Error(int statusCode)
         {
             return View(statusCode);
         }

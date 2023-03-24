@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Error";
-    ViewBag.H1 = $"HTTP-fel: {@Model} inträffade!";
+    ViewBag.H1 = (Model == 0 ?  "Ett server-fel inträffade!" : $"HTTP-fel: {@Model} inträffade!");
     ViewBag.H2 = "Var vänlig och försök igen!";
 }
 

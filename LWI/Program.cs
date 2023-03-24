@@ -12,8 +12,8 @@ app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/error/exception");
-    app.UseStatusCodePagesWithRedirects("/error/http/{0}");
+    app.UseExceptionHandler("/error/");
+    app.UseStatusCodePagesWithRedirects("/error/{0}");
 }
 app.UseEndpoints(o => o.MapControllers());
 
