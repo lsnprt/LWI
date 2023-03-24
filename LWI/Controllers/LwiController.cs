@@ -15,5 +15,11 @@ namespace LWI.Controllers
         {
             return View();
         }
+
+        [HttpGet("/cart/checkout")]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
     }
 }
