@@ -9,5 +9,11 @@ namespace LWI.Controllers
         {
             return View();
         }
+
+        [HttpGet("/cart")]
+        public IActionResult ShoppingCart()
+        {
+            return View();
+        }
     }
 }
