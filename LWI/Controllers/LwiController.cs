@@ -31,12 +31,12 @@ namespace LWI.Controllers
 			return View(model);
 		}
 
-		[HttpPost("/Details/{id}")]
-		public IActionResult Details(DetailsVM model)
-		{
-            dataService.AddToShoppingCart(model);
-            return RedirectToAction(nameof(Details));
-		}
+		//[HttpPost("/Details/{id}")]
+		//public IActionResult Details(DetailsVM model)
+		//{
+  //          dataService.AddToShoppingCart(model);
+  //          return RedirectToAction(nameof(Details));
+		//}
 
 
 		[HttpGet("/ShoppingCart")]
@@ -45,5 +45,11 @@ namespace LWI.Controllers
 			ShoppingCartVM[] model = dataService.GetSelectedCourses();
 			return View(model);
 		}
-	}
+
+        [HttpGet("/ShoppingCart/Checkout")]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+    }
 }

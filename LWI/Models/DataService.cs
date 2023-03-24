@@ -6,16 +6,16 @@ namespace LWI.Models
 {
     public class DataService
     {
-        UserManager<DataService> userManager;
-        IHttpContextAccessor httpContextAccessor;
-        List<Course> shoppingBag;
-        public DataService(IHttpContextAccessor httpContextAccessor, UserManager<DataService> userManager)
-        {
-            this.httpContextAccessor = httpContextAccessor;
-            this.userManager = userManager;
-            shoppingBag = new List<Course>();
+        //UserManager<DataService> userManager;
+        //IHttpContextAccessor httpContextAccessor;
+        //List<Course> shoppingBag;
+        //public DataService(IHttpContextAccessor httpContextAccessor, UserManager<DataService> userManager)
+        //{
+        //    this.httpContextAccessor = httpContextAccessor;
+        //    this.userManager = userManager;
+        //    shoppingBag = new List<Course>();
             
-        }
+        //}
 
         List<Course> courses = new List<Course>()
         {
@@ -86,23 +86,23 @@ namespace LWI.Models
 				;
         }
 
-		internal async void AddToShoppingCart(DetailsVM model)
-		{
-			string userId = userManager.GetUserId(httpContextAccessor.HttpContext.User);
-            DataService user = await userManager.FindByIdAsync(userId);
-            var course = new Course
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Price = model.Price,
-                Category = model.Category,
-                DescriptionLong = model.DescriptionLong,
-                ImgAlt = model.ImgAlt,
-                ImgName = model.ImgName
-            };
-            user.shoppingBag.Add(course);
+		//internal async void AddToShoppingCart(DetailsVM model)
+		//{
+		//	string userId = userManager.GetUserId(httpContextAccessor.HttpContext.User);
+  //          DataService user = await userManager.FindByIdAsync(userId);
+  //          var course = new Course
+  //          {
+  //              Id = model.Id,
+  //              Name = model.Name,
+  //              Price = model.Price,
+  //              Category = model.Category,
+  //              DescriptionLong = model.DescriptionLong,
+  //              ImgAlt = model.ImgAlt,
+  //              ImgName = model.ImgName
+  //          };
+  //          user.shoppingBag.Add(course);
 
-		}
+		//}
 
 		internal ShoppingCartVM[] GetSelectedCourses()
 		{
