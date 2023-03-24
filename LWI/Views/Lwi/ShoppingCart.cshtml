@@ -1,1 +1,15 @@
 ﻿<p>You've just reached the shopping cart!</p>
+
+@model ShoppingCartVM[]
+
+@foreach (var course in Model)
+{
+	<div>
+		@course.Id
+		@course.Name
+		@course.Price
+		@course.ImgName
+		@course.ImgAlt
+		@course.Category
+	</div>
+}
