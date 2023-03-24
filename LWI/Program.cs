@@ -10,7 +10,7 @@ app.UseRouting();
 
 app.UseStaticFiles();
 
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/error/");
     app.UseStatusCodePagesWithRedirects("/error/{0}");
