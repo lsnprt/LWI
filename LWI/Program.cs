@@ -6,7 +6,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DataService>();
 
 builder.Services.AddHttpContextAccessor();
-//builder.Services.ConfigureApplicationCookie(o => o.LoginPath="");
 
 var app = builder.Build();
 

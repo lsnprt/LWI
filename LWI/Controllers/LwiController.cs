@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LWI.Controllers
 {
+
     public class LwiController : Controller
     {
         DataService dataService;
@@ -24,27 +25,38 @@ namespace LWI.Controllers
             return View(model);
         }
 
-		[HttpGet("/Details/{id}")]
-		public IActionResult Details(int id)
-		{
-			DetailsVM model = dataService.GetCourse(id);
-			return View(model);
-		}
+        [HttpGet("/Details/{id}")]
+        public IActionResult Details(int id)
+        {
+            DetailsVM model = dataService.GetCourse(id);
+            return View(model);
+        }
 
-		//[HttpPost("/Details/{id}")]
-		//public IActionResult Details(DetailsVM model)
-		//{
-  //          dataService.AddToShoppingCart(model);
-  //          return RedirectToAction(nameof(Details));
-		//}
+        [HttpPost("/Details/{id}")]
+        public IActionResult Details(DetailsVM model)
+        {
+            var cookieCheck = Request.Cookies["ShoppingCart"];
+
+            if (cookieCheck == null)
+                Response.Cookies.Append("ShoppingCart", "");
+            else if (cookieCheck == "")
+                Response.Cookies.Append("ShoppingCart", $"{model.Id}");
+            else
+                Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
+
+            TempData["Message"] = $"Lyckades att lägga till " +
+            $"{dataService.GetCourseName(model.Id)} i din varukorg";
+
+            return RedirectToAction(nameof(Details));
+        }
 
 
-		[HttpGet("/ShoppingCart")]
-		public IActionResult ShoppingCart()
-		{
-			ShoppingCartVM[] model = dataService.GetSelectedCourses();
-			return View(model);
-		}
+        [HttpGet("/ShoppingCart")]
+        public IActionResult ShoppingCart()
+        {
+            ShoppingCartVM[] model = dataService.GetSelectedCourses();
+            return View(model);
+        }
 
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()

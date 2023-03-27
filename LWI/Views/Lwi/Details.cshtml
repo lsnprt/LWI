@@ -2,11 +2,17 @@
 
 
 <div>
-	@Model.Id
-	@Model.Name
-	@Model.Price
-	@Model.ImgName
-	@Model.ImgAlt
-	@Model.Category
-	@Model.DescriptionLong
+    @TempData["Message"]
+    <form asp-controller="Lwi" asp-action="Details">
+
+        @Model.Id
+        @Model.Name
+        @Model.Price
+        @Model.ImgName
+        @Model.ImgAlt
+        @Model.Category
+        @Model.DescriptionLong
+    <input type="submit" value="Lägg till i varukorgen">
+    </form>
+
 </div>
