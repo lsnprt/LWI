@@ -38,21 +38,26 @@ namespace LWI.Models
 			new Course()
 			{
 				Id = 3,
+				Teacher="Håkan",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
 				Category = "Nadines kurser",
-			},new Course()
+				Price=1499.99M
+			},
+			new Course()
 			{
 				Id = 3,
+				Teacher="Håkan",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "python.png",
 				ImgAlt = "blabla",
 				Category = "Nadines kurser",
+				Price=1399.99M
 			},
 
 		};
