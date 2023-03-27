@@ -43,9 +43,10 @@ namespace LWI.Controllers
                 Response.Cookies.Append("ShoppingCart", $"{model.Id}");
             else
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-
+            TempData["Img"] = $"{"/Photos_and_Icons/RealthumbUp.png"}";
+            TempData["ImgAlt"] = $"Sad Face Error";
             TempData["Message"] = $"Lyckades att lägga till " +
-            $"{dataService.GetCourseName(model.Id)} i din varukorg";
+            $"'{dataService.GetCourseName(model.Id)}' i din varukorg";
 
             return RedirectToAction(nameof(Details));
         }

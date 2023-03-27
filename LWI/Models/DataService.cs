@@ -99,7 +99,7 @@ namespace LWI.Models
 
         internal ShoppingCartVM[] GetSelectedCourses()
         {
-            return courses
+            return shoppingBag
                 .Select(c => new ShoppingCartVM
                 {
                     Category = c.Category,
