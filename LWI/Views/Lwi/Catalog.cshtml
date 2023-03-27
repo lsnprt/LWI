@@ -1,63 +1,116 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model CatalogVM[]
 
-
 <div class="catalog-wrapper">
 	<div class="sidebar">
-		<h2>Filters</h2>
-		<ul class="filters-container">
-			<li class="pris-filter">
-				Pris:
-				<ul>
-					<li>
-						<input id="Free" name="Price" type="radio" />
-						<label for="Free">Free</label>
-					</li>
-					<li>
-						<input name="Price" id="Money" type="radio" />
-						<label for="Money">Money</label>
-					</li>
-				</ul>
-			</li>
-			<hr />
-			<li class="category-filter">
-				Category:
-				<ul>
-					<li>
-						<input type="checkbox" id="Miljö" />
-						<label for="Miljö">Miljö</label>
-					</li>
-					<li>
-						<input type="checkbox" id="Programmering" />
-						<label for="Programmering">Programmering</label>
-					</li>
-					<li>
-						<input type="checkbox" id="WebbUtveckling" />
-						<label for="WebbUtveckling">WebbUtveckling</label>
-					</li>
-					<li>
-						<input type="checkbox" id="Databas" />
-						<label for="Databas">Databas</label>
-					</li>
-				</ul>
-			</li>
-		</ul>
+		<div class="row">
+			<aside class="row-sm-4">
+				<h3>Filters</h3>
+				<div class="card">
+					<article class="card-group-item">
+						<header class="card-header">
+							<h6 class="title">Choose category </h6>
+						</header>
+						<div class="filter-content">
+							<div class="card-body">
+								<label class="form-check">
+									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<span class="form-check-label">
+										Programming
+									</span>
+								</label>
+								<label class="form-check">
+									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<span class="form-check-label">
+										Saving Earth
+									</span>
+								</label>
+								<label class="form-check">
+									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<span class="form-check-label">
+										Spinning fidget.
+									</span>
+								</label>
+							</div> <!-- card-body.// -->
+						</div>
+					</article> <!-- card-group-item.// -->
+				</div> <!-- card.// -->
+
+				<div class="card">
+					<article class="card-group-item">
+						<header class="card-header">
+							<h6 class="title">Instructor </h6>
+						</header>
+						<div class="filter-content">
+							<div class="card-body">
+								<form>
+									<label class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+										<span class="form-check-label">
+											Isam
+										</span>
+									</label> <!-- form-check.// -->
+									<label class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+										<span class="form-check-label">
+											Nadine
+										</span>
+									</label>  <!-- form-check.// -->
+									<label class="form-check">
+										<input class="form-check-input" type="checkbox" value="">
+										<span class="form-check-label">
+											Pontus
+										</span>
+									</label>  <!-- form-check.// -->
+								</form>
+
+							</div> <!-- card-body.// -->
+						</div>
+				</div> <!-- card.// -->
+				</article> <!-- card-group-item.// -->
+			</aside> <!-- col.// -->
+			<aside class="row-sm-4">
+				<div class="card">
+					<article class="card-group-item">
+						<header class="card-header"><h6 class="title">Price</h6></header>
+						<div class="filter-content">
+							<div class="card-body">
+								<label class="btn btn-danger">
+									<input class="" type="radio" name="myradio" value="">
+									<span class="form-check-label">Free</span>
+								</label>
+								<label class="btn btn-primary">
+									<input class="" type="radio" name="myradio" value="">
+									<span class="form-check-label">Money!</span>
+								</label>
+							</div> <!-- card-body.// -->
+						</div>
+					</article> <!-- card-group-item.// -->
+				</div> <!-- card.// -->
+			</aside> <!-- col.// -->
+		</div> <!-- row.// -->
+
 	</div>
+	<!--container end.//-->
+
+
 
 	<div class="content">
-		@foreach (var course in Model)
-		{
-			<div>
-				@course.Id
-				@course.Name
-				@course.Price
-				@course.ImgName
-				@course.ImgAlt
-				@course.Category
-				@course.DescriptionShort
-
-				<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id">Click Me</a>
+		<div class="container">
+			<div class="row">
+				@foreach (var course in Model)
+				{
+					<div class="card" style="width: 18rem;">
+						<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id">
+							<img src="~/images/@course.ImgName" class="card-img-top" alt="@course.ImgAlt">
+							<div class="card-body">
+								<h5 class="card-title">@course.Name</h5>
+								<p class="card-text">@course.DescriptionShort</p>
+							</div>
+						</a>
+					</div>
+				}
 			</div>
-		}
+		</div>
 	</div>
 </div>
