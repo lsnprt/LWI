@@ -7,68 +7,13 @@
     <link href="./css/site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 
-    <style>
-        .navbar-nav .nav-item .nav-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 100px;
-            margin-left: 100px;
-        
-        }
-
-        .fa-sharp {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 150px;
-            margin-left: 150px;
-        }
-        
-
-            .navbar-nav .nav-item .nav-link .icon {
-                margin-bottom: 0.5rem;
-            }
-
-
-        footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100px;
-        }
-
-    </style>
 
 </head>
 <body>
-    <!-- Navbar -->
-    <div class="container-fluid"></div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <i class="fa-sharp fa-solid fa-house" style="color: #c770f0;"></i>
-                    <a class="nav-link" href="#">Homepage <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-sharp fa-solid fa-book" style="color: #c770f0;"></i>
-                    <a class="nav-link center-block" href="#">Kurskatalog</a>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-sharp fa-solid fa-cart-shopping" style="color: #c770f0;"></i>
-                    <a class="nav-link pull-right" href="#">Varukorg</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    @Html.Partial("_Navbar")
 
     <div>
+        
         @RenderBody()
     </div>
     <script src="https://kit.fontawesome.com/0147067558.js" crossorigin="anonymous"></script>
@@ -86,4 +31,4 @@
 
 </html>
 
-          @*      #f8f9fc;*@
+        
