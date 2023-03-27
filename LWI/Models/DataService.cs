@@ -20,7 +20,7 @@ namespace LWI.Models
                 Name = "Pontus lilla röda",
                 DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
                 DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-                ImgName = "blabla.png",
+                ImgName = "Csharp.png",
                 ImgAlt = "blabla",
                 Category = "Pontus kurser",
             },
@@ -30,23 +30,32 @@ namespace LWI.Models
                 Name = "Grundkurs i C#",
                 DescriptionShort = "En grundkurs i det objektorienterade språket C#",
                 DescriptionLong = "En grundkurs i det objektorienterade språket C#",
-                ImgName = "Grundkurs i C#.json",
+                ImgName = "JS.png",
                 ImgAlt = "blabla",
                 Category = "Programmering",
 
             },
-            new Course()
-            {
-                Id = 3,
-                Name = "Sortera med Nadine #1",
-                DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-                DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-                ImgName = "blabla.json",
-                ImgAlt = "blabla",
-                Category = "Nadines kurser",
-            },
+			new Course()
+			{
+				Id = 3,
+				Name = "Sortera med Nadine #1",
+				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				ImgName = "ASP.jpg",
+				ImgAlt = "blabla",
+				Category = "Nadines kurser",
+			},new Course()
+			{
+				Id = 3,
+				Name = "Sortera med Nadine #1",
+				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				ImgName = "python.png",
+				ImgAlt = "blabla",
+				Category = "Nadines kurser",
+			},
 
-        };
+		};
 
         public CatalogVM[] GetAllCourses()
         {
