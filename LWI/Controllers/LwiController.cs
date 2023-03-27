@@ -51,5 +51,11 @@ namespace LWI.Controllers
         {
             return View();
         }
+
+        [HttpGet("/ShoppingCart/Checkout/Success")]
+        public IActionResult PaymentSuccess()
+        {
+            return View();
+        }
     }
 }

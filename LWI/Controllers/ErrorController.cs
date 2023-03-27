@@ -10,5 +10,11 @@ namespace LWI.Controllers
         {
             return View(statusCode);
         }
+
+        [HttpGet("/ShoppingCart/Checkout/Error")]
+        public IActionResult PaymentError()
+        {
+            return View();
+        }
     }
 }
