@@ -1,78 +1,63 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model CatalogVM[]
 
-@foreach (var course in Model)
-{
-	<div>
-	@course.Id
-	@course.Name
-	@course.Price
-	@course.ImgName
-	@course.ImgAlt
-	@course.Category
-	@course.DescriptionShort
 
-		<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id">Click Me</a>
+<div class="catalog-wrapper">
+	<div class="sidebar">
+		<h2>Filters</h2>
+		<ul class="filters-container">
+			<li class="pris-filter">
+				Pris:
+				<ul>
+					<li>
+						<input id="Free" name="Price" type="radio" />
+						<label for="Free">Free</label>
+					</li>
+					<li>
+						<input name="Price" id="Money" type="radio" />
+						<label for="Money">Money</label>
+					</li>
+				</ul>
+			</li>
+			<hr />
+			<li class="category-filter">
+				Category:
+				<ul>
+					<li>
+						<input type="checkbox" id="Miljö" />
+						<label for="Miljö">Miljö</label>
+					</li>
+					<li>
+						<input type="checkbox" id="Programmering" />
+						<label for="Programmering">Programmering</label>
+					</li>
+					<li>
+						<input type="checkbox" id="WebbUtveckling" />
+						<label for="WebbUtveckling">WebbUtveckling</label>
+					</li>
+					<li>
+						<input type="checkbox" id="Databas" />
+						<label for="Databas">Databas</label>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
-}
 
-<!-- Sidebar -->
-<nav id="sidebarMenu" class=" d-lg-block sidebar  bg-white">
-	<div class="position-sticky">
-		<div class="list-group list-group-flush mx-3 mt-4">
-			<ul>
-				<h2>Filters</h2>
-				<li>
-					Pris:
-					<ul>
-						<li>
-							<label for="Free">Free</label>
-							<input id="Free" name="Price" type="radio" />
-						</li>
-						<li>
-							<label for="Money">Money</label>
-							<input name="Price" id="Money" type="radio" />
-						</li>
-					</ul>
-				</li>
-				<li>
-					Category:
-					<ul>
-						<li><label for="Miljö">Miljö</label> <input type="checkbox" id="Miljö" /></li>
-						<li><label for="Programmering">Programmering</label> <input type="checkbox" id="Programmering" /></li>
-						<li><label for="WebbUtveckling">WebbUtveckling</label> <input type="checkbox" id="WebbUtveckling" /></li>
-						<li><label for="Databas">Databas</label> <input type="checkbox" id="Databas" /></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
-</nav>
-<!-- Sidebar -->
-<!-- Navbar -->
-<nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-	<!-- Container wrapper -->
-	<div class="container-fluid">
-		<!-- Toggle button -->
-		<button class="navbar-toggler"
-				type="button"
-				data-mdb-toggle="collapse"
-				data-mdb-target="#sidebarMenu"
-				aria-controls="sidebarMenu"
-				aria-expanded="false"
-				aria-label="Toggle navigation">
-			<i class="fas fa-bars"></i>
-		</button>
+	<div class="content">
+		@foreach (var course in Model)
+		{
+			<div>
+				@course.Id
+				@course.Name
+				@course.Price
+				@course.ImgName
+				@course.ImgAlt
+				@course.Category
+				@course.DescriptionShort
 
-		<!-- Brand -->
-		<a class="navbar-brand" href="#">
-			<img src="~/images/2023-03-24 134431.png"
-	 height="40"
-	 alt="MDB Logo"
-	 loading="lazy" />
-			<h4>LDMI</h4>
-		</a>
-		<!-- Right links -->sadasda
+				<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id">Click Me</a>
+			</div>
+		}
 	</div>
-	<!-- Container wrapper -->
-</nav>
+</div>
