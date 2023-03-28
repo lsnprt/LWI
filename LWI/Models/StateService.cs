@@ -16,7 +16,7 @@
                 int noOfItems = cartCookie.Split(",").Length;
                 return noOfItems.ToString();
             }
-            return "";
+            return "0";
 
 		}
     }
