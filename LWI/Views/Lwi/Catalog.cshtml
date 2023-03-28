@@ -14,19 +14,19 @@
 						<div class="filter-content">
 							<div class="card-body">
 								<label class="form-check">
-									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<input class="form-check-input" type="checkbox" name="exampleRadio" data-filter="Programming">
 									<span class="form-check-label">
 										Programming
 									</span>
 								</label>
 								<label class="form-check">
-									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<input class="form-check-input" type="checkbox" name="exampleRadio" data-filter="Saving-Earth">
 									<span class="form-check-label">
 										Saving Earth
 									</span>
 								</label>
 								<label class="form-check">
-									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<input class="form-check-input" type="checkbox" name="exampleRadio" data-filter="Spinning-fidget">
 									<span class="form-check-label">
 										Spinning fidget.
 									</span>
@@ -45,19 +45,19 @@
 							<div class="card-body">
 								<form>
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" value="">
+										<input class="form-check-input" type="checkbox" data-filter-instructor="Isam">
 										<span class="form-check-label">
 											Isam
 										</span>
 									</label> <!-- form-check.// -->
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" value="">
+										<input class="form-check-input" type="checkbox" data-filter-instructor="Nadine">
 										<span class="form-check-label">
 											Nadine
 										</span>
 									</label>  <!-- form-check.// -->
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" value="">
+										<input class="form-check-input" type="checkbox" data-filter-instructor="Pontus">
 										<span class="form-check-label">
 											Pontus
 										</span>
@@ -76,15 +76,15 @@
 						<div class="filter-content">
 							<div class="card-body">
 								<label class="btn btn-danger">
-									<input class="" type="radio" name="myradio" value="">
+									<input class="form-check-input" type="radio" name="myradio" id="FreeCheck" data-filter-price="Free">
 									<span class="form-check-label">Free</span>
 								</label>
 								<label class="btn btn-primary">
-									<input class="" type="radio" name="myradio" value="">
+									<input class="form-check-input" type="radio" name="myradio" data-filter-price="Money">
 									<span class="form-check-label">Money!</span>
 								</label>
 								<label class="btn btn-info">
-									<input class="" type="radio" name="myradio" value="">
+									<input class="form-check-input" type="radio" name="myradio" data-filter-price="All">
 									<span class="form-check-label">All courses</span>
 								</label>
 							</div> <!-- card-body.// -->
@@ -101,10 +101,14 @@
 
 	<div class="content">
 		<div class="container">
-			<div class="row">
+			<div id="rowDiv" class="row">
 				@foreach (var course in Model)
 				{
-					<div class="card" style="flex-direction:row;width: 18rem; margin:10px">
+					<div class="card course"
+						 course-price="@course.Price"
+						 course-instructor="@course.Teacher"
+						 course-category="@course.Category"
+						 style="flex-direction:row;width: 18rem; margin:10px">
 						<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
 							<img src="~/images/@course.ImgName" class="card-img-top" alt="@course.ImgAlt">
 							<div class="card-body">
@@ -121,3 +125,17 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	var filterCheckboxes = document.querySelectorAll('.form-check-input');
+
+	filterCheckboxes.forEach(function (checkbox) {
+		checkbox.addEventListener('change', function () {
+			console.log(checkbox)
+			var courses = document.querySelectorAll('.course')
+			courses.forEach(function (course) {
+				course.getAttribute("course-price") > 0 ? course.style.display = '' : course.style.display = 'none';
+			})
+			// loop through product divs
+		});
+	});
+</script>
