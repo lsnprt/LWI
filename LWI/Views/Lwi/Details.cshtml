@@ -1,90 +1,41 @@
-﻿@model DetailsVM
-
-<div class="card" style="text-align:center">
-    <form asp-controller="Lwi" asp-action="Details">
-        <header class="card-header">
-            @Model.Name
-        </header>
-        <br />
-        <img src="/images/@Model.ImgName" alt="@Model.ImgAlt" />
-        <br />
-        @Model.Price
-        <br />
-        @Model.Category
-        <br />
-        @Model.DescriptionLong
-        <br />
-        <input type="submit" value="Lägg till i varukorgen">
-    </form>
-
-
-
-
-
-
-
-
-</div>
-
-<style>
-    .popContainer {
-        width: 100%;
-        height: 100vh;
-        background: #3c5077;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .popBtn {
-        padding: 10px 60px;
-        background #fff;
-        border: 0;
-        outline: none;
-        cursor: pointer;
-        font-size: 22px;
-        font-weight: 500;
-        border-radius: 20px;
-    }
-    .popUp{
-        width: 400px;
-        background:#fff;
-        border-radius: 6px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align:center;
-        padding: 0 30px 30px;
-        color: #3c5077;
-    }
-    .popUp img{
-        width: 100px;
-        margin-top: 50px;
-        border-radius: 40%;
-        box-shadow: 0 2px 5px rgba(red,green,blue, 0.2);
-    }
-    .popUp h3{
-        font-size 38px;
-        font-weight: 500;
-        margin: 30px 0 10px;
-    }
-    .popUp button{
-
-    }
-</style>
-
-<div class="popContainer">
-    <button type="submit" class="popBtn" value="Lägg till i varukorg">Hejsan</button>
-    <div class="popUp">
-        <img src="@TempData["Img"]" alt="@TempData["Alt"]" />
-        <h3>
-            @TempData["Message"]
-        </h3>
+﻿
+    @model DetailsVM
+    <div class="popUpWrapper">
+        <div class="card mt-3 mb-3" style="width: 35rem; height: 35rem;">
+            <img src="/images/@Model.ImgName" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h2 class="card-title">@Model.Name</h2>
+                <h5 class="card-title">@Model.Category</h5>
+                <hr />
+                <p class="card-text">@Model.DescriptionLong</p>
+            </div>
+            <button type="submit" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
+        </div>
     </div>
-</div>
 
+    <div class="popContainer">
+        <div class="popUp" id="popUp">
+            <img src="/Photos_and_Icons/CARTMASTAH.jpg" alt="Green cart with check symbol" />
+            <h3>La till '@Model.Name' i varukorgen!</h3>
+        </div>
+    </div>
+    <script>
+        function openPopUp() {
+            const url = "@Url.Action(nameof(LWI.Controllers.LwiController.Details), new { id = Model.Id})";
 
+            $.ajax({
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify("@Model.Id"),
+                success: document.getElementById("popUp").classList.add("openPopUpDiv"),
+            });
+            setTimeout(function () {
+                document.getElementById("popUp").classList.remove("openPopUpDiv")
+            },
+                1500);
+        }
+    </script>
 
 
 
