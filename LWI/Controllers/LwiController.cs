@@ -1,21 +1,30 @@
 ﻿using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace LWI.Controllers
 {
 
     public class LwiController : Controller
     {
+        IHttpContextAccessor Accessor;
         DataService dataService;
-        public LwiController(DataService dataService)
+        StateService stateService;
+        public LwiController(DataService dataService, IHttpContextAccessor accessor)
         {
             this.dataService = dataService;
-        }
+			Accessor = accessor;
+            this.stateService = new StateService(Accessor);
+
+
+		}
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+			//StateService stateService = new StateService(Accessor);
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			return View();
         }
 
         [HttpGet("/Catalog")]
@@ -43,7 +52,9 @@ namespace LWI.Controllers
                 Response.Cookies.Append("ShoppingCart", $"{model.Id}");
             else
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-            TempData["Img"] = $"{"/Photos_and_Icons/RealthumbUp.png"}";
+			cookieCheck = Request.Cookies["ShoppingCart"];
+
+			TempData["Img"] = $"{"/Photos_and_Icons/RealthumbUp.png"}";
             TempData["ImgAlt"] = $"Sad Face Error";
             TempData["Message"] = $"Lyckades att lägga till " +
             $"'{dataService.GetCourseName(model.Id)}' i din varukorg";
@@ -70,5 +81,5 @@ namespace LWI.Controllers
         {
             return View();
         }
-    }
+	}
 }
