@@ -82,7 +82,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: auto;
 }
 
 h4, h6 {
