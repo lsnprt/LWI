@@ -23,6 +23,7 @@
 
         .navbar-nav .nav-item .nav-link .icon {
             margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
         }
 
 
@@ -33,14 +34,24 @@
             height: 100px;
         }
 
+
+        .h4, .h6 {
+            font-family: 'Impact'
+        }
     </style>
 
 </head>
 <body>
     <!-- Navbar -->
+
     <div class="container-fluid"></div>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <i class="fa-solid fa-dragon" style="color: #c770f0;">LDMI</i></br>
+            Lär dig med Isam
+        </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
 
@@ -55,6 +66,7 @@
                     <i class="fa-sharp fa-solid fa-book" style="color: #c770f0;"></i>
                     <a class="nav-link center-block" href="Catalog">Kurskatalog</a>
                 </li>
+                <p>@ViewBag.NoOfItems</p>
                 <li class="nav-item">
                     <i class="fa-sharp fa-solid fa-cart-shopping" style="color: #c770f0;"></i>
                     <a class="nav-link pull-right" href="ShoppingCart">Varukorg</a>
@@ -62,7 +74,7 @@
             </ul>
         </div>
     </nav>
-    <p>@ViewBag.NoOfItems</p>
+
   </body>
 
 
