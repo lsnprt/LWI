@@ -10,17 +10,11 @@
     <title>@ViewBag.Title</title>
 </head>
 <body>
-    <style>
-        h4, h6 {
-            font-family: 'Impact'
-        }
-    </style>
-
-    <h4> <i class="fa-solid fa-dragon" style="color: #c770f0;"></i> LDMI </h4>
-    <h6> Lär dig med Isam </h6>
+  
 
     <div>
-        @Html.Partial("_Navbar")
+        <partial name="_Navbar" />
+
 
         @RenderBody()
     </div>

@@ -37,7 +37,8 @@ namespace LWI.Controllers
         [HttpGet("/Details/{id}")]
         public IActionResult Details(int id)
         {
-            DetailsVM model = dataService.GetCourse(id);
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			DetailsVM model = dataService.GetCourse(id);
             return View(model);
         }
 
