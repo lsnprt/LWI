@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace LWI.Controllers
 {
-
-    public class LwiController : Controller
-    {
+	public class LwiController : Controller
+	{
         IHttpContextAccessor Accessor;
         DataService dataService;
         StateService stateService;
@@ -16,13 +15,10 @@ namespace LWI.Controllers
             this.dataService = dataService;
 			Accessor = accessor;
             this.stateService = new StateService(Accessor);
-
-
 		}
-        [HttpGet("")]
+		[HttpGet("")]
         public IActionResult Index()
         {
-			//StateService stateService = new StateService(Accessor);
 			ViewBag.NoOfItems = stateService.NoOfCartItems();
 			return View();
         }
@@ -30,7 +26,8 @@ namespace LWI.Controllers
         [HttpGet("/Catalog")]
         public IActionResult Catalog()
         {
-            CatalogVM[] model = dataService.GetAllCourses();
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			CatalogVM[] model = dataService.GetAllCourses();
             return View(model);
         }
 
@@ -67,20 +64,22 @@ namespace LWI.Controllers
         [HttpGet("/ShoppingCart")]
         public IActionResult ShoppingCart()
         {
-            ShoppingCartVM[] model = dataService.GetSelectedCourses();
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			ShoppingCartVM[] model = dataService.GetSelectedCourses();
             return View(model);
         }
 
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
-            return View();
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			return View();
         }
 
         [HttpGet("/ShoppingCart/Checkout/Success")]
         public IActionResult PaymentSuccess()
         {
-            return View();
+			return View();
         }
 	}
 }
