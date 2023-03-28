@@ -84,3 +84,7 @@ footer {
     align-items: center;
     height: 100px;
 }
+
+h4, h6 {
+    font-family: 'Impact'
+}
