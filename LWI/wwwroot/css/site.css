@@ -134,16 +134,20 @@ a {
 
 .navbar-nav .nav-item .nav-link .icon {
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.badge {
+    margin-bottom: 1rem;
+}
 
 footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: auto;
-}
-
-h4, h6 {
-    font-family: 'Impact'
+    height: 50px;
 }
