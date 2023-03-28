@@ -56,3 +56,31 @@ a{
 
 }
 
+.navbar-nav .nav-item .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.fa-sharp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 150px;
+    margin-left: 150px;
+}
+
+
+.navbar-nav .nav-item .nav-link .icon {
+    margin-bottom: 0.5rem;
+}
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
