@@ -1,4 +1,7 @@
 @model ShoppingCartVM[]
+@{
+    int itemCount = Model.Count();
+}
 
 ﻿<section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
@@ -11,7 +14,7 @@
                                 <div class="p-5">
                                     <div class="d-flex justify-content-between align-items-center mb-5">
                                         <h1 class="fw-bold mb-0 text-black">Din Korg</h1>
-                                        <h6 class="mb-0 text-muted">1 artikel</h6>
+                                        <h6 class="mb-0 text-muted">@($"{itemCount} {(itemCount == 1 ? "artikel" : "artiklar")}")</h6>
                                     </div>
                                     <hr class="my-4">
 
@@ -43,7 +46,7 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">1 Artikel</h5>
+                                        <h5 class="text-uppercase">@($"{itemCount} {(itemCount == 1 ? "artikel" : "artiklar")}")</h5>
                                         <h5>SEK 400</h5>
                                     </div>
 
