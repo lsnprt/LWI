@@ -7,7 +7,7 @@ namespace LWI.Models
 {
     public class DataService
     {
-            List<Course> shoppingBag = new List<Course>();
+        List<Course> shoppingBag = new List<Course>();
         public DataService()
         {
         }
@@ -38,29 +38,24 @@ namespace LWI.Models
 			new Course()
 			{
 				Id = 3,
-				Teacher="Håkan",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
 				Category = "Nadines kurser",
-				Price=1499.99M
-			},
-			new Course()
+			},new Course()
 			{
 				Id = 3,
-				Teacher="Håkan",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "python.png",
 				ImgAlt = "blabla",
 				Category = "Nadines kurser",
-				Price=1399.99M
 			},
 
-		};
+        };
 
         public CatalogVM[] GetAllCourses()
         {
@@ -91,7 +86,7 @@ namespace LWI.Models
                     ImgAlt = c.ImgAlt,
                     ImgName = c.ImgName
                 })
-                .SingleOrDefault(c => c.Id == id)
+                .FirstOrDefault(c => c.Id == id)
                 ;
         }
 
@@ -120,6 +115,7 @@ namespace LWI.Models
         public string GetCourseName(int id)
         {
             return courses.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
+
         }
     }
 }

@@ -25,16 +25,21 @@ namespace LWI.Controllers
             return View(model);
         }
 
-        [HttpGet("/Details/{id}")]
+        [HttpGet("Catalog/Details/{id}")]
         public IActionResult Details(int id)
         {
+
             DetailsVM model = dataService.GetCourse(id);
             return View(model);
         }
 
-        [HttpPost("/Details/{id}")]
+        [HttpPost("Catalog/Details/{id}")]
         public IActionResult Details(DetailsVM model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
             if (cookieCheck == null)
@@ -43,12 +48,7 @@ namespace LWI.Controllers
                 Response.Cookies.Append("ShoppingCart", $"{model.Id}");
             else
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-            TempData["Img"] = $"{"/Photos_and_Icons/RealthumbUp.png"}";
-            TempData["ImgAlt"] = $"Sad Face Error";
-            TempData["Message"] = $"Lyckades att lägga till " +
-            $"'{dataService.GetCourseName(model.Id)}' i din varukorg";
-
-            return RedirectToAction(nameof(Details));
+            return Ok();
         }
 
 
