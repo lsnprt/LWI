@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace LWI.Views.Lwi
 {
@@ -11,6 +12,10 @@ namespace LWI.Views.Lwi
         [Required(ErrorMessage = "Ange dit kortnummer")]
         [CreditCard(ErrorMessage = "Kortnummer ogiltigt")]
         public string CCNumber { get; set; }
+
+        [Required(ErrorMessage = "Ange dit CVV")]
+        [PasswordPropertyText]
+        public int CVVNumber { get; set; }
 
         [Required(ErrorMessage = "Ange namnet på kortägaren")]
         public string CCHolder { get; set; }
@@ -25,5 +30,17 @@ namespace LWI.Views.Lwi
         public string ZipCode { get; set; }
 
         public decimal Total { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Select a Country")]
+        public Country Country { get; set; }
+    }
+
+    public enum Country
+    {
+        Sverige,
+        Findland,
+        Norge,
+        Danmark,
+        Island
     }
 }

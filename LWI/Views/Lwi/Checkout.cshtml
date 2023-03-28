@@ -1,4 +1,6 @@
-﻿<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+﻿@model CheckoutVM
+
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
@@ -13,36 +15,42 @@
                                     <hr class="my-4">
 
                                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                        <form action="">
+                                        <form asp-controller=Lwi>
                                             <div class="mb-3">
-                                                <p class="dis fw-bold mb-2">E-mail adress</p>
-                                                <input class="form-control" type="email" value="luke@skywalker.com">
+                                                <label asp-for=Email class="dis fw-bold mb-2">E-mail adress</label>
+                                                <input class="form-control" asp-for=Email placeholder="luke@skywalker.com">
+                                                <span asp-validation-for=Email></span>
                                             </div>
                                             <div>
                                                 <p class="dis fw-bold mb-2">Kortuppgifter</p>
                                                 <div class="d-flex gap-2 align-items-center justify-content-between card-atm border rounded">
                                                         <div class="fab fa-cc-visa ps-3"></div>
-                                                    <input type="text" class="form-control mt-2 mb-2" placeholder="Kortuppgifter">
+                                                    <input asp-for=CCNumber class="form-control mt-2 mb-2" placeholder="Kortnummer">
+                                                    <span asp-validation-for=CCNumber></span>
                                                     <div class="d-flex gap-2 w-50">
                                                         <input type="text" class="form-control" placeholder="MM/YY">
                                                         <input type="password" maxlength=3 class="form-control me-2" placeholder="CVV">
                                                     </div>
                                                 </div>
-                                                <div class="my-3 cardname">
-                                                    <p class="dis fw-bold mb-2">Cardholder name</p>
-                                                    <input class="form-control" type="text">
+                                                <div class="my-3">
+                                                    <label asp-for=CCHolder class="dis fw-bold mb-2">Kortägare</label>
+                                                    <input asp-for=CCHolder class="form-control" placeholder="Namn och efternamn">
+                                                    <span asp-validation-for="CCHolder"></span>
                                                 </div>
                                                 <div class="address">
-                                                    <p class="dis fw-bold mb-3">Billing address</p>
-                                                    <select class="form-select mb-2" aria-label="Default select example">
-                                                        <option selected hidden>Sverige</option>
-                                                        <option value="1">Norge</option>
-                                                        <option value="2">Finland</option>
-                                                        <option value="3">Denmark</option>
+                                                    <p class="dis fw-bold mb-3">Faktureringsadress</p>
+                                                    <input asp-for=Address class="form-control" placeholder="Adress">
+                                                    <span asp-validation-for=Address></span>
+                                                    <select class="form-control mb-2 mt-2" aria-label="Default select example"
+                                                    asp-for="Country"
+                                                    asp-items="Html.GetEnumSelectList<Country>()">
+                                                        <option selected="selected" value="">Välj ett land</option>
                                                     </select>
                                                     <div class="d-flex gap-2">
-                                                        <input class="form-control zip" type="text" placeholder="Postkod">
-                                                        <input class="form-control state" type="text" placeholder="Stad">
+                                                        <input asp-for=ZipCode class="form-control zip" placeholder="Postkod">
+                                                        <span asp-validation-for=ZipCode></span>
+                                                        <input asp-for=City class="form-control state" placeholder="Stad">
+                                                        <span asp-validation-for=City></span>
                                                     </div>
 
                                                     
