@@ -33,6 +33,8 @@ namespace LWI.Views.Lwi
 
         [Range(1, int.MaxValue, ErrorMessage = "Select a Country")]
         public Country Country { get; set; }
+
+        bool Paid { get; set; }
     }
 
     public enum Country
