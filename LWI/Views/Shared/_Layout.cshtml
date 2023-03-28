@@ -8,9 +8,18 @@
     <link href="./css/site.css" rel="stylesheet" />
 
     <title>@ViewBag.Title</title>
+    <style>
+        h4, h6 {
+            font-family: 'Impact'
+        }
+            </style>
+
 </head>
 <body>
-  
+    <h4> <i class="fa-solid fa-dragon" style="color: #c770f0;"></i> LDMI </h4>
+    <h6> Lär dig med Isam </h6>
+    
+    @Html.Partial("_Navbar")
 
     <div>
         <partial name="_Navbar" />
