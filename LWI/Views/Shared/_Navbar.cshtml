@@ -1,7 +1,12 @@
-﻿    <!-- Navbar -->
+    <!-- Navbar -->
     <div class="container-fluid"></div>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <i class="fa-solid fa-dragon" style="color: #c770f0;">LDMI</i> <br>         
+            <font face="Verdana" size="2" style="color:darkgrey">Lär dig med Isam</font>
+        </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
 
@@ -16,10 +21,30 @@
                     <i class="fa-sharp fa-solid fa-book" style="color: #c770f0;"></i>
                     <a class="nav-link center-block" href="Catalog">Kurskatalog</a>
                 </li>
+
                 <li class="nav-item">
+                    <a class="nav-link pull-right" href="ShoppingCart">
+                        <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
+                        Varukorg <span class="badge badge-pill badge-secondary position-relative">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                @ViewBag.NoOfItems
+                                <span class="visually-hidden">items in cart</span>
+                            </span>
+                        </span>
+                    </a>
+                </li>
+@*                <li class="nav-item">
+                    <a class="nav-link pull-right" href="ShoppingCart">
+                        <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
+                        Varukorg <span class="badge badge-pill badge-secondary">@ViewBag.NoOfItems</span>
+                    </a>
+                </li>*@
+           @*     <li class="nav-item">
                     <i class="fa-sharp fa-solid fa-cart-shopping" style="color: #c770f0;"></i>
                     <a class="nav-link pull-right" href="ShoppingCart">Varukorg</a>
-                </li>
+                <i class="fa" style="font-size:15px">&#xf07a;</i>
+                <span> 5 </span>
+                </li>*@
             </ul>
         </div>
     </nav>
