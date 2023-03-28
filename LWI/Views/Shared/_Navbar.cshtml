@@ -26,12 +26,19 @@
             margin-top: 0.5rem;
         }
 
+        .navbar-brand {
+            margin-left: 20px;
+        }
+
+        .badge {
+            margin-bottom: 1rem;
+        }
 
         footer {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100px;
+            height: 50px;
         }
 
     </style>
@@ -55,22 +62,21 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <i class="fa-sharp fa-solid fa-house" style="color: #c770f0;"></i>
+                    <i class="fa-sharp fa-solid fa-house fa-stack-x2" style="color: #c770f0;"></i>
                     <a class="nav-link" asp-action="Index">Homepage <span class="sr-only"></span></a>
                 </li>
                 <li class="nav-item">
-                    <i class="fa-sharp fa-solid fa-book" style="color: #c770f0;"></i>
+                    <i class="fa-sharp fa-solid fa-book fa-stack-x2" style="color: #c770f0;"></i>
                     <a class="nav-link center-block" href="Catalog">Kurskatalog</a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link pull-right" href="ShoppingCart">
-                        <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
-                        Varukorg <span class="badge badge-pill badge-secondary position-relative">
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <i class="fas fa-shopping-cart fa-stack-x2" style="color: #c770f0;"></i> 
+                        Varukorg
+                        <span class="position-absolute alert-danger translate-middle badge rounded-pill bg-danger fa-stack-x1" style="font-size:xx-small"> 
                                 @ViewBag.NoOfItems
-                                <span class="visually-hidden">items in cart</span>
-                            </span>
+                           
                         </span>
                     </a>
                 </li>
