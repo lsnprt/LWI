@@ -76,7 +76,7 @@
 						<div class="filter-content">
 							<div class="card-body">
 								<label class="btn btn-danger">
-									<input class="form-check-input" type="radio" name="myradio" id="FreeCourses" onchange="change(this)" data-filter-price="Free">
+									<input class="form-check-input" type="radio" name="myradio" id="FreeCourses" onclick="change(this)" data-filter-price="Free">
 									<span class="form-check-label">Free</span>
 								</label>
 								<label class="btn btn-primary">
@@ -131,9 +131,19 @@
 
 	function change(box) {
 		courses.forEach(function (course) {
-			var price = course.getAttribute("course-price")
+			var price = parseFloat(course.getAttribute("course-price"))
 			if (box.id === "FreeCourses") {
 				if (price > 0) {
+					console.log(1)
+					course.style.display = "none"
+				}
+				else {
+					course.style.display = ""
+				}
+
+			}
+			if (box.id === "non-FreeCourses") {
+				if (price == 0) {
 					console.log(1)
 					course.style.display = "none"
 				}
@@ -143,14 +153,15 @@
 			}
 		})
 	}
-											//filterCheckboxes.forEach(function (checkbox) {
-											//	checkbox.addEventListener('change', function () {
-											//		console.log(checkbox)
-											//		var courses = document.querySelectorAll('.course')
-											//		courses.forEach(function (course) {
-											//			course.getAttribute("course-price") > 0 ? course.style.display = '' : course.style.display = 'none';
-											//		})
-											//		// loop through product divs
-											//	});
-											//});
+
+															//filterCheckboxes.forEach(function (checkbox) {
+															//	checkbox.addEventListener('change', function () {
+															//		console.log(checkbox)
+															//		var courses = document.querySelectorAll('.course')
+															//		courses.forEach(function (course) {
+															//			course.getAttribute("course-price") > 0 ? course.style.display = '' : course.style.display = 'none';
+															//		})
+															//		// loop through product divs
+															//	});
+															//});
 </script>
