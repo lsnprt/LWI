@@ -40,8 +40,12 @@ namespace LWI.Controllers
 			if (cookieCheck == null)
 				Response.Cookies.Append("ShoppingCart", ",");
 
-			ViewBag.NoOfItems = stateService.NoOfCartItems();
+            bool itemInCart = stateService.GetCartIds().Contains(id);
+
+
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
 			DetailsVM model = dataService.GetCourse(id);
+            model.InCart = itemInCart;
 
             return View(model);
         }
@@ -49,10 +53,9 @@ namespace LWI.Controllers
         [HttpPost("Catalog/Details/{id}")]
         public IActionResult Details(DetailsVM model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
+            
+
+
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
             if (cookieCheck == null)
@@ -60,7 +63,10 @@ namespace LWI.Controllers
             else if (cookieCheck == ",")
                 Response.Cookies.Append("ShoppingCart", $",{model.Id}");
             else
-                Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
+            {
+                if (!stateService.GetCartIds().Contains(model.Id))
+                    Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
+            }
             return Ok();
         }
 
