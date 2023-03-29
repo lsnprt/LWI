@@ -28,43 +28,91 @@ namespace LWI.Models
 				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
 				ImgName = "Csharp.png",
 				ImgAlt = "blabla",
-				Category = "Pontus kurser",
+				Category = "Saving Earth",
 				Price=1999.99M
 			},
 			new Course()
 			{
 				Id = 2,
-				Teacher="Tony",
+				Teacher="Isam",
 				Name = "Grundkurs i C#",
 				DescriptionShort = "En grundkurs i det objektorienterade språket C#",
 				DescriptionLong = "En grundkurs i det objektorienterade språket C#",
 				ImgName = "JS.png",
 				ImgAlt = "blabla",
-				Category = "Programmering",
+				Category = "Programming",
 				Price=0
 			},
 			new Course()
 			{
 				Id = 3,
-				Teacher="Håkan",
+				Teacher="Nadine",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
-				Category = "Nadines kurser",
-				Price=1499.99M
+				Category = "Saving Earth",
+				Price=0
 			},
 			new Course()
 			{
 				Id = 3,
-				Teacher="Håkan",
+				Teacher="Nadine",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "python.png",
 				ImgAlt = "blabla",
-				Category = "Nadines kurser",
+				Category = "Saving Earth",
+				Price=1499.99M
+			},
+			new Course()
+			{
+				Id = 1,
+				Teacher="Pontus",
+				Name = "Pontus lilla röda",
+				DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				ImgName = "Csharp.png",
+				ImgAlt = "blabla",
+				Category = "Web Development",
+				Price=1999.99M
+			},
+			new Course()
+			{
+				Id = 2,
+				Teacher="Nadine",
+				Name = "Grundkurs i C#",
+				DescriptionShort = "En grundkurs i det objektorienterade språket C#",
+				DescriptionLong = "En grundkurs i det objektorienterade språket C#",
+				ImgName = "JS.png",
+				ImgAlt = "blabla",
+				Category = "Programming",
+				Price=0
+			},
+			new Course()
+			{
+				Id = 3,
+				Teacher="Isam",
+				Name = "Sortera med Nadine #1",
+				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				ImgName = "ASP.jpg",
+				ImgAlt = "blabla",
+				Category = "Web Development",
+				Price=0
+			},
+			new Course()
+			{
+				Id = 3,
+				Teacher="Nadine",
+				Name = "Sortera med Nadine #1",
+				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				ImgName = "python.png",
+				ImgAlt = "blabla",
+				Category = "Saving Earth",
 				Price=1399.99M
 			},
 
