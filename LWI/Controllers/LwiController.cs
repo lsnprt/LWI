@@ -54,7 +54,7 @@ namespace LWI.Controllers
                 Response.Cookies.Append("ShoppingCart", $"{model.Id}");
             else
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-            return Ok();
+            return Ok($"La till {dataService.GetCourseName(model.Id)} i varukorgen!");
         }
 
 

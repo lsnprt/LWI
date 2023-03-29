@@ -1,44 +1,45 @@
-﻿
-    @model DetailsVM
-    <div class="popUpWrapper">
+﻿@model DetailsVM
+<div class="popUpWrapper">
     <a asp-action="Catalog" class="text-body" style="position:absolute; left: 20px; top: 110px;">
         <i class="fas fa-long-arrow-alt-left me-2"></i>Tillbaka till kurskatalogen
     </a>
-        <div class="card mt-3 mb-3" style="width: 37rem; height: 37rem;">
-            <img src="/images/@Model.ImgName" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h2 class="card-title">@Model.Name</h2>
-                <h5 class="card-title">@Model.Category</h5>
-                <hr />
-                <p class="card-text">@Model.DescriptionLong</p>
-            </div>
-            <span style="position:absolute; padding: 10px 20px; left: 10px; bottom: 35px;">Pris: @Model.Price kr</span>
-            <button type="submit" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
+    <div class="card mt-3 mb-3" style="width: 35rem; height: 35rem;">
+        <img src="/images/@Model.ImgName" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h2 class="card-title">@Model.Name</h2>
+            <h5 class="card-title">@Model.Category</h5>
+            <hr />
+            <p class="card-text">@Model.DescriptionLong</p>
         </div>
+        <span style="position:absolute; padding: 10px 20px; bottom: 35px;">Pris: @Model.Price kr</span>
+        <button type="submit" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
     </div>
+</div>
 
-        <div class="popUp" id="popUp">
-            <img src="/Photos_and_Icons/CARTMASTAH.jpg" alt="Green cart with check symbol" />
-            <hr/>
-            <h3>La till '@Model.Name' i varukorgen!</h3>
-        </div>
-    <script>
-        function openPopUp() {
-            const url = "@Url.Action(nameof(LWI.Controllers.LwiController.Details), new { id = Model.Id})";
-
-            $.ajax({
-                url: url,
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify("@Model.Id"),
-                success: document.getElementById("popUp").classList.add("openPopUpDiv"),
-            });
-            setTimeout(function () {
-                document.getElementById("popUp").classList.remove("openPopUpDiv")
-            },
-                1500);
-        }
-    </script>
+<div class="popUp" id="popUp">
+    <img src="/Photos_and_Icons/CARTMASTAH.jpg" alt="Green cart with check symbol" />
+    <hr />
+    <h3 id="popUpH3"></h3>  
+</div>
+<script>
+    function openPopUp() {
+        const url = "@Url.Action(nameof(LWI.Controllers.LwiController.Details), new { id = Model.Id})";
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify("@Model.Id"),
+            success: data => {
+                document.getElementById("popUpH3").innerHTML = data,
+                    document.getElementById("popUp").classList.add("openPopUpDiv")
+            }
+        });
+        setTimeout(function () {
+            document.getElementById("popUp").classList.remove("openPopUpDiv")
+        },
+            1500);
+    }
+</script>
 
 
 
