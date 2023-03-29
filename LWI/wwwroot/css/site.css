@@ -1,4 +1,94 @@
 ﻿
+
+/*--------------------------index--------------------------------------*/
+.first {
+    width: 320px;
+    height: 450px;
+    margin: 10px;
+    border-width: 0 2px 0 2px;
+    border-color: #c770f0;
+    border-style: solid;
+    position: relative;
+}
+
+    .first span {
+        position: absolute;
+        display: flex;
+        right: 0;
+        left: 0;
+        align-items: center;
+    }
+    
+    .foo {
+        font-size: 16px;
+        font-family: Arial;
+    }
+
+    .first .foo {
+        top: -30px;
+    }
+
+    .first .bar {
+        bottom: -8.5px;
+    }
+
+    .first span:before {
+        margin-right: 15px;
+    }
+
+    .first span:after {
+        margin-left: 15px;
+    }
+
+    .first span:before, .first span:after {
+        content: ' ';
+        height: 2px;
+        background: #c770f0;
+        display: block;
+        width: 50%;
+    }
+
+.text {
+    color: black;
+    font-family: Arial;
+    position: center;
+    font-size: 12px
+   
+}
+
+
+/*.fieldset {
+    border: solid;
+    color: #c770f0;
+    border-radius: 1em;
+    margin: 2em 1em 1em;
+    padding: 0 1em 1em;*/
+/*    float: right;
+    clear: right;*/
+    /*font-family: Verdana;
+    height: 500px;
+    width: 350px; 
+}
+
+.text {
+    color: black;
+    font-family: Verdana;
+    position: center;
+}
+
+.legend {
+    transform: translateY(-50%);
+    position: center;
+    padding: 0 0.15em;
+
+}
+
+.image-container {
+    float: left;
+}*/
+
+/*----------------------------------------------------------------*/
+
 .wrapper {
     display: flex;
     flex-direction: column;
