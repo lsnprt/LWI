@@ -18,41 +18,50 @@ namespace LWI.Models
             {
                 Id = 1,
                 Name = "Pontus lilla röda",
+                Teacher = "Pontus",
                 DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
                 DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
                 ImgName = "Csharp.png",
                 ImgAlt = "blabla",
                 Category = "Pontus kurser",
+                Price = 1999
             },
             new Course()
             {
                 Id = 2,
                 Name = "Grundkurs i C#",
+                Teacher = "Peter",
                 DescriptionShort = "En grundkurs i det objektorienterade språket C#",
                 DescriptionLong = "En grundkurs i det objektorienterade språket C#",
                 ImgName = "JS.png",
                 ImgAlt = "blabla",
                 Category = "Programmering",
+                Price = 0
 
             },
 			new Course()
 			{
 				Id = 3,
 				Name = "Sortera med Nadine #1",
+                Teacher = "Nadine",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
 				Category = "Nadines kurser",
+                Price = 1999
 			},new Course()
 			{
-				Id = 3,
-				Name = "Sortera med Nadine #1",
-				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+
+				Id = 4,
+				Name = "Sortera med Nadine #2",
+				Teacher="Håkan",
+				DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+				DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
 				ImgName = "python.png",
 				ImgAlt = "blabla",
 				Category = "Nadines kurser",
+                Price = 4999
 			},
 
         };
@@ -97,9 +106,10 @@ namespace LWI.Models
 
         }
 
-        internal ShoppingCartVM[] GetSelectedCourses()
+        internal ShoppingCartVM[] GetSelectedCourses(int[] cartIds)
         {
-            return shoppingBag
+            return courses
+                .Where(c => cartIds.Contains(c.Id))
                 .Select(c => new ShoppingCartVM
                 {
                     Category = c.Category,

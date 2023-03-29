@@ -1,5 +1,8 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace LWI.Views.Lwi
 {
@@ -14,11 +17,16 @@ namespace LWI.Views.Lwi
         [CreditCard(ErrorMessage = "Kortnummer ogiltigt")]
         [Display(Name = "Kreditkortsnummer")]
         public string CCNumber { get; set; }
-
-        [Required(ErrorMessage = "Ange dit CVV")]
-        [PasswordPropertyText]
         [Display(Name = "CCV nummer")]
-        public int CVVNumber { get; set; }
+        [Required(ErrorMessage = "Ange dit CVV")]
+        [DataType(DataType.Password)]
+        [Range(000, 999, ErrorMessage = "Ogiltig CVV")]
+        [StringLength(3, MinimumLength = 3, ErrorMessage = "Fel längd")]
+        public string CVVNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        public DateTime? Expiration { get; set; }
 
         [Required(ErrorMessage = "Ange namnet på kortägaren")]
         [Display(Name = "Kreditkorts innehavare")]
@@ -38,10 +46,9 @@ namespace LWI.Views.Lwi
 
         [Display(Name = "Total kostnad")]
         public decimal Total { get; set; }
-
-        [Range(1, int.MaxValue, ErrorMessage = "Select a Country")]
         [Display(Name = "Land")]
-        public Country Country { get; set; }
+        [EnumDataType(typeof(Country)), Display(Name = "Land")]
+        public Country? Country { get; set; }
 
         bool Paid { get; set; }
     }

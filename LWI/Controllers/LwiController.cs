@@ -1,4 +1,5 @@
-﻿using LWI.Models;
+﻿using System.Text.RegularExpressions;
+using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
@@ -34,27 +35,38 @@ namespace LWI.Controllers
         [HttpGet("Catalog/Details/{id}")]
         public IActionResult Details(int id)
         {
+
+			var cookieCheck = Request.Cookies["ShoppingCart"];
+			if (cookieCheck == null)
+				Response.Cookies.Append("ShoppingCart", ",");
+
+            bool itemInCart = stateService.GetCartIds().Contains(id);
+
+
             ViewBag.NoOfItems = stateService.NoOfCartItems();
-            DetailsVM model = dataService.GetCourse(id);
+			DetailsVM model = dataService.GetCourse(id);
+            model.InCart = itemInCart;
+
             return View(model);
         }
 
         [HttpPost("Catalog/Details/{id}")]
         public IActionResult Details(DetailsVM model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
+            
+
+
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
             if (cookieCheck == null)
-                Response.Cookies.Append("ShoppingCart", "");
-            else if (cookieCheck == "")
-                Response.Cookies.Append("ShoppingCart", $"{model.Id}");
+                Response.Cookies.Append("ShoppingCart", ",");
+            else if (cookieCheck == ",")
+                Response.Cookies.Append("ShoppingCart", $",{model.Id}");
             else
+                                if (!stateService.GetCartIds().Contains(model.Id))
+
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-            return Ok($"La till {dataService.GetCourseName(model.Id)} i varukorgen!");
+            return Ok();
         }
 
 
@@ -62,15 +74,36 @@ namespace LWI.Controllers
         public IActionResult ShoppingCart()
         {
 			ViewBag.NoOfItems = stateService.NoOfCartItems();
-			ShoppingCartVM[] model = dataService.GetSelectedCourses();
+            int[] cartIds = stateService.GetCartIds();
+			ShoppingCartVM[] model = dataService.GetSelectedCourses(cartIds);
             return View(model);
         }
+
+        [Route("/RemoveFromCart/{id}")]
+        public IActionResult RemoveFromCart(int id)
+        {
+            stateService.RemoveFromCart(id);
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
+
 
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
 			ViewBag.NoOfItems = stateService.NoOfCartItems();
 			return View();
+        }
+
+        [HttpPost("/ShoppingCart/Checkout")]
+        public IActionResult Checkout(CheckoutVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            else
+            {
+                return RedirectToAction(nameof(PaymentSuccess));
+            }
         }
 
         [HttpGet("/ShoppingCart/Checkout/Success")]
