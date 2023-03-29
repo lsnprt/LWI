@@ -1,4 +1,5 @@
-﻿using LWI.Models;
+﻿using System.Text.RegularExpressions;
+using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
@@ -34,8 +35,14 @@ namespace LWI.Controllers
         [HttpGet("Catalog/Details/{id}")]
         public IActionResult Details(int id)
         {
-            ViewBag.NoOfItems = stateService.NoOfCartItems();
-            DetailsVM model = dataService.GetCourse(id);
+
+			var cookieCheck = Request.Cookies["ShoppingCart"];
+			if (cookieCheck == null)
+				Response.Cookies.Append("ShoppingCart", ",");
+
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			DetailsVM model = dataService.GetCourse(id);
+
             return View(model);
         }
 
@@ -49,9 +56,9 @@ namespace LWI.Controllers
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
             if (cookieCheck == null)
-                Response.Cookies.Append("ShoppingCart", "");
-            else if (cookieCheck == "")
-                Response.Cookies.Append("ShoppingCart", $"{model.Id}");
+                Response.Cookies.Append("ShoppingCart", ",");
+            else if (cookieCheck == ",")
+                Response.Cookies.Append("ShoppingCart", $",{model.Id}");
             else
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
             return Ok();
@@ -62,9 +69,19 @@ namespace LWI.Controllers
         public IActionResult ShoppingCart()
         {
 			ViewBag.NoOfItems = stateService.NoOfCartItems();
-			ShoppingCartVM[] model = dataService.GetSelectedCourses();
+            int[] cartIds = stateService.GetCartIds();
+			ShoppingCartVM[] model = dataService.GetSelectedCourses(cartIds);
             return View(model);
         }
+
+        [Route("/RemoveFromCart/{id}")]
+        public IActionResult RemoveFromCart(int id)
+        {
+            stateService.RemoveFromCart(id);
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
+
 
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
