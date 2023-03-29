@@ -22,6 +22,7 @@ namespace LWI.Views.Lwi
         [StringLength(3, MinimumLength = 3, ErrorMessage = "Fel längd")]
         public string CVVNumber { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime? Expiration { get; set; }
 
