@@ -110,10 +110,11 @@ namespace LWI.Controllers
         {
             if (!ModelState.IsValid)
                 return View(model);
-            else
-            {
-                return RedirectToAction(nameof(PaymentSuccess));
-            }
+
+            int[] checkoutItemsIds = stateService.GetCartIds();
+            dataService.ProcessPayment(model, checkoutItemsIds);
+            //empty cart from cookies
+            return RedirectToAction(nameof(PaymentSuccess));
         }
 
         [HttpGet("/ShoppingCart/Checkout/Success")]
