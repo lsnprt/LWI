@@ -49,7 +49,7 @@ namespace LWI.Models
 			},
 			new Course()
 			{
-				Id = 3,
+				Id = 4,
 				Teacher="Håkan",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
@@ -102,9 +102,10 @@ namespace LWI.Models
 
         }
 
-        internal ShoppingCartVM[] GetSelectedCourses()
+        internal ShoppingCartVM[] GetSelectedCourses(int[] cartIds)
         {
-            return shoppingBag
+            return courses
+                .Where(c => cartIds.Contains(c.Id))
                 .Select(c => new ShoppingCartVM
                 {
                     Category = c.Category,
