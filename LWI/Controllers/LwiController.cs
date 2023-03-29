@@ -26,25 +26,6 @@ namespace LWI.Controllers
 			{
 				filteredCourses = filteredCourses.Where(p => p.Category == category).ToArray();
 			}
-
-			//if (!string.IsNullOrEmpty(priceRange))
-			//{
-			//    switch (priceRange)
-			//    {
-			//        case "Free":
-			//            filteredCourses = filteredCourses.Where(p => p.Price==0).ToArray();
-			//            break;
-			//        case "1000 to 1500":
-			//            filteredCourses = filteredCourses.Where(p => p.Price >= 1000 && p.Price <= 1500).ToArray();
-			//            break;
-			//        case "over 1500":
-			//            filteredCourses = filteredCourses.Where(p => p.Price > 1900).ToArray();
-			//            break;
-			//        default:
-			//            break;
-			//    }
-			//}
-
 			ViewBag.Categories = model.Select(p => p.Category).Distinct().ToList();
 			//ViewBag.PriceRanges = new List<string> { "Free", "1000 to 1500", "over 1500" };
 			return View(filteredCourses);

@@ -13,10 +13,15 @@
 						</header>
 						<div class="filter-content">
 							<div class="card-body">
-								@foreach (var category in ViewBag.Categories)
+								@{
+									var distinctArray = Model.DistinctBy(x => x.Category).Select(x => x.Category).ToArray();
+								}
+								@for (var i = 0; i < distinctArray.Length; i++)
 								{
+									@*var newModel = new string[Model.Length];
+								if (!newModel.Contains(Model[i].Category)) { newModel[i] = Model[i].Category; }*@
 									<label class="form-check-label">
-											<a href="@Url.Action("Catalog", "Lwi", new { category = category })">@category</a>
+										<a href="@Url.Action("Catalog", "Lwi", new { category = distinctArray[i]})">@distinctArray[i] </a>
 									</label>
 								}
 								<a href="@Url.Action("Catalog", "Lwi")">Clear All Filters</a>
@@ -53,21 +58,27 @@
 							<div class="card-body">
 								<form>
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" data-filter-instructor="Isam">
+										<input class="form-check-input" name="teacherFilter" type="radio" id="isam">
 										<span class="form-check-label">
 											Isam
 										</span>
 									</label> <!-- form-check.// -->
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" data-filter-instructor="Nadine">
+										<input class="form-check-input" name="teacherFilter" type="radio"  id="nadine">
 										<span class="form-check-label">
 											Nadine
 										</span>
 									</label>  <!-- form-check.// -->
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" data-filter-instructor="Pontus">
+										<input class="form-check-input" name="teacherFilter" type="radio" id="pontus">
 										<span class="form-check-label">
 											Pontus
+										</span>
+									</label>  <!-- form-check.// -->
+									<label class="form-check">
+										<input class="form-check-input" name="teacherFilter" type="radio" id="all" checked>
+										<span class="form-check-label">
+											All instructors
 										</span>
 									</label>  <!-- form-check.// -->
 								</form>
@@ -84,15 +95,15 @@
 						<div class="filter-content">
 							<div class="card-body">
 								<label class="btn btn-danger">
-									<input class="form-check-input" type="radio" name="myradio" id="FreeCourses" onclick="change(this)" data-filter-price="Free">
+									<input class="form-check-input" type="radio" name="priceFilter" id="FreeCourses" >
 									<span class="form-check-label">Free</span>
 								</label>
 								<label class="btn btn-primary">
-									<input class="form-check-input" type="radio" name="myradio" id="non-FreeCourses" onclick="change(this)" data-filter-price="Money">
+									<input class="form-check-input" type="radio" name="priceFilter" id="non-FreeCourses" >
 									<span class="form-check-label">Money!</span>
 								</label>
 								<label class="btn btn-info">
-									<input class="form-check-input" type="radio" name="myradio" id="AllIn" onclick="change(this)" data-filter-price="All">
+									<input class="form-check-input" type="radio" name="priceFilter" id="AllIn"checked >
 									<span class="form-check-label">All courses</span>
 								</label>
 							</div> <!-- card-body.// -->
@@ -105,8 +116,6 @@
 	</div>
 	<!--container end.//-->
 
-
-
 	<div class="content">
 		<div class="container">
 			<div id="rowDiv" class="row">
@@ -114,7 +123,7 @@
 				{
 					<div class="card course"
 						 course-price="@course.Price"
-						 course-instructor="@course.Teacher"
+						 course-teacher="@course.Teacher"
 						 course-category="@course.Category"
 						 style="flex-direction:row;width: 18rem; margin:10px">
 						<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
@@ -134,21 +143,79 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var filterCheckboxes = document.querySelectorAll('.form-check-input');
-	var courses = document.querySelectorAll(".course")
 
-	function change(ckbox) {
-		courses.forEach(function (course) {
-			var price = parseFloat(course.getAttribute("course-price"))
-			if (ckbox.id === "FreeCourses") {
-				if (price > 0) course.style.display = "none"
-				else course.style.display = ""
-			}
-			if (ckbox.id === "non-FreeCourses") {
-				if (price == 0) course.style.display = "none"
-				else course.style.display = ""
-			}
-			if (ckbox.id === "AllIn") course.style.display = ""
-		})
+	const priceFilterRadios = document.getElementsByName("priceFilter");
+	const teacherFilterRadios = document.getElementsByName("teacherFilter");
+	const courses = document.getElementsByClassName("product");
+
+	for (let i = 0; i < priceFilterRadios.length; i++) {
+		priceFilterRadios[i].addEventListener("click", filterCourses);
 	}
+
+	for (let i = 0; i < teacherFilterRadios.length; i++) {
+		teacherFilterRadios[i].addEventListener("click", filterCourses);
+	}
+
+	function filterCourses() {
+		const selectedPriceFilter = document.querySelector('input[name="priceFilter"]:checked').value;
+		const selectedTeacherFilter = document.querySelector('input[name="teacherFilter"]:checked').value;
+		console.log(selectedPriceFilter)
+		for (let i = 0; i <courses.length; i++) {
+			const course =courses[i];
+			const price = parseFloat(product.dataset.price);
+			const teacher = course.dataset.teacher;
+
+			const matchesPriceFilter = selectedPriceFilter === "all" ||
+				(selectedPriceFilter === "low" && price < 50) ||
+				(selectedPriceFilter === "medium" && price >= 50 && price < 100) ||
+				(selectedPriceFilter === "high" && price >= 100);
+
+			const matchesTeacherFilter = selectedTeacherFilter === "all" || selectedTeacherFilter === teacher;
+
+			if (matchesPriceFilter && matchesTeacherFilter) {
+				product.style.display = "block";
+			} else {
+				product.style.display = "none";
+			}
+		}
+	}
+
+	//var courses = document.querySelectorAll(".course")
+
+	//function change(filter) {
+	//	courses.forEach(function (course) {
+	//		var price = parseFloat(course.getAttribute("course-price"))
+	//		if (filter.id === "FreeCourses") {
+	//			if (price > 0) course.style.display = "none"
+	//			else course.style.display = ""
+	//		}
+	//		if (filter.id === "non-FreeCourses") {
+	//			if (price == 0) course.style.display = "none"
+	//			else course.style.display = ""
+	//		}
+	//		if (filter.id === "AllIn") course.style.display = ""
+	//	})
+	//}
+
+	//function change1(filter) {
+	//	courses.forEach(function (course) {
+	//		var teacher = course.getAttribute("course-teacher")
+	//		if (filter.id === "isam") {
+	//			if (teacher !== "Isam") course.style.display = "none"
+	//			else course.style.display = ""
+	//		}
+	//		if (filter.id === "nadine") {
+	//			if (teacher !== "Nadine") course.style.display = "none"
+	//			else course.style.display = ""
+	//		}
+	//		if (filter.id === "pontus") {
+	//			if (teacher !== "Pontus") course.style.display = "none"
+	//			else course.style.display = ""
+	//		}
+	//		if (filter.id === "all") {
+	//			course.style.display = ""
+	//		}
+	//	})
+
+	//}
 </script>

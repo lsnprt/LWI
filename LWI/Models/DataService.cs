@@ -2,6 +2,7 @@
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace LWI.Models
 {
 	public class DataService
@@ -57,7 +58,7 @@ namespace LWI.Models
 			},
 			new Course()
 			{
-				Id = 3,
+				Id = 4,
 				Teacher="Nadine",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
@@ -69,8 +70,9 @@ namespace LWI.Models
 			},
 			new Course()
 			{
-				Id = 1,
+				Id = 5,
 				Teacher="Pontus",
+				//Teacher="Pontus",
 				Name = "Pontus lilla röda",
 				DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
 				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
@@ -81,7 +83,7 @@ namespace LWI.Models
 			},
 			new Course()
 			{
-				Id = 2,
+				Id = 6,
 				Teacher="Nadine",
 				Name = "Grundkurs i C#",
 				DescriptionShort = "En grundkurs i det objektorienterade språket C#",
@@ -93,7 +95,7 @@ namespace LWI.Models
 			},
 			new Course()
 			{
-				Id = 3,
+				Id = 7,
 				Teacher="Isam",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
@@ -105,7 +107,7 @@ namespace LWI.Models
 			},
 			new Course()
 			{
-				Id = 3,
+				Id = 8,
 				Teacher="Nadine",
 				Name = "Sortera med Nadine #1",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
@@ -129,7 +131,8 @@ namespace LWI.Models
 					Id = c.Id,
 					DescriptionShort = c.DescriptionShort,
 					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName
+					ImgName = c.ImgName,
+					Teacher=c.Teacher
 				})
 				.OrderBy(c => c.Name)
 				.ToArray();
