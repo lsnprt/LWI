@@ -30,7 +30,7 @@
                                                 </div>
                                                 <div class="d-flex gap-2 align-items-center">
                                                     <input type="month" class="form-control" >
-                                                    <input asp-for=CVVNumber maxlength=3 class="form-control me-2" placeholder="CVV">
+                                                    <input asp-for=CVVNumber class="form-control me-2" placeholder="CVV">
                                                     <span asp-validation-for=CVVNumber></span>
 
                                                 </div>
@@ -43,7 +43,7 @@
                                                     <p class="dis fw-bold mb-3">Faktureringsadress</p>
                                                     <input asp-for=Address class="form-control" placeholder="Adress">
                                                     <span asp-validation-for=Address></span>
-                                                    <select class="form-control mb-2 mt-2" aria-label="Default select example"
+                                                    <select class="form-control mb-2 mt-2"
                                                             asp-for="Country"
                                                             asp-items="Html.GetEnumSelectList<Country>()">
                                                         <option selected="selected" value="">Välj ett land</option>
@@ -71,9 +71,10 @@
                                                             <p class="fw-bold">Total</p>
                                                             <p class="fw-bold">SEK 400</p>
                                                         </div>
-                                                        <div class="btn btn-primary mt-2">
+                                                        <button asp-action="Checkout" class="btn btn-primary mt-2">
                                                             Pay SEK 400
-                                                        </div>
+                                                        </button>
+                                                        <div asp-validation-summary="All"></div>
                                                     </div>
                                                 </div>
                                             </div>
