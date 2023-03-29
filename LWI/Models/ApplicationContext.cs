@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LWI.Views.Lwi;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Data;
 
 namespace LWI.Models
@@ -20,6 +22,10 @@ namespace LWI.Models
             modelBuilder.Entity<Order>()
                 .Property(o => o.Total)
                 .HasColumnType(SqlDbType.Money.ToString());
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Country)
+                .HasConversion(new EnumToStringConverter<Country>());
         }
 
         public DbSet<Course> Courses { get; set; }

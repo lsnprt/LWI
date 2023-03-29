@@ -7,6 +7,8 @@ namespace LWI.Models
     {
         public int Id { get; set; }
         public string Email { get; set; }
+        public DateTime OrderDate { get; set; }
+        public decimal Total { get; set; }
         public string CCNumber { get; set; }
 
         public string CCHolder { get; set; }
@@ -14,7 +16,6 @@ namespace LWI.Models
         public string City { get; set; }
         public string ZipCode { get; set; }
 
-        public decimal Total { get; set; }
         public Country Country { get; set; }
 
         public List<OrdersToCourses> OrdersToCourses { get; set; }

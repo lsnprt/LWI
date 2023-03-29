@@ -12,6 +12,6 @@
         public string? Category { get; set; }
         public string Teacher { get; set; }
 
-        public List<OrdersToCourses> ordersToCourses { get; set; }
+        public List<OrdersToCourses> OrdersToCourses { get; set; }
     }
 }
