@@ -2,6 +2,7 @@
 using System.Linq;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace LWI.Models
 {
@@ -128,6 +129,8 @@ namespace LWI.Models
 
         }
 
-        
+        public void ProcessPayment(CheckoutVM model, int[] cartIds)
+        {
+        }
     }
 }

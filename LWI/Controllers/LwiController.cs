@@ -100,6 +100,8 @@ namespace LWI.Controllers
                 return View(model);
             else
             {
+                int[] cartIds = stateService.GetCartIds();
+                dataService.ProcessPayment(model, cartIds);
                 return RedirectToAction(nameof(PaymentSuccess));
             }
         }
