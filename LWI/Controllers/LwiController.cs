@@ -60,11 +60,23 @@ namespace LWI.Controllers
                 Response.Cookies.Append("ShoppingCart", ",");
             else if (cookieCheck == ",")
                 Response.Cookies.Append("ShoppingCart", $",{model.Id}");
+            if (stateService.GetCartIds().Contains(model.Id))
+            {
+                return Ok(new
+                {
+                    message = $"'{dataService.GetCourseName(model.Id)}' finns redan i din varukorg!",
+                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG"
+                });
+            }
             else
-                                if (!stateService.GetCartIds().Contains(model.Id))
-
+            {
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-            return Ok($"La till {dataService.GetCourseName(model.Id)} i varukorgen!");
+                return Ok(new
+                {
+                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg"
+                });
+            }
         }
 
 
