@@ -131,6 +131,7 @@ namespace LWI.Models
 
         public void ProcessPayment(CheckoutVM model, int[] cartIds)
         {
+            //needs implementation when DBcontext is done
         }
     }
 }
