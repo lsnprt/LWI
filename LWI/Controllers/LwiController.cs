@@ -73,6 +73,17 @@ namespace LWI.Controllers
 			return View();
         }
 
+        [HttpPost("/ShoppingCart/Checkout")]
+        public IActionResult Checkout(CheckoutVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+            else
+            {
+                return RedirectToAction(nameof(PaymentSuccess));
+            }
+        }
+
         [HttpGet("/ShoppingCart/Checkout/Success")]
         public IActionResult PaymentSuccess()
         {
