@@ -1,34 +1,34 @@
 ﻿
 .wrapper {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     background-color: #f1f1f1;
 }
 
-.container{
-    align-items:center;
+.container {
+    align-items: center;
 }
 
-.wrapper-item2{
-    display:flex;
-    flex-wrap:wrap;
-    align-items:center;
+.wrapper-item2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .image-container {
     flex: 1;
-    flex-shrink:1;
+    flex-shrink: 1;
     margin-right: 20px;
-    width:100%;
+    width: 100%;
 }
 
 .text {
     flex: 2;
     font-size: 20px;
-    flex-grow:3;
+    flex-grow: 3;
 }
 
 .sidebar {
@@ -41,18 +41,113 @@
 }
 
 div.content {
-
     margin-left: 200px;
     /*margin-top: 100px;*/
     padding: 10px 16px;
     height: 1000px;
 }
-a{
-    text-decoration:none;
-    color:black;
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 #Price-card{
 
 }
 
+/*-------------------Details CSS---------------------------*/
+.addBtn {
+    padding: 10px 20px;
+    background: #c770f0;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin: 25px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.popUp {
+    width: 400px;
+    background: #fff;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.openPopUpDiv {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popUp img {
+    width: 200px;
+    margin-top: 20px;
+    border-radius: 80%;
+    box-shadow: 0 2px 5px rgba(red,green,blue, 0.2);
+}
+
+.popUp h3 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 30px 0 10px;
+}
+
+.popUpWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #f1f1f1;
+}
+
+.navbar-nav .nav-item .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.fa-sharp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 150px;
+    margin-left: 150px;
+}
+
+
+.navbar-nav .nav-item .nav-link .icon {
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.badge {
+    margin-bottom: 1rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}

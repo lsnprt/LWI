@@ -11,8 +11,12 @@
         public string NoOfCartItems()
         {
             var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
-            int noOfItems = cartCookie.Split(",").Length;
-            return noOfItems.ToString();
+            if (cartCookie != null & cartCookie != "")
+            {
+                int noOfItems = cartCookie.Split(",").Length;
+                return noOfItems.ToString();
+            }
+            return "0";
 
 		}
     }

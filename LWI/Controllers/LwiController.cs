@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace LWI.Controllers
 {
-
-    public class LwiController : Controller
-    {
+	public class LwiController : Controller
+	{
         IHttpContextAccessor Accessor;
         DataService dataService;
         StateService stateService;
@@ -16,13 +15,10 @@ namespace LWI.Controllers
             this.dataService = dataService;
 			Accessor = accessor;
             this.stateService = new StateService(Accessor);
-
-
 		}
-        [HttpGet("")]
+		[HttpGet("")]
         public IActionResult Index()
         {
-			//StateService stateService = new StateService(Accessor);
 			ViewBag.NoOfItems = stateService.NoOfCartItems();
 			return View();
         }
@@ -30,21 +26,26 @@ namespace LWI.Controllers
         [HttpGet("/Catalog")]
         public IActionResult Catalog()
         {
-            CatalogVM[] model = dataService.GetAllCourses();
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			CatalogVM[] model = dataService.GetAllCourses();
             return View(model);
         }
 
-        [HttpGet("/Details/{id}")]
+        [HttpGet("Catalog/Details/{id}")]
         public IActionResult Details(int id)
         {
-			ViewBag.NoOfItems = stateService.NoOfCartItems();
-			DetailsVM model = dataService.GetCourse(id);
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
+            DetailsVM model = dataService.GetCourse(id);
             return View(model);
         }
 
-        [HttpPost("/Details/{id}")]
+        [HttpPost("Catalog/Details/{id}")]
         public IActionResult Details(DetailsVM model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
             if (cookieCheck == null)
@@ -53,34 +54,29 @@ namespace LWI.Controllers
                 Response.Cookies.Append("ShoppingCart", $"{model.Id}");
             else
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-			cookieCheck = Request.Cookies["ShoppingCart"];
-
-			TempData["Img"] = $"{"/Photos_and_Icons/RealthumbUp.png"}";
-            TempData["ImgAlt"] = $"Sad Face Error";
-            TempData["Message"] = $"Lyckades att lägga till " +
-            $"'{dataService.GetCourseName(model.Id)}' i din varukorg";
-
-            return RedirectToAction(nameof(Details));
+            return Ok();
         }
 
 
         [HttpGet("/ShoppingCart")]
         public IActionResult ShoppingCart()
         {
-            ShoppingCartVM[] model = dataService.GetSelectedCourses();
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			ShoppingCartVM[] model = dataService.GetSelectedCourses();
             return View(model);
         }
 
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
-            return View();
+			ViewBag.NoOfItems = stateService.NoOfCartItems();
+			return View();
         }
 
         [HttpGet("/ShoppingCart/Checkout/Success")]
         public IActionResult PaymentSuccess()
         {
-            return View();
+			return View();
         }
 	}
 }
