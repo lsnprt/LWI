@@ -17,8 +17,15 @@ namespace LWI.Models
             var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
             if (cartCookie != null & cartCookie != "," & cartCookie != "")
             {
-                int noOfItems = cartCookie.Substring(1).Split(",").Length;
-                return noOfItems.ToString();
+                string[] temp = cartCookie.Substring(1).Split(",");
+                List<int> intList = new List<int>();
+                foreach (var item in temp)
+                {
+                    int n;
+                    if (int.TryParse(item, out n))
+                        intList.Add(n);
+                }
+                return intList.Count.ToString();
             }
             return "0";
 
