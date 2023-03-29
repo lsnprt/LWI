@@ -54,8 +54,6 @@ namespace LWI.Controllers
         public IActionResult Details(DetailsVM model)
         {
             
-
-
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
             if (cookieCheck == null)
@@ -66,7 +64,7 @@ namespace LWI.Controllers
                                 if (!stateService.GetCartIds().Contains(model.Id))
 
                 Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-            return Ok();
+            return Ok($"La till {dataService.GetCourseName(model.Id)} i varukorgen!");
         }
 
 
