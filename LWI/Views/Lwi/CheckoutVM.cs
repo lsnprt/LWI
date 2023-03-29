@@ -47,7 +47,7 @@ namespace LWI.Views.Lwi
         [Display(Name = "Total kostnad")]
         public decimal Total { get; set; }
         [Display(Name = "Land")]
-        [EnumDataType(typeof(Country)), Display(Name = "Land")]
+        [EnumDataType(typeof(Country))]
         public Country? Country { get; set; }
 
         bool Paid { get; set; }
