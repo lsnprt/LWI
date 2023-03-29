@@ -74,7 +74,7 @@ namespace LWI.Controllers
                 return Ok(new
                 {
                     message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.png"
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg"
                 });
             }
         }
