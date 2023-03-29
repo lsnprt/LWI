@@ -9,7 +9,7 @@
                 <hr />
                 <p class="card-text">@Model.DescriptionLong</p>
             </div>
-            <button type="submit" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
+            <button type="submit" disabled="@Model.InCart" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
         </div>
     </div>
 
