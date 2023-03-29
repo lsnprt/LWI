@@ -30,8 +30,14 @@ namespace LWI.Models
 			if (cartCookie != null & cartCookie != "," & cartCookie != "")
 			{
 				string[] cartStrIdArr = cartCookie.Substring(1).Split(",");
-				int[] cartIdArr = Array.ConvertAll(cartStrIdArr, int.Parse);
-				return cartIdArr;
+                List<int> intList = new List<int>();
+                foreach (var item in cartStrIdArr)
+                {
+                    int n;
+                    if (int.TryParse(item, out n))
+                        intList.Add(n);
+                }
+                return intList.ToArray();
 			}
 			return new int[0];
 			
