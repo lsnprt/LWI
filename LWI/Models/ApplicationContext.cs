@@ -16,8 +16,14 @@ namespace LWI.Models
             modelBuilder.Entity<Course>()
                 .Property(o => o.Price)
                 .HasColumnType(SqlDbType.Money.ToString());
+
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Total)
+                .HasColumnType(SqlDbType.Money.ToString());
         }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrdersToCourses> OrdersToCourses { get; set; }
     }
 }
