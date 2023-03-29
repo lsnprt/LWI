@@ -1,4 +1,8 @@
-﻿namespace LWI.Models
+﻿using System.Diagnostics.Tracing;
+using System.Text.RegularExpressions;
+using Azure;
+
+namespace LWI.Models
 {
 	public class StateService
 	{
@@ -11,14 +15,36 @@
         public string NoOfCartItems()
         {
             var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
-            if (cartCookie != null & cartCookie != "")
+            if (cartCookie != null & cartCookie != "," & cartCookie != "")
             {
-                int noOfItems = cartCookie.Split(",").Length;
+                int noOfItems = cartCookie.Substring(1).Split(",").Length;
                 return noOfItems.ToString();
             }
             return "0";
 
 		}
-    }
+
+		internal int[] GetCartIds()
+		{
+			var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+			if (cartCookie != null & cartCookie != "," & cartCookie != "")
+			{
+				string[] cartStrIdArr = cartCookie.Substring(1).Split(",");
+				int[] cartIdArr = Array.ConvertAll(cartStrIdArr, int.Parse);
+				return cartIdArr;
+			}
+			return new int[0];
+			
+		}
+
+		internal void RemoveFromCart(int id)
+		{
+			string cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+			string pattern = $",{id}";
+			var rgx = new Regex(pattern);
+			var result = rgx.Replace(cartCookie, "", 1);
+			Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", result);
+		}
+	}
 
 }
