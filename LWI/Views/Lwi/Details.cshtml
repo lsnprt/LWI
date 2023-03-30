@@ -14,7 +14,7 @@
             <hr />
             <p class="card-text">@Model.DescriptionLong</p>
         </div>
-        <span style="position:absolute; padding: 10px 20px; bottom: 35px;">Pris: @Model.Price SEK</span>
+        <span style="position:absolute; padding: 10px 20px; bottom: 35px;">Pris: @Model.Price.ToString("0.00") SEK</span>
         <button type="submit" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
     </div>
 </div>

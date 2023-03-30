@@ -36,7 +36,7 @@
                                                 <h6><span class="badge rounded-pill bg-success">Bra miljöval!</span></h6>
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <h6 class="mb-0">@course.Price</h6>
+                                                <h6 class="mb-0">@course.Price.ToString("0.00")</h6>
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                 <a asp-action="RemoveFromCart" asp-route-id="@course.Id" class="text-muted"><i class="fas fa-times"></i></a>
@@ -65,13 +65,13 @@
                                     <div class="d-flex justify-content-between mb-4">
 
                                         <h5 class="text-uppercase">Total</h5>
-                                        <h5>SEK @Model.Sum(c => c.Price)</h5>
+                                        <h5>SEK @Model.Sum(c => c.Price).ToString("0.00")</h5>
 
                                     </div>
                                     <hr class="my-4">
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">Att betala</h5>
-                                        <h5>SEK @Model.Sum(c => c.Price)</h5>
+                                        <h5>SEK @Model.Sum(c => c.Price).ToString("0.00")</h5>
                                     </div>
                                     <a asp-action="Checkout" class="btn btn-dark btn-block btn-lg" role="button"
                                        data-mdb-ripple-color="dark">

@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Configuration;
-using System.Text.RegularExpressions;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LWI.Views.Lwi
 {
