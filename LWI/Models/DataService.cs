@@ -95,7 +95,8 @@ namespace LWI.Models
                     Id = c.Id,
                     DescriptionShort = c.DescriptionShort,
                     ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName
+                    ImgName = c.ImgName,
+                    Teacher=c.Teacher
                 })
                 .OrderBy(c => c.Name)
                 .ToArray();
@@ -145,7 +146,7 @@ namespace LWI.Models
 
         }
 
-        public void ProcessPayment(CheckoutVM model, int[] cartIds)
+        public int ProcessPayment(CheckoutVM model, int[] cartIds)
         {
             var newOrder = context.Orders.Add(new Order
             {
@@ -170,6 +171,7 @@ namespace LWI.Models
             }
 
             context.SaveChanges();
+            return newOrder.Entity.Id;
         }
 
         internal CheckoutVM GetCheckoutVM(int[] cartIds)
