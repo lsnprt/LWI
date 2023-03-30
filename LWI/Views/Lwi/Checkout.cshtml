@@ -49,10 +49,10 @@
                                                         <option selected="selected" value="">Välj ett land</option>
                                                     </select>
                                                     <div class="d-flex gap-2">
-                                                        <input asp-for=ZipCode class="form-control zip" placeholder="Postkod">
-                                                        <span asp-validation-for=ZipCode></span>
-                                                        <input asp-for=City class="form-control state" placeholder="Stad">
-                                                        <span asp-validation-for=City></span>
+                                                        <input asp-for="ZipCode" class="form-control zip" placeholder="Postkod">
+                                                        <span asp-validation-for="ZipCode"></span>
+                                                        <input asp-for="City" class="form-control state" placeholder="Stad">
+                                                        <span asp-validation-for="City"></span>
                                                     </div>
                                                     <div class="invisible">
                                                         <input asp-for="Total" value=@Model.Total />

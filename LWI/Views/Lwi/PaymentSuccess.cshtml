@@ -1,4 +1,6 @@
-﻿<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+﻿@model PaymentSuccessVM
+
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-8">
@@ -12,9 +14,9 @@
                                 </div>
                                 <h3>Tack för din beställning!</h3>
                                 <ul class="list-group list-group-flush pt-3 pb-3">
-                                    <li class="list-group-item">Ordernummer: INPAN123575849</li>
-                                    <li class="list-group-item">Namn: Pontus Höglund</li>
-                                    <li class="list-group-item">Mailadress: Kraken@krakenpost.se</li>
+                                    <li class="list-group-item">Ordernummer: @Model.OrderNumber</li>
+                                    <li class="list-group-item">Namn: @Model.CustomerName</li>
+                                    <li class="list-group-item">Mailadress: @Model.CustomerEmail</li>
                                 </ul>
                                 <a asp-action="Index" class="text-body">
                                     <i class="fas fa-long-arrow-alt-left me-2"></i>Gå illbaka till startsidan
