@@ -49,8 +49,6 @@ namespace LWI.Views.Lwi
         [Display(Name = "Land")]
         [EnumDataType(typeof(Country))]
         public Country? Country { get; set; }
-
-        bool Paid { get; set; }
     }
 
     public enum Country

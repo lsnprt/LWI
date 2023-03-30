@@ -146,5 +146,16 @@ namespace LWI.Models
             //needs implementation when DBcontext is done
         }
 
+        internal CheckoutVM GetCheckoutVM(int[] cartIds)
+        {
+            return new CheckoutVM
+            {
+                Total = context
+              .Courses
+              .Where(c => cartIds.Contains(c.Id))
+              .Select(c => c.Price)
+              .Sum()
+            };
+        }
     }
 }

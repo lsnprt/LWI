@@ -29,7 +29,7 @@
                                                     <span asp-validation-for=CCNumber></span>
                                                 </div>
                                                 <div class="d-flex gap-2 align-items-center">
-                                                    <input type="month" class="form-control" >
+                                                    <input asp-for="Expiration" type="month" class="form-control" >
                                                     <input asp-for=CVVNumber class="form-control me-2" placeholder="CVV">
                                                     <span asp-validation-for=CVVNumber></span>
 
@@ -54,25 +54,21 @@
                                                         <input asp-for=City class="form-control state" placeholder="Stad">
                                                         <span asp-validation-for=City></span>
                                                     </div>
+                                                    <div class="invisible">
+                                                        <input asp-for="Total" value=@Model.Total />
+                                                    </div>
 
 
                                                     <hr class="my-4">
 
                                                     <div class="d-flex flex-column dis">
-                                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                                            <p>Subtotal</p>
-                                                            <p>SEK 450</p>
-                                                        </div>
-                                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                                            <p>RABATT <span><strong>(!NYKUND23!)</strong></span></p>
-                                                            <p>SEK 50</p>
-                                                        </div>
+                                                       
                                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                                             <p class="fw-bold">Total</p>
-                                                            <p class="fw-bold">SEK 400</p>
+                                                            <p class="fw-bold">@Model.Total SEK</p>
                                                         </div>
                                                         <button asp-action="Checkout" class="btn btn-primary mt-2">
-                                                            Pay SEK 400
+                                                            Pay @Model.Total SEK
                                                         </button>
                                                         <div asp-validation-summary="All"></div>
                                                     </div>
@@ -95,13 +91,13 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">1 Artikel</h5>
-                                        <h5>SEK 400</h5>
+                                        <h5 class="text-uppercase"></h5>
+                                        <h5>@Model.Total SEK</h5>
                                     </div>
                                     <hr class="my-4">
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">Total</h5>
-                                        <h5>SEK 400</h5>
+                                        <h5>@Model.Total SEK</h5>
                                     </div>
                                 </div>
                             </section>

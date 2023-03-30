@@ -105,8 +105,9 @@ namespace LWI.Controllers
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
-            ViewBag.NoOfItems = stateService.NoOfCartItems();
-            return View();
+            int[] cartIds = stateService.GetCartIds();
+            CheckoutVM model = dataService.GetCheckoutVM(cartIds);
+            return View(model);
         }
 
         [HttpPost("/ShoppingCart/Checkout")]
