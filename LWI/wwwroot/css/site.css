@@ -19,14 +19,6 @@
         left: 0;
         align-items: center;
     }
-
-        .foo {
-    font-size: 25px;
-    font-family: Arial;
-}
-
-.first .foo {
-    top: -40px;
 }
 
 .first .bar {
@@ -111,7 +103,24 @@ a {
     color: black;
 }
 
-#Price-card {
+#filter-header {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#filters-title {
+    margin-top: 10px;
+}
+
+#card {
+    flex-direction: row;
+    width: 18rem;
+    margin: 10px;
+}
+
+#card-body {
+    box-shadow: violet 1px 4px 7px;
+
 }
 
 /*-------------------Details CSS---------------------------*/
