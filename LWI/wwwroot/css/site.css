@@ -230,6 +230,12 @@ a {
     margin-top: 0.5rem;
 }
 
+.badge {
+    font-size: xx-small;
+    margin-left: -87px;
+}
+
+
 .navbar-brand {
     margin-left: 20px;
 }

@@ -25,11 +25,20 @@
             <li class="nav-item">
                 <i class="fa-sharp fa-solid fa-shopping-cart" style="color: #c770f0"></i>
                 <a class="nav-link pull-right" href="ShoppingCart">Varukorg </a>
+    
             </li>
-            <span class="badge rounded-pill position-absolute alert-danger translate-middle bg-danger" style="font-size:xx-small; margin-top: 5px; right: 195px">
-                @ViewBag.NoOfItems
 
-            </span>
+        </ul>
+        <div class="badge">
+                <span class="badge rounded-pill alert-danger translate-middle bg-danger">
+                    @ViewBag.NoOfItems
+                </span>
+        </div>
+    </div>
+</nav>
+
+
+
             @*                <li class="nav-item">
             <a class="nav-link pull-right" href="ShoppingCart">
             <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
@@ -42,6 +51,3 @@
             <i class="fa" style="font-size:15px">&#xf07a;</i>
             <span> 5 </span>
             </li>*@
-        </ul>
-    </div>
-</nav>
