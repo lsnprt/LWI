@@ -1,193 +1,189 @@
-﻿using System.Linq;
+﻿using System.Data.SqlTypes;
+using System.Linq;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace LWI.Models
 {
-	public class DataService
-	{
-		//UserManager<DataService> userManager;
-		//IHttpContextAccessor httpContextAccessor;
-		//List<Course> shoppingBag;
-		//public DataService(IHttpContextAccessor httpContextAccessor, UserManager<DataService> userManager)
-		//{
-		//    this.httpContextAccessor = httpContextAccessor;
-		//    this.userManager = userManager;
-		//    shoppingBag = new List<Course>();
+    public class DataService
+    {
+        ApplicationContext context;
 
-		//}
+        //List<Course> shoppingBag = new List<Course>();
 
-		List<Course> courses = new List<Course>()
-		{
+        public DataService(ApplicationContext context)
+
+        {
+            this.context = context;
+        }
+
+        
+
+        List<Course> courses = new List<Course>()
+        {
+            new Course()
+            {
+                Name = "Pontus lilla röda",
+                Teacher = "Pontus",
+                DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
+                DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+                ImgName = "Csharp.png",
+                ImgAlt = "blabla",
+                Category = "Pontus kurser",
+                Price = 1999
+            },
+            new Course()
+            {
+                Name = "Grundkurs i C#",
+                Teacher = "Peter",
+                DescriptionShort = "En grundkurs i det objektorienterade språket C#",
+                DescriptionLong = "En grundkurs i det objektorienterade språket C#",
+                ImgName = "JS.png",
+                ImgAlt = "blabla",
+                Category = "Programmering",
+                Price = 0
+
+            },
 			new Course()
 			{
-				Id = 1,
-				Teacher="Pontus",
-				Name = "Pontus lilla röda",
-				DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
-				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-				ImgName = "Csharp.png",
-				ImgAlt = "blabla",
-				Category = "Saving Earth",
-				Price=1999.99M
-			},
-			new Course()
-			{
-				Id = 2,
-				Teacher="Isam",
-				Name = "Grundkurs i C#",
-				DescriptionShort = "En grundkurs i det objektorienterade språket C#",
-				DescriptionLong = "En grundkurs i det objektorienterade språket C#",
-				ImgName = "JS.png",
-				ImgAlt = "blabla",
-				Category = "Programming",
-				Price=0
-			},
-			new Course()
-			{
-				Id = 3,
-				Teacher="Nadine",
 				Name = "Sortera med Nadine #1",
+                Teacher = "Nadine",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
-				Category = "Saving Earth",
-				Price=0
-			},
-			new Course()
+
+				Category = "Nadines kurser",
+                Price = 1999
+			},new Course()
 			{
-				Id = 4,
-				Teacher="Nadine",
-				Name = "Sortera med Nadine #1",
-				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+
+				Name = "Sortera med Nadine #2",
+				Teacher="Håkan",
+				DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+				DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
 				ImgName = "python.png",
 				ImgAlt = "blabla",
-				Category = "Saving Earth",
-				Price=1499.99M
-			},
-			new Course()
-			{
-				Id = 5,
-				Teacher="Pontus",
-				//Teacher="Pontus",
-				Name = "Pontus lilla röda",
-				DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
-				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-				ImgName = "Csharp.png",
-				ImgAlt = "blabla",
-				Category = "Web Development",
-				Price=1999.99M
-			},
-			new Course()
-			{
-				Id = 6,
-				Teacher="Nadine",
-				Name = "Grundkurs i C#",
-				DescriptionShort = "En grundkurs i det objektorienterade språket C#",
-				DescriptionLong = "En grundkurs i det objektorienterade språket C#",
-				ImgName = "JS.png",
-				ImgAlt = "blabla",
-				Category = "Programming",
-				Price=0
-			},
-			new Course()
-			{
-				Id = 7,
-				Teacher="Isam",
-				Name = "Sortera med Nadine #1",
-				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				ImgName = "ASP.jpg",
-				ImgAlt = "blabla",
-				Category = "Web Development",
-				Price=0
-			},
-			new Course()
-			{
-				Id = 8,
-				Teacher="Nadine",
-				Name = "Sortera med Nadine #1",
-				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				ImgName = "python.png",
-				ImgAlt = "blabla",
-				Category = "Saving Earth",
-				Price=1399.99M
+				Category = "Nadines kurser",
+                Price = 4999
 			},
 
-		};
+        };
 
-		public CatalogVM[] GetAllCourses()
-		{
-			return courses
-				.Select(c => new CatalogVM
-				{
-					Category = c.Category,
-					Price = c.Price,
-					Name = c.Name,
-					Id = c.Id,
-					DescriptionShort = c.DescriptionShort,
-					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName,
-					Teacher = c.Teacher
-				})
-				.OrderBy(c => c.Name)
-				.ToArray();
-		}
-		public DetailsVM? GetCourse(int id)
-		{
-			return courses
-				.Select(c => new DetailsVM
-				{
-					Category = c.Category,
-					Price = c.Price,
-					Name = c.Name,
-					Id = c.Id,
-					DescriptionLong = c.DescriptionLong,
-					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName
-				})
-				.SingleOrDefault(c => c.Id == id)
-				;
-		}
+        internal void InitialiseDB()
+        {
+            foreach (Course c in courses)
+            {
+                context.Courses.Add(c);
+            }
 
-		//internal async void AddToShoppingCart(DetailsVM model)
-		//{
-		//	string userId = userManager.GetUserId(httpContextAccessor.HttpContext.User);
-		//          DataService user = await userManager.FindByIdAsync(userId);
-		//          var course = new Course
-		//          {
-		//              Id = model.Id,
-		//              Name = model.Name,
-		//              Price = model.Price,
-		//              Category = model.Category,
-		//              DescriptionLong = model.DescriptionLong,
-		//              ImgAlt = model.ImgAlt,
-		//              ImgName = model.ImgName
-		//          };
-		//          user.shoppingBag.Add(course);
+            context.SaveChanges();
+        }
 
-		//}
+        public CatalogVM[] GetAllCourses()
+        {
+            return context.Courses
+                .Select(c => new CatalogVM
+                {
+                    Category = c.Category,
+                    Price = c.Price,
+                    Name = c.Name,
+                    Id = c.Id,
+                    DescriptionShort = c.DescriptionShort,
+                    ImgAlt = c.ImgAlt,
+                    ImgName = c.ImgName
+                })
+                .OrderBy(c => c.Name)
+                .ToArray();
+        }
+        public DetailsVM? GetCourse(int id)
+        {
+            return context.Courses
+                .Select(c => new DetailsVM
+                {
+                    Category = c.Category,
+                    Price = c.Price,
+                    Name = c.Name,
+                    Id = c.Id,
+                    DescriptionLong = c.DescriptionLong,
+                    ImgAlt = c.ImgAlt,
+                    ImgName = c.ImgName
+                })
+                .FirstOrDefault(c => c.Id == id)
+                ;
+        }
 
-		internal ShoppingCartVM[] GetSelectedCourses()
-		{
-			return courses
-				.Select(c => new ShoppingCartVM
-				{
-					Category = c.Category,
-					Price = c.Price,
-					Name = c.Name,
-					Id = c.Id,
-					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName
-				})
-				.OrderBy(c => c.Name)
-				.ToArray();
-		}
-	}
+        //internal void AddToShoppingCart(DetailsVM model)
+        //{
+        //    var course = courses.Where(o => o.Id == model.Id).FirstOrDefault();
+        //    shoppingBag.Add(course);
+        //}
+
+        internal ShoppingCartVM[] GetSelectedCourses(int[] cartIds)
+        {
+            return context.Courses
+                .Where(c => cartIds.Contains(c.Id))
+                .Select(c => new ShoppingCartVM
+                {
+                    Category = c.Category,
+                    Price = c.Price,
+                    Name = c.Name,
+                    Id = c.Id,
+                    ImgAlt = c.ImgAlt,
+                    ImgName = c.ImgName
+                })
+                .OrderBy(c => c.Name)
+                .ToArray();
+        }
+        public string GetCourseName(int id)
+        {
+            return context.Courses.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
+
+        }
+
+        public void ProcessPayment(CheckoutVM model, int[] cartIds)
+        {
+            var newOrder = context.Orders.Add(new Order
+            {
+                OrderDate = DateTime.Now,
+                Total = model.Total,
+                CCNumber = model.CCNumber.Substring(model.CCNumber.Length - 4),
+                CCHolder = model.CCHolder,
+                Email = model.Email,
+                Address = model.Address,
+                City = model.City,
+                ZipCode = model.ZipCode,
+                Country = model.Country,
+                OrdersToCourses = new List<OrdersToCourses>()
+            });
+
+            foreach (int id in cartIds)
+            {
+                newOrder.Entity.OrdersToCourses.Add(new OrdersToCourses { 
+                CourseId = id,
+                OrderId = newOrder.Entity.Id
+                });
+            }
+
+            context.SaveChanges();
+        }
+
+        internal CheckoutVM GetCheckoutVM(int[] cartIds)
+        {
+            return new CheckoutVM
+            {
+                CourseIdsCount = cartIds.Count(),
+
+                Total = context
+              .Courses
+              .Where(c => cartIds.Contains(c.Id))
+              .Select(c => c.Price)
+              .Sum()
+            };
+        }
+    }
 }

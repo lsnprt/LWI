@@ -4,17 +4,15 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>5b40cba4-9f35-4c4b-aa92-e90de1a741f0</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="Controllers\LwiController.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Data\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
     <PackageReference Include="microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
     <PackageReference Include="microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>

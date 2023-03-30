@@ -1,62 +1,130 @@
-﻿using LWI.Models;
+﻿using System.Text.RegularExpressions;
+using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace LWI.Controllers
 {
-	public class LwiController : Controller
-	{
-		DataService dataService;
-		public LwiController(DataService dataService)
-		{
-			this.dataService = dataService;
-		}
-		[HttpGet("")]
-		public IActionResult Index()
-		{
-			return View();
-		}
+    public class LwiController : Controller
+    {
+        IHttpContextAccessor Accessor;
+        DataService dataService;
+        StateService stateService;
+        public LwiController(DataService dataService, IHttpContextAccessor accessor)
+        {
+            this.dataService = dataService;
+            Accessor = accessor;
+            this.stateService = new StateService(Accessor);
+        }
 
-		[HttpGet("/Catalog")]
-		public IActionResult Catalog()
-		{
-			CatalogVM[] model = dataService.GetAllCourses();
-			return View(model);
-		}
+        [HttpGet("")]
+        public IActionResult Index()
+        {
+            //Kör en gång för att initialisera DBn med rätt data
+            //dataService.InitialiseDB();
 
-		[HttpGet("/Details/{id}")]
-		public IActionResult Details(int id)
-		{
-			DetailsVM model = dataService.GetCourse(id);
-			return View(model);
-		}
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
+            return View();
+        }
 
-		//[HttpPost("/Details/{id}")]
-		//public IActionResult Details(DetailsVM model)
-		//{
-		//          dataService.AddToShoppingCart(model);
-		//          return RedirectToAction(nameof(Details));
-		//}
+        [HttpGet("/Catalog")]
+        public IActionResult Catalog()
+        {
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
+            CatalogVM[] model = dataService.GetAllCourses();
+            return View(model);
+        }
+
+        [HttpGet("Catalog/Details/{id}")]
+        public IActionResult Details(int id)
+        {
+
+            var cookieCheck = Request.Cookies["ShoppingCart"];
+            if (cookieCheck == null)
+                Response.Cookies.Append("ShoppingCart", ",");
+
+            bool itemInCart = stateService.GetCartIds().Contains(id);
 
 
-		[HttpGet("/ShoppingCart")]
-		public IActionResult ShoppingCart()
-		{
-			ShoppingCartVM[] model = dataService.GetSelectedCourses();
-			return View(model);
-		}
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
+            DetailsVM model = dataService.GetCourse(id);
+            model.InCart = itemInCart;
 
-		[HttpGet("/ShoppingCart/Checkout")]
-		public IActionResult Checkout()
-		{
-			return View();
-		}
+            return View(model);
+        }
 
-		[HttpGet("/ShoppingCart/Checkout/Success")]
-		public IActionResult PaymentSuccess()
-		{
-			return View();
-		}
-	}
+        [HttpPost("Catalog/Details/{id}")]
+        public IActionResult Details(DetailsVM model)
+        {
+
+            var cookieCheck = Request.Cookies["ShoppingCart"];
+
+            if (cookieCheck == null)
+                Response.Cookies.Append("ShoppingCart", ",");
+            else if (cookieCheck == ",")
+                Response.Cookies.Append("ShoppingCart", $",{model.Id}");
+            if (stateService.GetCartIds().Contains(model.Id))
+            {
+                return Ok(new
+                {
+                    message = $"'{dataService.GetCourseName(model.Id)}' finns redan i din varukorg!",
+                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG"
+                });
+            }
+            else
+            {
+                Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
+                return Ok(new
+                {
+                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg"
+                });
+            }
+        }
+
+
+        [HttpGet("/ShoppingCart")]
+        public IActionResult ShoppingCart()
+        {
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
+            int[] cartIds = stateService.GetCartIds();
+            ShoppingCartVM[] model = dataService.GetSelectedCourses(cartIds);
+            return View(model);
+        }
+
+        [Route("/RemoveFromCart/{id}")]
+        public IActionResult RemoveFromCart(int id)
+        {
+            stateService.RemoveFromCart(id);
+            return RedirectToAction(nameof(ShoppingCart));
+        }
+
+        [HttpGet("/ShoppingCart/Checkout")]
+        public IActionResult Checkout()
+        {
+            int[] cartIds = stateService.GetCartIds();
+            CheckoutVM model = dataService.GetCheckoutVM(cartIds);
+            return View(model);
+        }
+
+        [HttpPost("/ShoppingCart/Checkout")]
+        public IActionResult Checkout(CheckoutVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            int[] checkoutItemsIds = stateService.GetCartIds();
+            dataService.ProcessPayment(model, checkoutItemsIds);
+            //empty cart from cookies
+            return RedirectToAction(nameof(PaymentSuccess));
+        }
+
+        [HttpGet("/ShoppingCart/Checkout/Success")]
+        public IActionResult PaymentSuccess()
+        {
+            return View();
+        }
+    }
 }
 

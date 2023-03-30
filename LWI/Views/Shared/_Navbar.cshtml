@@ -1,70 +1,53 @@
-﻿
-<!DOCTYPE html>
+﻿    <!-- Navbar -->
+<div class="container-fluid"></div>
 
-<html>
-<head>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <i class="fa-solid fa-dragon" style="color: #c770f0;">LDMI <br /> Lär dig med Isam</i> <br>
+        @*<font face="Arial" size="2" style="color:darkgrey">Lär dig med Isam</font>*@
+    </a>
 
-    <style>
-        .navbar-nav .nav-item .nav-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 100px;
-            margin-left: 100px;
-        }
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
 
-        .fa-sharp {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 150px;
-            margin-left: 150px;
-        }
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <i class="fa-sharp fa-solid fa-house" style="color: #c770f0"></i>
+                <a class="nav-link" asp-action="Index">Homepage</a>
+            </li>
+            <li class="nav-item">
+                <i class="fa-sharp fa-solid fa-book" style="color: #c770f0"></i>
+                <a class="nav-link center-block" asp-action="Catalog">Kurskatalog</a>
+            </li>
 
+            <li class="nav-item">
+                <i class="fa-sharp fa-solid fa-shopping-cart" style="color: #c770f0"></i>
+                <a class="nav-link pull-right" href="ShoppingCart">Varukorg </a>
+            </li>
 
-        .navbar-nav .nav-item .nav-link .icon {
-            margin-bottom: 0.5rem;
-        }
-
-
-        footer {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100px;
-        }
-
-    </style>
-
-</head>
-<body>
-    <!-- Navbar -->
-    <div class="container-fluid"></div>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <i class="fa-sharp fa-solid fa-house" style="color: #c770f0;"></i>
-                    <a class="nav-link" asp-action="Index">Homepage <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-sharp fa-solid fa-book" style="color: #c770f0;"></i>
-                    <a class="nav-link center-block" href="Catalog">Kurskatalog</a>
-                </li>
-                <li class="nav-item">
-                    <i class="fa-sharp fa-solid fa-cart-shopping" style="color: #c770f0;"></i>
-                    <a class="nav-link pull-right" href="ShoppingCart">Varukorg</a>
-                </li>
-            </ul>
+        </ul>
+        <div class="badge">
+                <span class="badge rounded-pill alert-danger translate-middle bg-danger">
+                    @ViewBag.NoOfItems
+                </span>
         </div>
-    </nav>
+    </div>
+</nav>
 
-  </body>
 
 
-</html>
+            @*                <li class="nav-item">
+            <a class="nav-link pull-right" href="ShoppingCart">
+            <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
+            Varukorg <span class="badge badge-pill badge-secondary">@ViewBag.NoOfItems</span>
+            </a>
+            </li>*@
+            @*     <li class="nav-item">
+            <i class="fa-sharp fa-solid fa-cart-shopping" style="color: #c770f0;"></i>
+            <a class="nav-link pull-right" href="ShoppingCart">Varukorg</a>
+            <i class="fa" style="font-size:15px">&#xf07a;</i>
+            <span> 5 </span>
+            </li>*@
+
