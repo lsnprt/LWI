@@ -29,7 +29,7 @@
                                                     <span asp-validation-for=CCNumber></span>
                                                 </div>
                                                 <div class="d-flex gap-2 align-items-center">
-                                                    <input asp-for="Expiration" type="month" class="form-control" >
+                                                    <input asp-for="Expiration" type="month" class="form-control">
                                                     <input asp-for=CVVNumber class="form-control me-2" placeholder="CVV">
                                                     <span asp-validation-for=CVVNumber></span>
 
@@ -56,14 +56,16 @@
                                                     </div>
                                                     <div class="invisible">
                                                         <input asp-for="Total" value=@Model.Total />
+                                                        <input asp-for="CourseIdsCount" value=@Model.CourseIdsCount />
                                                     </div>
 
 
                                                     <hr class="my-4">
 
                                                     <div class="d-flex flex-column dis">
-                                                       
+
                                                         <div class="d-flex align-items-center justify-content-between mb-2">
+                                                            <p class="fw-bold">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</p>
                                                             <p class="fw-bold">Total</p>
                                                             <p class="fw-bold">@Model.Total SEK</p>
                                                         </div>
@@ -91,8 +93,8 @@
                                     <hr class="my-4">
 
                                     <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase"></h5>
-                                        <h5>@Model.Total SEK</h5>
+                                        <h5 class="text-uppercase">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</h5>
+                                        <h5></h5>
                                     </div>
                                     <hr class="my-4">
                                     <div class="d-flex justify-content-between mb-5">

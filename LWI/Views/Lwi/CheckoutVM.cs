@@ -48,7 +48,9 @@ namespace LWI.Views.Lwi
         public decimal Total { get; set; }
         [Display(Name = "Land")]
         [EnumDataType(typeof(Country))]
-        public Country? Country { get; set; }
+        public Country Country { get; set; }
+
+        public int CourseIdsCount { get; set; }
     }
 
     public enum Country

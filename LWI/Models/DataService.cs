@@ -143,13 +143,37 @@ namespace LWI.Models
 
         public void ProcessPayment(CheckoutVM model, int[] cartIds)
         {
-            //needs implementation when DBcontext is done
+            var newOrder = context.Orders.Add(new Order
+            {
+                OrderDate = DateTime.Now,
+                Total = model.Total,
+                CCNumber = model.CCNumber.Substring(model.CCNumber.Length - 4),
+                CCHolder = model.CCHolder,
+                Email = model.Email,
+                Address = model.Address,
+                City = model.City,
+                ZipCode = model.ZipCode,
+                Country = model.Country,
+                OrdersToCourses = new List<OrdersToCourses>()
+            });
+
+            foreach (int id in cartIds)
+            {
+                newOrder.Entity.OrdersToCourses.Add(new OrdersToCourses { 
+                CourseId = id,
+                OrderId = newOrder.Entity.Id
+                });
+            }
+
+            context.SaveChanges();
         }
 
         internal CheckoutVM GetCheckoutVM(int[] cartIds)
         {
             return new CheckoutVM
             {
+                CourseIdsCount = cartIds.Count(),
+
                 Total = context
               .Courses
               .Where(c => cartIds.Contains(c.Id))
