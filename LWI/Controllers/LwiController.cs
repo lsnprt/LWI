@@ -49,7 +49,7 @@ namespace LWI.Controllers
 
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             DetailsVM model = dataService.GetCourse(id);
-            model.InCart = itemInCart;
+            //model.InCart = itemInCart;
 
             return View(model);
         }
@@ -115,7 +115,7 @@ namespace LWI.Controllers
                 return View(model);
 
             int[] checkoutItemsIds = stateService.GetCartIds();
-            dataService.ProcessPayment(model, checkoutItemsIds);
+            int ordernummer = dataService.ProcessPayment(model, checkoutItemsIds);
             //empty cart from cookies
             return RedirectToAction(nameof(PaymentSuccess));
         }
