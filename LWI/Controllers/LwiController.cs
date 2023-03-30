@@ -18,17 +18,10 @@ namespace LWI.Controllers
 		}
 
 		[HttpGet("/Catalog")]
-		public IActionResult Catalog(string category)
+		public IActionResult Catalog()
 		{
 			CatalogVM[] model = dataService.GetAllCourses();
-			var filteredCourses = model;
-			if (!string.IsNullOrEmpty(category))
-			{
-				filteredCourses = filteredCourses.Where(p => p.Category == category).ToArray();
-			}
-			ViewBag.Categories = model.Select(p => p.Category).Distinct().ToList();
-			//ViewBag.PriceRanges = new List<string> { "Free", "1000 to 1500", "over 1500" };
-			return View(filteredCourses);
+			return View(model);
 		}
 
 		[HttpGet("/Details/{id}")]
