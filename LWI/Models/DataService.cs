@@ -8,16 +8,22 @@ namespace LWI.Models
 {
     public class DataService
     {
-        List<Course> shoppingBag = new List<Course>();
-        public DataService()
+        ApplicationContext context;
+
+        //List<Course> shoppingBag = new List<Course>();
+
+        public DataService(ApplicationContext context)
+
         {
+            this.context = context;
         }
+
+        
 
         List<Course> courses = new List<Course>()
         {
             new Course()
             {
-                Id = 1,
                 Name = "Pontus lilla röda",
                 Teacher = "Pontus",
                 DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
@@ -29,7 +35,6 @@ namespace LWI.Models
             },
             new Course()
             {
-                Id = 2,
                 Name = "Grundkurs i C#",
                 Teacher = "Peter",
                 DescriptionShort = "En grundkurs i det objektorienterade språket C#",
@@ -42,7 +47,6 @@ namespace LWI.Models
             },
 			new Course()
 			{
-				Id = 3,
 				Name = "Sortera med Nadine #1",
                 Teacher = "Nadine",
 				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
@@ -54,7 +58,6 @@ namespace LWI.Models
 			},new Course()
 			{
 
-				Id = 4,
 				Name = "Sortera med Nadine #2",
 				Teacher="Håkan",
 				DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
@@ -67,9 +70,19 @@ namespace LWI.Models
 
         };
 
+        internal void InitialiseDB()
+        {
+            foreach (Course c in courses)
+            {
+                context.Courses.Add(c);
+            }
+
+            context.SaveChanges();
+        }
+
         public CatalogVM[] GetAllCourses()
         {
-            return courses
+            return context.Courses
                 .Select(c => new CatalogVM
                 {
                     Category = c.Category,
@@ -85,7 +98,7 @@ namespace LWI.Models
         }
         public DetailsVM? GetCourse(int id)
         {
-            return courses
+            return context.Courses
                 .Select(c => new DetailsVM
                 {
                     Category = c.Category,
@@ -100,16 +113,15 @@ namespace LWI.Models
                 ;
         }
 
-        internal void AddToShoppingCart(DetailsVM model)
-        {
-            var course = courses.Where(o => o.Id == model.Id).FirstOrDefault();
-            shoppingBag.Add(course);
-
-        }
+        //internal void AddToShoppingCart(DetailsVM model)
+        //{
+        //    var course = courses.Where(o => o.Id == model.Id).FirstOrDefault();
+        //    shoppingBag.Add(course);
+        //}
 
         internal ShoppingCartVM[] GetSelectedCourses(int[] cartIds)
         {
-            return courses
+            return context.Courses
                 .Where(c => cartIds.Contains(c.Id))
                 .Select(c => new ShoppingCartVM
                 {
@@ -125,7 +137,7 @@ namespace LWI.Models
         }
         public string GetCourseName(int id)
         {
-            return courses.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
+            return context.Courses.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
 
         }
 
@@ -133,5 +145,6 @@ namespace LWI.Models
         {
             //needs implementation when DBcontext is done
         }
+
     }
 }
