@@ -145,7 +145,7 @@ namespace LWI.Models
 
         }
 
-        public void ProcessPayment(CheckoutVM model, int[] cartIds)
+        public int ProcessPayment(CheckoutVM model, int[] cartIds)
         {
             var newOrder = context.Orders.Add(new Order
             {
@@ -170,6 +170,7 @@ namespace LWI.Models
             }
 
             context.SaveChanges();
+            return newOrder.Entity.Id;
         }
 
         internal CheckoutVM GetCheckoutVM(int[] cartIds)
