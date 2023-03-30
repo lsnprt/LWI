@@ -1,8 +1,11 @@
 ﻿using System.Data.SqlTypes;
 using System.Linq;
 using LWI.Views.Lwi;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace LWI.Models
 {
@@ -53,6 +56,7 @@ namespace LWI.Models
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
+
 				Category = "Nadines kurser",
                 Price = 1999
 			},new Course()

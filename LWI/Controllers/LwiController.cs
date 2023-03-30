@@ -100,8 +100,6 @@ namespace LWI.Controllers
             return RedirectToAction(nameof(ShoppingCart));
         }
 
-
-
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
@@ -129,3 +127,4 @@ namespace LWI.Controllers
         }
     }
 }
+
