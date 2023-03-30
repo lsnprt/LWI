@@ -95,7 +95,8 @@ namespace LWI.Models
                     Id = c.Id,
                     DescriptionShort = c.DescriptionShort,
                     ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName
+                    ImgName = c.ImgName,
+                    Teacher=c.Teacher
                 })
                 .OrderBy(c => c.Name)
                 .ToArray();
