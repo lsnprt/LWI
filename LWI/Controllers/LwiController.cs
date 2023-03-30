@@ -17,9 +17,13 @@ namespace LWI.Controllers
             Accessor = accessor;
             this.stateService = new StateService(Accessor);
         }
+
         [HttpGet("")]
         public IActionResult Index()
         {
+            //Kör en gång för att initialisera DBn med rätt data
+            //dataService.InitialiseDB();
+
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             return View();
         }
