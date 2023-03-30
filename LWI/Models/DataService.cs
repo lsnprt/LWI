@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using LWI.Views.Lwi;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 using Microsoft.AspNetCore.Identity;
 
 
@@ -132,7 +134,7 @@ namespace LWI.Models
 					DescriptionShort = c.DescriptionShort,
 					ImgAlt = c.ImgAlt,
 					ImgName = c.ImgName,
-					Teacher=c.Teacher
+					Teacher = c.Teacher
 				})
 				.OrderBy(c => c.Name)
 				.ToArray();
