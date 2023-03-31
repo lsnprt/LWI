@@ -17,5 +17,6 @@
         public string? ImgName { get; set; }
         public string? ImgAlt { get; set; }
 		public string? Category { get; set; }
+        public bool IsEco { get; set; }
     }
 }
