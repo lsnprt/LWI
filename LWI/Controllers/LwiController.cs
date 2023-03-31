@@ -112,7 +112,8 @@ namespace LWI.Controllers
         public IActionResult Checkout()
         {
             int[] cartIds = stateService.GetCartIds();
-            CheckoutVM model = dataService.GetCheckoutVM(cartIds);
+            ViewBag.NoOfItems = cartIds.Count();
+			CheckoutVM model = dataService.GetCheckoutVM(cartIds);
             return View(model);
         }
 
@@ -123,7 +124,8 @@ namespace LWI.Controllers
                 return View(model);
 
             int[] checkoutItemsIds = stateService.GetCartIds();
-            int orderId = await dataService.ProcessPayment(model, checkoutItemsIds);
+			ViewBag.NoOfItems = checkoutItemsIds.Count();
+			int orderId = await dataService.ProcessPayment(model, checkoutItemsIds);
             //empty cart from cookies
             return RedirectToAction(nameof(PaymentSuccessAsync).Replace("Async", ""), new { id = orderId });
         }
