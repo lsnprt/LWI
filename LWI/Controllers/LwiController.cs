@@ -93,11 +93,11 @@ namespace LWI.Controllers
 
 
         [HttpGet("/ShoppingCart")]
-        public IActionResult ShoppingCart()
+        public async Task<IActionResult> ShoppingCartAsync()
         {
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             int[] cartIds = stateService.GetCartIds();
-            ShoppingCartVM[] model = dataService.GetSelectedCourses(cartIds);
+            ShoppingCartVM model = await dataService.GetShoppingCartVMAsync(cartIds);
             return View(model);
         }
 
@@ -105,7 +105,7 @@ namespace LWI.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             stateService.RemoveFromCart(id);
-            return RedirectToAction(nameof(ShoppingCart));
+            return RedirectToAction(nameof(ShoppingCartAsync));
         }
 
         [HttpGet("/ShoppingCart/Checkout")]
