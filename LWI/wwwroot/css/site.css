@@ -66,9 +66,20 @@
     justify-content: center;
     width: 100%;
     background-color: #f1f1f1;
+    border-bottom: dotted 2px #BF6CE6;
+}
+
+.catalog-wrapper {
+    background-color: #F6E3FF;
+    padding: 0 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content auto;
+    border-bottom: 2px dotted #BF6CE6;
 }
 
 .container {
+    background-color: #F6E3FF;
     align-items: center;
 }
 
@@ -122,13 +133,16 @@ a {
 }
 
 #card {
+    box-shadow: violet 1px 4px 7px;
     flex-direction: row;
     width: 18rem;
     margin: 10px;
+    background-color: white;
 }
 
 #card-body {
     box-shadow: violet 1px 4px 7px;
+    background-color: white;
 }
 /*-------------------Details CSS---------------------------*/
 .addBtn {

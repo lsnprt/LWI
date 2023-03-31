@@ -100,8 +100,8 @@
 	</div>
 	<!--container end.//-->
 
-	<div class="content">
-		<div class="container">
+	<div class="content" >
+		<div class="container" >
 			<div id="rowDiv" class="row">
 				@foreach (var course in Model)
 				{
@@ -109,8 +109,8 @@
 						 course-price="@course.Price"
 						 course-teacher="@course.Teacher"
 						 course-category="@course.Category" id="card">
-						<a class="card " asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
-							<img src="~/images/@course.ImgName" class="card-img-top" alt="@course.ImgAlt">
+						<a  asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
+							<img src="~/images/@course.ImgName" class="card-img-top" style="border:1px solid #5D3570; border-radius:5px	" alt="@course.ImgAlt">
 							<div class="card-body">
 								<h5 class="card-title">@course.Name</h5>
 								<p class="card-text">@course.DescriptionShort</p>
