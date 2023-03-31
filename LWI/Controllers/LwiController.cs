@@ -3,6 +3,7 @@ using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace LWI.Controllers
 {
@@ -60,16 +61,23 @@ namespace LWI.Controllers
 
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
-            if (cookieCheck == null)
-                Response.Cookies.Append("ShoppingCart", ",");
-            else if (cookieCheck == ",")
+            if (cookieCheck == ",")
+            {
                 Response.Cookies.Append("ShoppingCart", $",{model.Id}");
-            if (stateService.GetCartIds().Contains(model.Id))
+                return Ok(new
+                {
+                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
+                    Item = 1,
+                });
+            }
+            else if (stateService.GetCartIds().Contains(model.Id))
             {
                 return Ok(new
                 {
                     message = $"'{dataService.GetCourseName(model.Id)}' finns redan i din varukorg!",
-                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG"
+                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG",
+                    Item = 0,
                 });
             }
             else
@@ -78,7 +86,8 @@ namespace LWI.Controllers
                 return Ok(new
                 {
                     message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg"
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
+                    Item = 1,
                 });
             }
         }
