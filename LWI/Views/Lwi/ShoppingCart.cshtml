@@ -1,7 +1,4 @@
-@model ShoppingCartVM[]
-@{
-    int itemCount = Model.Count();
-}
+@model ShoppingCartVM
 
 ﻿<section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
@@ -18,7 +15,7 @@
                                         @*<h6 class="mb-0 text-muted">1 artikel</h6>*@
                                     </div>
 
-                                    @foreach (var course in @Model)
+                                    @foreach (var course in @Model.shoppingCartItemVMs)
                                     {
                                         <hr class="my-4">
 
@@ -65,13 +62,13 @@
                                     <div class="d-flex justify-content-between mb-4">
 
                                         <h5 class="text-uppercase">Total</h5>
-                                        <h5>SEK @Model.Sum(c => c.Price)</h5>
+                                        <h5>SEK @Model.Total</h5>
 
                                     </div>
                                     <hr class="my-4">
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">Att betala</h5>
-                                        <h5>SEK @Model.Sum(c => c.Price)</h5>
+                                        <h5>SEK @Model.Total</h5>
                                     </div>
                                     <a asp-action="Checkout" class="btn btn-dark btn-block btn-lg" role="button"
                                        data-mdb-ripple-color="dark">
