@@ -1,8 +1,7 @@
-﻿
-
-/*--------------------------index--------------------------------------*/
+﻿/*--------------------------index--------------------------------------*/
 .first {
     width: 320px;
+    height: 450px;
     height: 385px;
     margin: 10px;
     border-width: 0 2px 0 2px;
@@ -12,16 +11,25 @@
     flex: content;
 }
 
-        .first span {
+    .first span {
         position: absolute;
         display: flex;
         right: 0;
         left: 0;
         align-items: center;
     }
+
+.foo {
+    font-size: 16px;
+    font-family: Arial;
+}
+
+.first .foo {
+    top: -30px;
 }
 
 .first .bar {
+    bottom: -8.5px;
     bottom: -9px;
 }
 
@@ -37,6 +45,7 @@
     content: ' ';
     height: 2px;
     background: #c770f0;
+    display: block;
     display: flow;
     width: 50%;
 }
@@ -120,9 +129,7 @@ a {
 
 #card-body {
     box-shadow: violet 1px 4px 7px;
-
 }
-
 /*-------------------Details CSS---------------------------*/
 .addBtn {
     padding: 10px 20px;
@@ -201,7 +208,6 @@ a {
     margin-left: 150px;
 }
 
-
 .navbar-nav .nav-item .nav-link .icon {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -211,7 +217,6 @@ a {
     font-size: xx-small;
     margin-left: -87px;
 }
-
 
 .navbar-brand {
     margin-left: 20px;
