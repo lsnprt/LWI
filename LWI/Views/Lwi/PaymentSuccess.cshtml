@@ -1,32 +1,29 @@
 ﻿@model PaymentSuccessVM
 
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-8">
-                <div class="card card-registration card-registration-2" style="border-radius: 15px; overflow:hidden">
-                    <div class="card-body p-0 text-center">
-                        <div class="row justify-content-center gx-3 mt-4 mb-4">
-                            <div class="col-6">
-                                <h2>Betalning Genomförd</h2>
-                                <div class="mt-4 mb-4">
-                                    <i class="fa-solid fa-thumbs-up fa-10x" style="color: lightgreen;"></i>
-                                </div>
-                                <h3>Tack för din beställning!</h3>
-                                <ul class="list-group list-group-flush pt-3 pb-3">
-                                    <li class="list-group-item">Ordernummer: @Model.OrderNumber</li>
-                                    <li class="list-group-item">Namn: @Model.CustomerName</li>
-                                    <li class="list-group-item">Mailadress: @Model.CustomerEmail</li>
-                                </ul>
-                                <a asp-action="Index" class="text-body">
-                                    <i class="fas fa-long-arrow-alt-left me-2"></i>Gå illbaka till startsidan
-                                </a>
+<div class="wrapper flex-auto py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-auto">
+            <div class="card card-registration card-registration-2" style="border-radius: 15px; overflow:hidden">
+                <div class="card-body p-4 text-center">
+                    <div class="row justify-content-center gx-3 mt-4 mb-4">
+                        <div class="col-lg-auto">
+                            <h2>Betalning Genomförd</h2>
+                            <div class="mt-4 mb-4">
+                                <i class="fa-solid fa-thumbs-up fa-10x" style="color: lightgreen;"></i>
                             </div>
+                            <h3>Tack för din beställning!</h3>
+                            <ul class="list-group list-group-flush pt-3 pb-3">
+                                <li class="list-group-item">Ordernummer: @Model.OrderNumber</li>
+                                <li class="list-group-item">Namn: @Model.CustomerName</li>
+                                <li class="list-group-item">Mailadress: @Model.CustomerEmail</li>
+                            </ul>
+                            <a asp-action="Index" class="text-body">
+                                <i class="fas fa-long-arrow-alt-left me-2"></i>Gå tillbaka till startsidan
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-</section>
+</div>

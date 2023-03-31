@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LWI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LWI.Controllers
 {

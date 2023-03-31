@@ -1,112 +1,110 @@
 ﻿@model CheckoutVM
 
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12">
-                <div class="card card-registration card-registration-2" style="border-radius: 15px; overflow:hidden">
-                    <div class="card-body p-0">
-                        <div class="row g-0">
-                            <section class="col-lg-8">
-                                <div class="p-5">
-                                    <div class="d-flex justify-content-between align-items-center mb-5">
-                                        <h1 class="fw-bold mb-0 text-black">Betalningsuppgifter</h1>
-                                    </div>
-                                    <hr class="my-4">
+<div class="wrapper px-5 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+            <div class="card card-registration card-registration-2" style="border-radius: 15px; overflow:hidden">
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <section class="col-lg-8">
+                            <div class="p-5">
+                                <div class="d-flex justify-content-between align-items-center mb-5">
+                                    <h1 class="fw-bold mb-0 text-black">Betalningsuppgifter</h1>
+                                </div>
+                                <hr class="my-4">
 
-                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                        <form asp-controller=Lwi>
-                                            <div class="mb-3">
-                                                <label asp-for=Email class="dis fw-bold mb-2">E-mail adress</label>
-                                                <input class="form-control" asp-for=Email placeholder="luke@skywalker.com">
-                                                <span asp-validation-for=Email></span>
+                                <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                    <form asp-controller=Lwi>
+                                        <div class="mb-3">
+                                            <label asp-for=Email class="dis fw-bold mb-2">E-mail adress</label>
+                                            <input class="form-control" asp-for=Email placeholder="luke@skywalker.com">
+                                            <span asp-validation-for=Email></span>
+                                        </div>
+                                        <div>
+                                            <p class="dis fw-bold mb-2">Kortuppgifter</p>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <i class="fab fa-cc-visa ps-3"></i>
+                                                <input asp-for=CCNumber class="form-control mt-2 mb-2" placeholder="Kortnummer">
+                                                <span asp-validation-for=CCNumber></span>
                                             </div>
-                                            <div>
-                                                <p class="dis fw-bold mb-2">Kortuppgifter</p>
-                                                <div class="d-flex gap-2 align-items-center">
-                                                    <i class="fab fa-cc-visa ps-3"></i>
-                                                    <input asp-for=CCNumber class="form-control mt-2 mb-2" placeholder="Kortnummer">
-                                                    <span asp-validation-for=CCNumber></span>
+                                            <div class="d-flex gap-2 align-items-center">
+                                                <input asp-for="Expiration" type="month" class="form-control">
+                                                <input asp-for=CVVNumber class="form-control me-2" placeholder="CVV">
+                                                <span asp-validation-for=CVVNumber></span>
+
+                                            </div>
+                                            <div class="my-3">
+                                                <label asp-for=CCHolder class="dis fw-bold mb-2">Kortägare</label>
+                                                <input asp-for=CCHolder class="form-control" placeholder="Namn och efternamn">
+                                                <span asp-validation-for="CCHolder"></span>
+                                            </div>
+                                            <div class="address">
+                                                <p class="dis fw-bold mb-3">Faktureringsadress</p>
+                                                <input asp-for=Address class="form-control" placeholder="Adress">
+                                                <span asp-validation-for=Address></span>
+                                                <select class="form-control mb-2 mt-2"
+                                                        asp-for="Country"
+                                                        asp-items="Html.GetEnumSelectList<Country>()">
+                                                    <option selected="selected" value="">Välj ett land</option>
+                                                </select>
+                                                <div class="d-flex gap-2">
+                                                    <input asp-for="ZipCode" class="form-control zip" placeholder="Postkod">
+                                                    <span asp-validation-for="ZipCode"></span>
+                                                    <input asp-for="City" class="form-control state" placeholder="Stad">
+                                                    <span asp-validation-for="City"></span>
                                                 </div>
-                                                <div class="d-flex gap-2 align-items-center">
-                                                    <input asp-for="Expiration" type="month" class="form-control">
-                                                    <input asp-for=CVVNumber class="form-control me-2" placeholder="CVV">
-                                                    <span asp-validation-for=CVVNumber></span>
-
+                                                <div class="invisible">
+                                                    <input asp-for="Total" value=@Model.Total />
+                                                    <input asp-for="CourseIdsCount" value=@Model.CourseIdsCount />
                                                 </div>
-                                                <div class="my-3">
-                                                    <label asp-for=CCHolder class="dis fw-bold mb-2">Kortägare</label>
-                                                    <input asp-for=CCHolder class="form-control" placeholder="Namn och efternamn">
-                                                    <span asp-validation-for="CCHolder"></span>
-                                                </div>
-                                                <div class="address">
-                                                    <p class="dis fw-bold mb-3">Faktureringsadress</p>
-                                                    <input asp-for=Address class="form-control" placeholder="Adress">
-                                                    <span asp-validation-for=Address></span>
-                                                    <select class="form-control mb-2 mt-2"
-                                                            asp-for="Country"
-                                                            asp-items="Html.GetEnumSelectList<Country>()">
-                                                        <option selected="selected" value="">Välj ett land</option>
-                                                    </select>
-                                                    <div class="d-flex gap-2">
-                                                        <input asp-for="ZipCode" class="form-control zip" placeholder="Postkod">
-                                                        <span asp-validation-for="ZipCode"></span>
-                                                        <input asp-for="City" class="form-control state" placeholder="Stad">
-                                                        <span asp-validation-for="City"></span>
+
+
+                                                <hr class="my-4">
+
+                                                <div class="d-flex flex-column dis">
+
+                                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                                        <p class="fw-bold">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</p>
+                                                        <p class="fw-bold">Total</p>
+                                                        <p class="fw-bold">@Model.Total.ToString("0.00 SEK")</p>
                                                     </div>
-                                                    <div class="invisible">
-                                                        <input asp-for="Total" value=@Model.Total />
-                                                        <input asp-for="CourseIdsCount" value=@Model.CourseIdsCount />
-                                                    </div>
-
-
-                                                    <hr class="my-4">
-
-                                                    <div class="d-flex flex-column dis">
-
-                                                        <div class="d-flex align-items-center justify-content-between mb-2">
-                                                            <p class="fw-bold">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</p>
-                                                            <p class="fw-bold">Total</p>
-                                                            <p class="fw-bold">@Model.Total SEK</p>
-                                                        </div>
-                                                        <button asp-action="Checkout" class="btn btn-primary mt-2">
-                                                            Pay @Model.Total SEK
-                                                        </button>
-                                                        <div asp-validation-summary="All"></div>
-                                                    </div>
+                                                    <button asp-action="Checkout" class="btn btn-primary mt-2">
+                                                        Pay @Model.Total.ToString("0.00 SEK")
+                                                    </button>
+                                                    <div asp-validation-summary="All"></div>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="pt-5">
-                                        <h6 class="mb-0">
-                                            <a asp-action="ShoppingCart" class="text-body text-decoration-none">
-                                                <i class="fas fa-long-arrow-alt-left me-2"></i>Tillbaka till din varukorg
-                                            </a>
-                                        </h6>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </section>
-                            <section class="col-lg-4 bg-primary bg-gradient">
-                                <div class="p-5">
-                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                                    <hr class="my-4">
+                                <div class="pt-5">
+                                    <h6 class="mb-0">
+                                        <a asp-action="ShoppingCart" class="text-body text-decoration-none">
+                                            <i class="fas fa-long-arrow-alt-left me-2"></i>Tillbaka till din varukorg
+                                        </a>
+                                    </h6>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-lg-4 bg-primary bg-gradient">
+                            <div class="p-5">
+                                <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                <hr class="my-4">
 
-                                    <div class="d-flex justify-content-between mb-4">
-                                        <h5 class="text-uppercase">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</h5>
-                                        <h5></h5>
-                                    </div>
-                                    <hr class="my-4">
-                                    <div class="d-flex justify-content-between mb-5">
-                                        <h5 class="text-uppercase">Total</h5>
-                                        <h5>@Model.Total SEK</h5>
-                                    </div>
+                                <div class="d-flex justify-content-between mb-4">
+                                    <h5 class="text-uppercase">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</h5>
+                                    <h5></h5>
                                 </div>
-                            </section>
-                        </div>
+                                <hr class="my-4">
+                                <div class="d-flex justify-content-between mb-5">
+                                    <h5 class="text-uppercase">Total</h5>
+                                    <h5>@Model.Total.ToString("0.00 SEK")</h5>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>

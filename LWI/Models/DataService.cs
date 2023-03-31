@@ -83,69 +83,72 @@ namespace LWI.Models
             context.SaveChanges();
         }
 
-        public CatalogVM[] GetAllCourses()
-        {
-            return context.Courses
-                .Select(c => new CatalogVM
-                {
-                    Category = c.Category,
-                    Price = c.Price.ToString("0.00 SEK"),
-                    Name = c.Name,
-                    Id = c.Id,
-                    DescriptionShort = c.DescriptionShort,
-                    ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName,
-                    Teacher = c.Teacher
-                })
-                .OrderBy(c => c.Name)
-                .ToArray();
-        }
-        public DetailsVM? GetCourse(int id)
-        {
+		public CatalogVM[] GetAllCourses()
+		{
+			return context.Courses
+				.Select(c => new CatalogVM
+				{
+					Category = c.Category,
+					Price = c.Price.ToString("0.00 SEK"),
+					Name = c.Name,
+					Id = c.Id,
+					DescriptionShort = c.DescriptionShort,
+					ImgAlt = c.ImgAlt,
+					ImgName = c.ImgName,
+					Teacher = c.Teacher,
+					IsEco = c.IsEco
+				})
+				.OrderBy(c => c.Name)
+				.ToArray();
+		}
+		public DetailsVM? GetCourse(int id)
+		{
             string? cookieCheck = httpContextAccessor.HttpContext.Request.Cookies["ShoppingCart"];
             if (cookieCheck == null)
                 httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", ",");
             bool itemInCart = stateService.GetCartIds().Contains(id);
 
             return context.Courses
-                .Select(c => new DetailsVM
-                {
-                    Category = c.Category,
-                    Price = c.Price.ToString("0.00 SEK"),
-                    Name = c.Name,
-                    Id = c.Id,
-                    DescriptionLong = c.DescriptionLong,
-                    ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName,
-                    InCart = itemInCart,
-                })
-                .FirstOrDefault(c => c.Id == id)
-                ;
-        }
-        public async Task<ShoppingCartVM> GetShoppingCartVMAsync(int[] cartIds)
-        {
-            var total = await context.Courses
-                .Where(c => cartIds.Contains(c.Id))
-                .Select(c => c.Price).SumAsync();
+				.Select(c => new DetailsVM
+				{
+					Category = c.Category,
+					Price = c.Price.ToString("0.00 SEK"),
+					Name = c.Name,
+					Id = c.Id,
+					DescriptionLong = c.DescriptionLong,
+					ImgAlt = c.ImgAlt,
+					ImgName = c.ImgName,
+					IsEco = c.IsEco
+				})
+				.FirstOrDefault(c => c.Id == id)
+				;
+		}
+
+		public async Task<ShoppingCartVM> GetShoppingCartVMAsync(int[] cartIds)
+		{
+			var total = await context.Courses
+				.Where(c => cartIds.Contains(c.Id))
+				.Select(c => c.Price).SumAsync();
 
             var vm = new ShoppingCartVM
             {
                 ItemCount = cartIds.Length,
                 Total = total.ToString("0.00 SEK"),
 
-                shoppingCartItemVMs = await context
-                .Courses
-                .Where(c => cartIds.Contains(c.Id))
-                .Select(c => new ShoppingCartItemVM
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Price = c.Price.ToString("0.00 SEK"),
-                    Category = c.Category,
-                    ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName
-                }).ToArrayAsync()
-            };
+				shoppingCartItemVMs = await context
+				.Courses
+				.Where(c => cartIds.Contains(c.Id))
+				.Select(c => new ShoppingCartItemVM
+				{
+					Id = c.Id,
+					Name = c.Name,
+					Price = c.Price.ToString("0.00 SEK"),
+					Category = c.Category,
+					ImgAlt = c.ImgAlt,
+					ImgName = c.ImgName,
+					IsEco = c.IsEco
+				}).ToArrayAsync()
+			};
 
             return vm;
         }
