@@ -228,6 +228,7 @@ a {
     align-items: center;
     margin-right: 150px;
     margin-left: 150px;
+    color: #c770f0;
 }
 
 .navbar-nav .nav-item .nav-link .icon {
@@ -243,6 +244,7 @@ a {
 
 .navbar-brand {
     margin-left: 20px;
+    color: #c770f0;
 }
 
 footer {

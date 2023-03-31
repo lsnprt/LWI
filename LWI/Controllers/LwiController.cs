@@ -104,7 +104,7 @@ namespace LWI.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             stateService.RemoveFromCart(id);
-            return RedirectToAction(nameof(ShoppingCartAsync));
+            return RedirectToAction(nameof(ShoppingCartAsync).Replace("Async", ""));
         }
 
         [HttpGet("/ShoppingCart/Checkout")]
