@@ -1,24 +1,24 @@
-﻿@model ShoppingCartVM
+﻿@model ShoppingCartItemVM
+
+<hr class="my-4">
 
 <div class="row mb-4 d-flex justify-content-between align-items-center">
     <div class="col-md-2 col-lg-2 col-xl-2">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-             class="img-fluid rounded-3" alt="Cotton T-shirt">
+        <img src="/images/@Model.ImgName"
+             class="img-fluid rounded-3" alt="@Model.ImgAlt">
     </div>
     <div class="col-md-3 col-lg-3 col-xl-3">
-        <h6 class="text-muted">T-shirt skrädderi</h6>
-        <h6 class="text-black mb-0">En kurs om att tillverka egna ekologiska t-shirts</h6>
+        <h6 class="text-muted">@Model.Category</h6>
+        <h6 class="text-black mb-0">@Model.Name</h6>
     </div>
 
     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
         <h6><span class="badge rounded-pill bg-success">Bra miljöval!</span></h6>
     </div>
     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6 class="mb-0">SEK 400</h6>
+        <h6 class="mb-0">@Model.Price</h6>
     </div>
     <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+        <a asp-action="RemoveFromCart" asp-route-id="@Model.Id" class="text-muted"><i class="fas fa-times"></i></a>
     </div>
 </div>
-
-<hr class="my-4">

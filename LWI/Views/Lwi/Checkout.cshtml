@@ -1,6 +1,6 @@
 ﻿@model CheckoutVM
 
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+<section class="h-100 h-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
@@ -67,10 +67,10 @@
                                                         <div class="d-flex align-items-center justify-content-between mb-2">
                                                             <p class="fw-bold">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</p>
                                                             <p class="fw-bold">Total</p>
-                                                            <p class="fw-bold">@Model.Total SEK</p>
+                                                            <p class="fw-bold">@Model.Total.ToString("0.00 SEK")</p>
                                                         </div>
                                                         <button asp-action="Checkout" class="btn btn-primary mt-2">
-                                                            Pay @Model.Total SEK
+                                                            Pay @Model.Total.ToString("0.00 SEK")
                                                         </button>
                                                         <div asp-validation-summary="All"></div>
                                                     </div>
@@ -99,7 +99,7 @@
                                     <hr class="my-4">
                                     <div class="d-flex justify-content-between mb-5">
                                         <h5 class="text-uppercase">Total</h5>
-                                        <h5>@Model.Total SEK</h5>
+                                        <h5>@Model.Total.ToString("0.00 SEK")</h5>
                                     </div>
                                 </div>
                             </section>
