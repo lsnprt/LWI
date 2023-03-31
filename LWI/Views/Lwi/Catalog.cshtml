@@ -1,36 +1,39 @@
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model CatalogVM[]
 
 <div class="catalog-wrapper">
 	<div class="sidebar">
 		<div class="row">
-			<aside class="row-sm-4">
-				<h3>Filters</h3>
+			<aside id="row-sm-4" class="row-sm-4">
+				<div id="filter-header">
+					<h3 id="filters-title">Filters</h3>
+					<span><img src="~/images/filter1.jpg" width="50" /></span>
+				</div>
 				<div class="card">
 					<article class="card-group-item">
 						<header class="card-header">
-							<h6 class="title">Choose category </h6>
+							<h5 class="title">Choose category </h5>
 						</header>
 						<div class="filter-content">
 							<div class="card-body">
+								@{
+									var categoryList = Model.DistinctBy(x => x.Category).ToArray();
+								}
+								@foreach (var item in categoryList)
+								{
+									<label class="form-check">
+										<input class="form-check-input" type="radio" name="categoryFilter" value="@item.Category">
+										<span class="form-check-label">
+											@item.Category
+										</span>
+									</label>
+								}
 								<label class="form-check">
-									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
+									<input class="form-check-input" type="radio" name="categoryFilter" value="AllCategories" checked>
 									<span class="form-check-label">
-										Programming
+										All Categories
 									</span>
 								</label>
-								<label class="form-check">
-									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
-									<span class="form-check-label">
-										Saving Earth
-									</span>
-								</label>
-								<label class="form-check">
-									<input class="form-check-input" type="checkbox" name="exampleRadio" value="">
-									<span class="form-check-label">
-										Spinning fidget.
-									</span>
-								</label>
+
 							</div> <!-- card-body.// -->
 						</div>
 					</article> <!-- card-group-item.// -->
@@ -44,22 +47,22 @@
 						<div class="filter-content">
 							<div class="card-body">
 								<form>
+									@{
+										var teacherList = Model.DistinctBy(x => x.Teacher).ToArray();
+									}
+									@foreach (var item in teacherList)
+									{
+										<label class="form-check">
+											<input class="form-check-input" name="teacherFilter" type="radio" value="@item.Teacher">
+											<span class="form-check-label">
+												@item.Teacher
+											</span>
+										</label> <!-- form-check.// -->
+									}
 									<label class="form-check">
-										<input class="form-check-input" type="checkbox" value="">
+										<input class="form-check-input" name="teacherFilter" type="radio" value="all" checked>
 										<span class="form-check-label">
-											Isam
-										</span>
-									</label> <!-- form-check.// -->
-									<label class="form-check">
-										<input class="form-check-input" type="checkbox" value="">
-										<span class="form-check-label">
-											Nadine
-										</span>
-									</label>  <!-- form-check.// -->
-									<label class="form-check">
-										<input class="form-check-input" type="checkbox" value="">
-										<span class="form-check-label">
-											Pontus
+											All instructors
 										</span>
 									</label>  <!-- form-check.// -->
 								</form>
@@ -74,17 +77,17 @@
 					<article class="card-group-item">
 						<header class="card-header"><h6 class="title">Price</h6></header>
 						<div class="filter-content">
-							<div class="card-body">
+							<div id="card-body" class="card-body">
 								<label class="btn btn-danger">
-									<input class="" type="radio" name="myradio" value="">
+									<input class="form-check-input" type="radio" value="FreeCourses" name="priceFilter">
 									<span class="form-check-label">Free</span>
 								</label>
 								<label class="btn btn-primary">
-									<input class="" type="radio" name="myradio" value="">
+									<input class="form-check-input" type="radio" value="nonFreeCourses" name="priceFilter">
 									<span class="form-check-label">Money!</span>
 								</label>
 								<label class="btn btn-info">
-									<input class="" type="radio" name="myradio" value="">
+									<input class="form-check-input" type="radio" value="AllIn" name="priceFilter" checked>
 									<span class="form-check-label">All courses</span>
 								</label>
 							</div> <!-- card-body.// -->
@@ -97,15 +100,16 @@
 	</div>
 	<!--container end.//-->
 
-
-
 	<div class="content">
 		<div class="container">
-			<div class="row">
+			<div id="rowDiv" class="row">
 				@foreach (var course in Model)
 				{
-					<div class="card" style="flex-direction:row;width: 18rem; margin:10px">
-						<a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
+					<div class="card course"
+						 course-price="@course.Price"
+						 course-teacher="@course.Teacher"
+						 course-category="@course.Category" id="card">
+						<a class="card " asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
 							<img src="~/images/@course.ImgName" class="card-img-top" alt="@course.ImgAlt">
 							<div class="card-body">
 								<h5 class="card-title">@course.Name</h5>
@@ -121,3 +125,4 @@
 		</div>
 	</div>
 </div>
+

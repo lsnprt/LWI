@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using LWI.Models;
+﻿using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
@@ -50,7 +49,7 @@ namespace LWI.Controllers
 
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             DetailsVM model = dataService.GetCourse(id);
-            model.InCart = itemInCart;
+            //model.InCart = itemInCart;
 
             return View(model);
         }
@@ -109,8 +108,6 @@ namespace LWI.Controllers
             return RedirectToAction(nameof(ShoppingCart));
         }
 
-
-
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
@@ -120,21 +117,29 @@ namespace LWI.Controllers
         }
 
         [HttpPost("/ShoppingCart/Checkout")]
-        public IActionResult Checkout(CheckoutVM model)
+        public async Task<IActionResult> CheckoutAsync(CheckoutVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
             int[] checkoutItemsIds = stateService.GetCartIds();
-            dataService.ProcessPayment(model, checkoutItemsIds);
+            int orderId = await dataService.ProcessPayment(model, checkoutItemsIds);
             //empty cart from cookies
-            return RedirectToAction(nameof(PaymentSuccess));
+            return RedirectToAction(nameof(PaymentSuccessAsync).Replace("Async", ""), new { id = orderId });
         }
 
-        [HttpGet("/ShoppingCart/Checkout/Success")]
-        public IActionResult PaymentSuccess()
+        [HttpGet("/ShoppingCart/Checkout/Success/{id}")]
+        public async Task<IActionResult> PaymentSuccessAsync(int id)
         {
-            return View();
+            PaymentSuccessVM model = await dataService.GetPaymentSuccessVMAsync(id);
+
+            if (model == null)
+            {
+               return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));
+            }
+
+            return View(model);
         }
     }
 }
+

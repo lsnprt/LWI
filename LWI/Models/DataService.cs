@@ -1,8 +1,11 @@
 ﻿using System.Data.SqlTypes;
 using System.Linq;
 using LWI.Views.Lwi;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace LWI.Models
 {
@@ -53,6 +56,7 @@ namespace LWI.Models
 				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
 				ImgName = "ASP.jpg",
 				ImgAlt = "blabla",
+
 				Category = "Nadines kurser",
                 Price = 1999
 			},new Course()
@@ -91,7 +95,8 @@ namespace LWI.Models
                     Id = c.Id,
                     DescriptionShort = c.DescriptionShort,
                     ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName
+                    ImgName = c.ImgName,
+                    Teacher=c.Teacher
                 })
                 .OrderBy(c => c.Name)
                 .ToArray();
@@ -141,9 +146,9 @@ namespace LWI.Models
 
         }
 
-        public void ProcessPayment(CheckoutVM model, int[] cartIds)
+        public async Task<int> ProcessPayment(CheckoutVM model, int[] cartIds)
         {
-            var newOrder = context.Orders.Add(new Order
+            var newOrder = await context.Orders.AddAsync(new Order
             {
                 OrderDate = DateTime.Now,
                 Total = model.Total,
@@ -166,6 +171,7 @@ namespace LWI.Models
             }
 
             context.SaveChanges();
+            return newOrder.Entity.Id;
         }
 
         internal CheckoutVM GetCheckoutVM(int[] cartIds)
@@ -179,6 +185,25 @@ namespace LWI.Models
               .Where(c => cartIds.Contains(c.Id))
               .Select(c => c.Price)
               .Sum()
+            };
+        }
+
+        internal async Task<PaymentSuccessVM> GetPaymentSuccessVMAsync(int id)
+        {
+            var order = await context
+                .Orders
+                .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (order == null) 
+            {
+                return null;
+            }
+
+            return new PaymentSuccessVM
+            {
+                OrderNumber = order.Id,
+                CustomerEmail = order.Email,
+                CustomerName = order.CCHolder
             };
         }
     }
