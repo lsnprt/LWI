@@ -27,12 +27,10 @@
             </li>
 
         </ul>
-        <div class="badge">
-            <span id="toAdd"class="badge rounded-pill alert-danger translate-middle bg-danger">
-                @ViewBag.NoOfItems
-            </span>
+        <div>
+            @await Component.InvokeAsync("ShoppingCartCounter")
         </div>
-    </div>
+        </>
 </nav>
 @*                <li class="nav-item">
             <a class="nav-link pull-right" href="ShoppingCart">

@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<DataService>();
+builder.Services.AddScoped<StateService>();
 builder.Services.AddHttpContextAccessor();
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.ConfigureApplicationCookie(o => o.LoginPath="");
