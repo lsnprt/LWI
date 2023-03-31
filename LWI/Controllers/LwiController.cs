@@ -139,6 +139,7 @@ namespace LWI.Controllers
                return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));
             }
 
+            ViewBag.NoOfItems = stateService.EmptyCart();
             return View(model);
         }
     }
