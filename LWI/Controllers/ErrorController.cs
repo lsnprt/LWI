@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LWI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LWI.Controllers
 {
@@ -14,6 +15,7 @@ namespace LWI.Controllers
         [HttpGet("/ShoppingCart/Checkout/Error")]
         public IActionResult PaymentError()
         {
+            ViewBag.NoOfItems = stateService.NoOfCartItems();
             return View();
         }
     }

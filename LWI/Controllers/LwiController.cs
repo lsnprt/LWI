@@ -49,7 +49,6 @@ namespace LWI.Controllers
 
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             DetailsVM model = dataService.GetCourse(id);
-            //model.InCart = itemInCart;
 
             return View(model);
         }
