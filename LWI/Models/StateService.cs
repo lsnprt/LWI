@@ -12,7 +12,7 @@ namespace LWI.Models
             Accessor = accessor;
         }
 
-        public string NoOfCartItems()
+        public async Task<string> NoOfCartItems()
         {
             var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
             if (cartCookie != null & cartCookie != "," & cartCookie != "")

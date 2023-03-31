@@ -39,17 +39,7 @@ namespace LWI.Controllers
         [HttpGet("Catalog/Details/{id}")]
         public IActionResult Details(int id)
         {
-
-            var cookieCheck = Request.Cookies["ShoppingCart"];
-            if (cookieCheck == null)
-                Response.Cookies.Append("ShoppingCart", ",");
-
-            bool itemInCart = stateService.GetCartIds().Contains(id);
-
-
-            ViewBag.NoOfItems = stateService.NoOfCartItems();
             DetailsVM model = dataService.GetCourse(id);
-
             return View(model);
         }
 
@@ -57,37 +47,9 @@ namespace LWI.Controllers
         public IActionResult Details(DetailsVM model)
         {
 
-            var cookieCheck = Request.Cookies["ShoppingCart"];
+            var info = dataService.AddToCookie(model.Id);
 
-            if (cookieCheck == ",")
-            {
-                Response.Cookies.Append("ShoppingCart", $",{model.Id}");
-                return Ok(new
-                {
-                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
-                    Item = 1,
-                });
-            }
-            else if (stateService.GetCartIds().Contains(model.Id))
-            {
-                return Ok(new
-                {
-                    message = $"'{dataService.GetCourseName(model.Id)}' finns redan i din varukorg!",
-                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG",
-                    Item = 0,
-                });
-            }
-            else
-            {
-                Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-                return Ok(new
-                {
-                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
-                    Item = 1,
-                });
-            }
+            return Ok(info);
         }
 
 
@@ -104,7 +66,7 @@ namespace LWI.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             stateService.RemoveFromCart(id);
-            return RedirectToAction(nameof(ShoppingCartAsync).Replace("Async", ""));
+            return RedirectToAction(nameof(ShoppingCartAsync).Replace("Async", string.Empty));
         }
 
         [HttpGet("/ShoppingCart/Checkout")]
