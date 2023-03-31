@@ -1,4 +1,4 @@
-﻿/*--------------------------index--------------------------------------*/
+
 .first {
     width: 320px;
     height: 450px;
@@ -65,7 +65,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #f1f1f1;
+    background-color: #d2c9ff;
     border-bottom: dotted 2px #BF6CE6;
 }
 
@@ -87,6 +87,14 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    background-color: white;
+    box-shadow: violet 1px 2px 7px;
+}
+
+.image {
+    border-radius: 30px;
 }
 
 .image-container {
@@ -158,6 +166,7 @@ a {
     position: absolute;
     right: 10px;
     bottom: 10px;
+
 }
 
 .popUp {
@@ -203,7 +212,6 @@ a {
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: #f1f1f1;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -230,14 +238,11 @@ a {
 .badge {
     font-size: xx-small;
     margin-left: -87px;
+    margin-bottom: 1rem;
 }
 
 .navbar-brand {
     margin-left: 20px;
-}
-
-.badge {
-    margin-bottom: 1rem;
 }
 
 footer {
