@@ -15,7 +15,6 @@ namespace LWI.Controllers
         [HttpGet("/ShoppingCart/Checkout/Error")]
         public IActionResult PaymentError()
         {
-            ViewBag.NoOfItems = stateService.NoOfCartItems();
             return View();
         }
     }
