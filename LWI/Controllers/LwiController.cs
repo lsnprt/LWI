@@ -1,8 +1,8 @@
-﻿using System.Text.RegularExpressions;
-using LWI.Models;
+﻿using LWI.Models;
 using LWI.Views.Lwi;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace LWI.Controllers
 {
@@ -60,16 +60,23 @@ namespace LWI.Controllers
 
             var cookieCheck = Request.Cookies["ShoppingCart"];
 
-            if (cookieCheck == null)
-                Response.Cookies.Append("ShoppingCart", ",");
-            else if (cookieCheck == ",")
+            if (cookieCheck == ",")
+            {
                 Response.Cookies.Append("ShoppingCart", $",{model.Id}");
-            if (stateService.GetCartIds().Contains(model.Id))
+                return Ok(new
+                {
+                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
+                    Item = 1,
+                });
+            }
+            else if (stateService.GetCartIds().Contains(model.Id))
             {
                 return Ok(new
                 {
                     message = $"'{dataService.GetCourseName(model.Id)}' finns redan i din varukorg!",
-                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG"
+                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG",
+                    Item = 0,
                 });
             }
             else
@@ -78,7 +85,8 @@ namespace LWI.Controllers
                 return Ok(new
                 {
                     message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg"
+                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
+                    Item = 1,
                 });
             }
         }
@@ -109,21 +117,28 @@ namespace LWI.Controllers
         }
 
         [HttpPost("/ShoppingCart/Checkout")]
-        public IActionResult Checkout(CheckoutVM model)
+        public async Task<IActionResult> CheckoutAsync(CheckoutVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
             int[] checkoutItemsIds = stateService.GetCartIds();
-            int ordernummer = dataService.ProcessPayment(model, checkoutItemsIds);
+            int orderId = await dataService.ProcessPayment(model, checkoutItemsIds);
             //empty cart from cookies
-            return RedirectToAction(nameof(PaymentSuccess));
+            return RedirectToAction(nameof(PaymentSuccessAsync).Replace("Async", ""), new { id = orderId });
         }
 
-        [HttpGet("/ShoppingCart/Checkout/Success")]
-        public IActionResult PaymentSuccess()
+        [HttpGet("/ShoppingCart/Checkout/Success/{id}")]
+        public async Task<IActionResult> PaymentSuccessAsync(int id)
         {
-            return View();
+            PaymentSuccessVM model = await dataService.GetPaymentSuccessVMAsync(id);
+
+            if (model == null)
+            {
+               return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));
+            }
+
+            return View(model);
         }
     }
 }
