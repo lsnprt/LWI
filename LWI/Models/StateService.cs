@@ -31,7 +31,13 @@ namespace LWI.Models
 
 		}
 
-		internal int[] GetCartIds()
+        internal int EmptyCart()
+        {
+            Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", "");
+            return 0;
+        }
+
+        internal int[] GetCartIds()
 		{
 			var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
 			if (cartCookie != null & cartCookie != "," & cartCookie != "")

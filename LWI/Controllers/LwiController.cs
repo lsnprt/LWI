@@ -49,7 +49,6 @@ namespace LWI.Controllers
 
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             DetailsVM model = dataService.GetCourse(id);
-            //model.InCart = itemInCart;
 
             return View(model);
         }
@@ -140,6 +139,7 @@ namespace LWI.Controllers
                return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));
             }
 
+            ViewBag.NoOfItems = stateService.EmptyCart();
             return View(model);
         }
     }

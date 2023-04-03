@@ -126,7 +126,8 @@ namespace LWI.Models
 					DescriptionShort = c.DescriptionShort,
 					ImgAlt = c.ImgAlt,
 					ImgName = c.ImgName,
-					Teacher = c.Teacher
+					Teacher = c.Teacher,
+					IsEco = c.IsEco
 				})
 				.OrderBy(c => c.Name)
 				.ToArray();
@@ -142,7 +143,8 @@ namespace LWI.Models
 					Id = c.Id,
 					DescriptionLong = c.DescriptionLong,
 					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName
+					ImgName = c.ImgName,
+					IsEco = c.IsEco
 				})
 				.FirstOrDefault(c => c.Id == id)
 				;
@@ -175,7 +177,8 @@ namespace LWI.Models
 					Price = c.Price.ToString("0.00 SEK"),
 					Category = c.Category,
 					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName
+					ImgName = c.ImgName,
+					IsEco = c.IsEco
 				}).ToArrayAsync()
 			};
 

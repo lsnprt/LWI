@@ -10,5 +10,6 @@
 		public string Category { get; set; }
 		public string DescriptionShort { get; set; }
 		public string Teacher { get; set; }
+		public bool? IsEco { get; set; }
 	}
 }

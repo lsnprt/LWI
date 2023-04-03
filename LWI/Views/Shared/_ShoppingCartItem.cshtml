@@ -13,7 +13,7 @@
     </div>
 
     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6><span class="badge rounded-pill bg-success">Bra miljöval!</span></h6>
+        <h6><span class="badge rounded-pill bg-success @(Model.IsEco ? "" : "invisible")" >Bra miljöval!</span></h6>
     </div>
     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
         <h6 class="mb-0">@Model.Price</h6>
