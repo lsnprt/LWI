@@ -39,18 +39,7 @@ namespace LWI.Controllers
         [HttpGet("Catalog/Details/{id}")]
         public IActionResult Details(int id)
         {
-
-            var cookieCheck = Request.Cookies["ShoppingCart"];
-            if (cookieCheck == null)
-                Response.Cookies.Append("ShoppingCart", ",");
-
-            bool itemInCart = stateService.GetCartIds().Contains(id);
-
-
-            ViewBag.NoOfItems = stateService.NoOfCartItems();
             DetailsVM model = dataService.GetCourse(id);
-            //model.InCart = itemInCart;
-
             return View(model);
         }
 
@@ -58,46 +47,18 @@ namespace LWI.Controllers
         public IActionResult Details(DetailsVM model)
         {
 
-            var cookieCheck = Request.Cookies["ShoppingCart"];
+            var info = dataService.AddToCookie(model.Id);
 
-            if (cookieCheck == ",")
-            {
-                Response.Cookies.Append("ShoppingCart", $",{model.Id}");
-                return Ok(new
-                {
-                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
-                    Item = 1,
-                });
-            }
-            else if (stateService.GetCartIds().Contains(model.Id))
-            {
-                return Ok(new
-                {
-                    message = $"'{dataService.GetCourseName(model.Id)}' finns redan i din varukorg!",
-                    ImgUrl = "/Photos_and_Icons/RealSadCart.PNG",
-                    Item = 0,
-                });
-            }
-            else
-            {
-                Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{model.Id}");
-                return Ok(new
-                {
-                    message = $"La till '{dataService.GetCourseName(model.Id)}' i varukorgen!",
-                    ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg",
-                    Item = 1,
-                });
-            }
+            return Ok(info);
         }
 
 
         [HttpGet("/ShoppingCart")]
-        public IActionResult ShoppingCart()
+        public async Task<IActionResult> ShoppingCartAsync()
         {
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             int[] cartIds = stateService.GetCartIds();
-            ShoppingCartVM[] model = dataService.GetSelectedCourses(cartIds);
+            ShoppingCartVM model = await dataService.GetShoppingCartVMAsync(cartIds);
             return View(model);
         }
 
@@ -105,14 +66,15 @@ namespace LWI.Controllers
         public IActionResult RemoveFromCart(int id)
         {
             stateService.RemoveFromCart(id);
-            return RedirectToAction(nameof(ShoppingCart));
+            return RedirectToAction(nameof(ShoppingCartAsync).Replace("Async", string.Empty));
         }
 
         [HttpGet("/ShoppingCart/Checkout")]
         public IActionResult Checkout()
         {
             int[] cartIds = stateService.GetCartIds();
-            CheckoutVM model = dataService.GetCheckoutVM(cartIds);
+            ViewBag.NoOfItems = cartIds.Count();
+			CheckoutVM model = dataService.GetCheckoutVM(cartIds);
             return View(model);
         }
 
@@ -123,7 +85,8 @@ namespace LWI.Controllers
                 return View(model);
 
             int[] checkoutItemsIds = stateService.GetCartIds();
-            int orderId = await dataService.ProcessPayment(model, checkoutItemsIds);
+			ViewBag.NoOfItems = checkoutItemsIds.Count();
+			int orderId = await dataService.ProcessPayment(model, checkoutItemsIds);
             //empty cart from cookies
             return RedirectToAction(nameof(PaymentSuccessAsync).Replace("Async", ""), new { id = orderId });
         }
@@ -132,7 +95,6 @@ namespace LWI.Controllers
         public async Task<IActionResult> PaymentSuccessAsync(int id)
         {
             PaymentSuccessVM model = await dataService.GetPaymentSuccessVMAsync(id);
-
             if (model == null)
             {
                return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));

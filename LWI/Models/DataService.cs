@@ -1,27 +1,26 @@
-﻿using System.Data.SqlTypes;
-using System.Linq;
+﻿using Azure.Core;
+using Azure;
 using LWI.Views.Lwi;
-using Microsoft.AspNetCore.Mvc.Rendering;
-
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace LWI.Models
 {
     public class DataService
     {
         ApplicationContext context;
+        IHttpContextAccessor httpContextAccessor;
+        StateService stateService;
 
         //List<Course> shoppingBag = new List<Course>();
 
-        public DataService(ApplicationContext context)
-
+        public DataService(ApplicationContext context, StateService state, IHttpContextAccessor httpContextAccessor)
         {
+            this.httpContextAccessor = httpContextAccessor;
+            this.stateService = state;
             this.context = context;
         }
 
-        
+
 
         List<Course> courses = new List<Course>()
         {
@@ -48,29 +47,29 @@ namespace LWI.Models
                 Price = 0
 
             },
-			new Course()
-			{
-				Name = "Sortera med Nadine #1",
+            new Course()
+            {
+                Name = "Sortera med Nadine #1",
                 Teacher = "Nadine",
-				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-				ImgName = "ASP.jpg",
-				ImgAlt = "blabla",
+                DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+                DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+                ImgName = "ASP.jpg",
+                ImgAlt = "blabla",
 
-				Category = "Nadines kurser",
+                Category = "Nadines kurser",
                 Price = 1999
-			},new Course()
-			{
+            },new Course()
+            {
 
-				Name = "Sortera med Nadine #2",
-				Teacher="Håkan",
-				DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
-				DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
-				ImgName = "python.png",
-				ImgAlt = "blabla",
-				Category = "Nadines kurser",
+                Name = "Sortera med Nadine #2",
+                Teacher="Håkan",
+                DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+                DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+                ImgName = "python.png",
+                ImgAlt = "blabla",
+                Category = "Nadines kurser",
                 Price = 4999
-			},
+            },
 
         };
 
@@ -84,61 +83,74 @@ namespace LWI.Models
             context.SaveChanges();
         }
 
-        public CatalogVM[] GetAllCourses()
-        {
-            return context.Courses
-                .Select(c => new CatalogVM
-                {
-                    Category = c.Category,
-                    Price = c.Price,
-                    Name = c.Name,
-                    Id = c.Id,
-                    DescriptionShort = c.DescriptionShort,
-                    ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName,
-                    Teacher=c.Teacher
-                })
-                .OrderBy(c => c.Name)
-                .ToArray();
-        }
-        public DetailsVM? GetCourse(int id)
-        {
-            return context.Courses
-                .Select(c => new DetailsVM
-                {
-                    Category = c.Category,
-                    Price = c.Price,
-                    Name = c.Name,
-                    Id = c.Id,
-                    DescriptionLong = c.DescriptionLong,
-                    ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName
-                })
-                .FirstOrDefault(c => c.Id == id)
-                ;
-        }
+		public CatalogVM[] GetAllCourses()
+		{
+			return context.Courses
+				.Select(c => new CatalogVM
+				{
+					Category = c.Category,
+					Price = c.Price.ToString("0.00 SEK"),
+					Name = c.Name,
+					Id = c.Id,
+					DescriptionShort = c.DescriptionShort,
+					ImgAlt = c.ImgAlt,
+					ImgName = c.ImgName,
+					Teacher = c.Teacher,
+					IsEco = c.IsEco
+				})
+				.OrderBy(c => c.Name)
+				.ToArray();
+		}
+		public DetailsVM? GetCourse(int id)
+		{
+            string? cookieCheck = httpContextAccessor.HttpContext.Request.Cookies["ShoppingCart"];
+            if (cookieCheck == null)
+                httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", ",");
+            bool itemInCart = stateService.GetCartIds().Contains(id);
 
-        //internal void AddToShoppingCart(DetailsVM model)
-        //{
-        //    var course = courses.Where(o => o.Id == model.Id).FirstOrDefault();
-        //    shoppingBag.Add(course);
-        //}
-
-        internal ShoppingCartVM[] GetSelectedCourses(int[] cartIds)
-        {
             return context.Courses
-                .Where(c => cartIds.Contains(c.Id))
-                .Select(c => new ShoppingCartVM
-                {
-                    Category = c.Category,
-                    Price = c.Price,
-                    Name = c.Name,
-                    Id = c.Id,
-                    ImgAlt = c.ImgAlt,
-                    ImgName = c.ImgName
-                })
-                .OrderBy(c => c.Name)
-                .ToArray();
+				.Select(c => new DetailsVM
+				{
+					Category = c.Category,
+					Price = c.Price.ToString("0.00 SEK"),
+					Name = c.Name,
+					Id = c.Id,
+					DescriptionLong = c.DescriptionLong,
+					ImgAlt = c.ImgAlt,
+					ImgName = c.ImgName,
+					IsEco = c.IsEco
+				})
+				.FirstOrDefault(c => c.Id == id)
+				;
+		}
+
+		public async Task<ShoppingCartVM> GetShoppingCartVMAsync(int[] cartIds)
+		{
+			var total = await context.Courses
+				.Where(c => cartIds.Contains(c.Id))
+				.Select(c => c.Price).SumAsync();
+
+            var vm = new ShoppingCartVM
+            {
+                ItemCount = cartIds.Length,
+                Total = total.ToString("0.00 SEK"),
+
+				shoppingCartItemVMs = await context
+				.Courses
+				.Where(c => cartIds.Contains(c.Id))
+				.Select(c => new ShoppingCartItemVM
+				{
+					Id = c.Id,
+					Name = c.Name,
+					Price = c.Price.ToString("0.00 SEK"),
+					Category = c.Category,
+					ImgAlt = c.ImgAlt,
+					ImgName = c.ImgName,
+					IsEco = c.IsEco
+				}).ToArrayAsync()
+			};
+
+            return vm;
         }
         public string GetCourseName(int id)
         {
@@ -164,9 +176,10 @@ namespace LWI.Models
 
             foreach (int id in cartIds)
             {
-                newOrder.Entity.OrdersToCourses.Add(new OrdersToCourses { 
-                CourseId = id,
-                OrderId = newOrder.Entity.Id
+                newOrder.Entity.OrdersToCourses.Add(new OrdersToCourses
+                {
+                    CourseId = id,
+                    OrderId = newOrder.Entity.Id
                 });
             }
 
@@ -194,10 +207,12 @@ namespace LWI.Models
                 .Orders
                 .FirstOrDefaultAsync(o => o.Id == id);
 
-            if (order == null) 
+            if (order == null)
             {
                 return null;
             }
+
+            stateService.EmptyCart();
 
             return new PaymentSuccessVM
             {
@@ -205,6 +220,21 @@ namespace LWI.Models
                 CustomerEmail = order.Email,
                 CustomerName = order.CCHolder
             };
+        }
+
+        internal object AddToCookie(int id)
+        {
+            string? cookieCheck = httpContextAccessor.HttpContext.Request.Cookies["ShoppingCart"];
+
+            if (cookieCheck == ",")
+            {
+                httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", $",{id}");
+            }
+            else
+            {
+                httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{id}");
+            }
+            return new { message = $"La till '{GetCourseName(id)}' i varukorgen!", ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg" };
         }
     }
 }

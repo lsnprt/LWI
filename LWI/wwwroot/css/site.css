@@ -1,3 +1,6 @@
+body {
+    background-color: #F6E3FF;
+}
 
 
 /*--------------------------index--------------------------------------*/
@@ -95,20 +98,18 @@
     justify-content: center;
     width: 100%;
     background-color: #d2c9ff;
-    border-bottom: dotted 2px #BF6CE6;
 }
 
 .catalog-wrapper {
-    background-color: #F6E3FF;
+    background-color: #d2c9ff;
     padding: 0 0 20px;
     display: flex;
     flex-wrap: wrap;
     height: fit-content auto;
-    border-bottom: 2px dotted #BF6CE6;
 }
 
 .container {
-    background-color: #F6E3FF;
+    background-color: #d2c9ff;
     align-items: center;
 }
 
@@ -120,6 +121,7 @@
     border-radius: 30px;
     background-color: white;
     box-shadow: violet 1px 2px 7px;
+    margin-bottom: 10px;
 }
 
 .image {
@@ -256,6 +258,7 @@ a {
     align-items: center;
     margin-right: 150px;
     margin-left: 150px;
+    color: #c770f0;
 }
 
 .navbar-nav .nav-item .nav-link .icon {
@@ -271,6 +274,7 @@ a {
 
 .navbar-brand {
     margin-left: 20px;
+    color: #c770f0;
 }
 
 footer {
@@ -278,4 +282,5 @@ footer {
     justify-content: center;
     align-items: center;
     height: 50px;
+    background-color: #BF6CE6;
 }
