@@ -20,24 +20,26 @@
 </div>
 
 <div class="popUp" id="popUp">
-    <img id="popUpImg"/>
+    <img id="popUpImg" />
     <hr />
     <h3 id="popUpH3"></h3>
 </div>
 <script>
     function openPopUp() {
-
+        let item = document.getElementById("toAdd")
         const url = "@Url.Action(nameof(LWI.Controllers.LwiController.Details), new { id = Model.Id})";
         $.ajax({
             url: url,
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify("@Model.Id"),
-            success: data =>{
+            success: data => {
                 document.getElementById("popUpH3").innerHTML = data.message,
-                document.getElementById("popUpImg").src = data.imgUrl,
-                    document.getElementById("popUp").classList.add("openPopUpDiv")
-                },
+                    document.getElementById("popUpImg").src = data.imgUrl,
+                    document.getElementById("popUp").classList.add("openPopUpDiv"),
+                    item.innerText = parseInt(item.innerText) + data.item
+            },
+
 
         });
         setTimeout(function () {

@@ -1,9 +1,10 @@
-﻿
+
 
 /*--------------------------index--------------------------------------*/
 /*
 .first {
     width: 320px;
+    height: 450px;
     height: 385px;
     margin: 10px;
     border-width: 0 2px 0 2px;
@@ -48,16 +49,17 @@
         align-items: center;
     }
 
-        .foo {
-    font-size: 25px;
+.foo {
+    font-size: 16px;
     font-family: Arial;
 }
 
 .first .foo {
-    top: -40px;
+    top: -30px;
 }
 
 .first .bar {
+    bottom: -8.5px;
     bottom: -9px;
 }
 
@@ -73,6 +75,7 @@
     content: ' ';
     height: 2px;
     background: #c770f0;
+    display: block;
     display: flow;
     width: 50%;
 }
@@ -92,9 +95,20 @@
     justify-content: center;
     width: 100%;
     background-color: #d2c9ff;
+    border-bottom: dotted 2px #BF6CE6;
+}
+
+.catalog-wrapper {
+    background-color: #F6E3FF;
+    padding: 0 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content auto;
+    border-bottom: 2px dotted #BF6CE6;
 }
 
 .container {
+    background-color: #F6E3FF;
     align-items: center;
 }
 
@@ -146,9 +160,27 @@ a {
     color: black;
 }
 
-#Price-card {
+#filter-header {
+    display: flex;
+    justify-content: space-evenly;
 }
 
+#filters-title {
+    margin-top: 10px;
+}
+
+#card {
+    box-shadow: violet 1px 4px 7px;
+    flex-direction: row;
+    width: 18rem;
+    margin: 10px;
+    background-color: white;
+}
+
+#card-body {
+    box-shadow: violet 1px 4px 7px;
+    background-color: white;
+}
 /*-------------------Details CSS---------------------------*/
 .addBtn {
     padding: 10px 20px;
@@ -226,7 +258,6 @@ a {
     margin-left: 150px;
 }
 
-
 .navbar-nav .nav-item .nav-link .icon {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
@@ -237,7 +268,6 @@ a {
     margin-left: -87px;
     margin-bottom: 1rem;
 }
-
 
 .navbar-brand {
     margin-left: 20px;
