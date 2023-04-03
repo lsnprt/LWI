@@ -25,6 +25,93 @@ namespace LWI.Models
         List<Course> courses = new List<Course>()
         {
             new Course()
+		  	{
+				Name = "Bli en glad pappa",
+				Teacher = "Nils",
+				DescriptionShort = "Med oss ska du lära dig att tvätta, diska, mata och byta blöjor.",
+				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				ImgName = "hecan.png",
+				ImgAlt = "glad pappa kurs",
+				Category = "Hållbarhet",
+				Price =0
+			},
+			new Course()
+			{
+				Name = "Lar dig JS.",
+				Teacher = "Pontus",
+				DescriptionShort = "Lär dig JS mest älskade programmering språk i planeten.",
+				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				ImgName = "JS.png",
+				ImgAlt = "JS course",
+				Category = "Programming",
+				Price = 3999
+			},new Course()
+			{
+				Name = "Arabiska for Swedes.",
+				Teacher = "Isam",
+				DescriptionShort = "Tala Arabiska som om du kommer ifrån mitt i Syrien.",
+				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				ImgName = "Arabiska.jpg",
+				ImgAlt = "Arabiska course",
+				Category = "Languages",
+				Price = 1999
+			},new Course()
+			{
+				Name = "Franska for Swedes.",
+				Teacher = "Nadine",
+				DescriptionShort = "Tala Arabiska som om du kommer ifrån mitt i Paris.",
+				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				ImgName = "Franska.png",
+				ImgAlt = "Franska course",
+				Category = "Languages",
+				Price = 1999
+			},
+			new Course()
+			{
+				Name = "Bästa C# kurs bara i 48 månader.",
+				Teacher = "Pontus",
+				DescriptionShort = "Lär dig de första några stegen i c#.",
+				DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+				ImgName = "Csharp.png",
+				ImgAlt = "Csharp course",
+				Category = "Programming",
+				Price = 1999
+			},
+			new Course()
+			{
+				Name = "Database and relational illusion of new world order.",
+				Teacher = "Isam",
+				DescriptionShort = "An introduction to your new journey to the bottom of hollow.",
+				DescriptionLong = "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
+				ImgName = "Great_Seal_of_the_United_States_(reverse).svg.png",
+				ImgAlt = "new world order pic",
+				Category = "Database",
+				Price = 9999
+
+			},
+			new Course()
+			{
+				Name = "Sortera med Nadine #1",
+				Teacher = "Alessandro",
+				DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+				ImgName = "Källsortering(1).png",
+				ImgAlt = "blabla",
+				Category = "Hållbarhet",
+				Price = 1999
+			},new Course()
+			{
+
+				Name = "Sortera med Nadine #2",
+				Teacher="Alessandro",
+				DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+				DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+				ImgName = "Källsortering(2).png",
+				ImgAlt = "blabla",
+				Category = "Hållbarher",
+				Price = 4999
+			},
+            new Course()
             {
                 Name = "Pontus lilla röda",
                 Teacher = "Pontus",
