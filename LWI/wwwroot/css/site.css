@@ -1,88 +1,7 @@
 body {
-    background-color: #F6E3FF;
+    background-color: #eee5ff;
 }
 
-
-/*--------------------------index--------------------------------------*/
-/*
-.first {
-    width: 320px;
-    height: 450px;
-    height: 385px;
-    margin: 10px;
-    border-width: 0 2px 0 2px;
-    border-color: #c770f0;
-    border-style: solid;
-    position: relative;
-    flex: content;
-}*/
-
-/*.card {
-    margin-right: 10px;
-    box-shadow: violet 1px 4px 7px;
-}
-
-.card-title {
-    font-family: Arial;
-    text-align: center;
-    font-size: 25px;*/
-}
-
-
-/*.card-text {
-    font-family: Arial;
-    position: center;
-    font-size: 18px;
-    text-align: justify;*/
-
-}
-/*        .first span {
-        position: absolute;
-        display: flex;
-        right: 0;
-        left: 0;
-        align-items: center;
-    }
-
-.foo {
-    font-size: 16px;
-    font-family: Arial;
-}
-
-.first .foo {
-    top: -30px;
-}
-
-.first .bar {
-    bottom: -8.5px;
-    bottom: -9px;
-}
-
-.first span:before {
-    margin-right: 15px;
-}
-
-.first span:after {
-    margin-left: 15px;
-}
-
-.first span:before, .first span:after {
-    content: ' ';
-    height: 2px;
-    background: #c770f0;
-    display: block;
-    display: flow;
-    width: 50%;
-}
-
-.inledning {
-    color: black;
-    font-family: Arial;
-    position: center;
-    font-size: 18px;
-    text-align: justify;
-    margin-right: 30px;
-}*/
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -90,11 +9,11 @@ body {
     text-align: center;
     justify-content: center;
     width: 100%;
-    background-color: #d2c9ff;
+    background-color: #eee5ff;
 }
 
 .catalog-wrapper {
-    background-color: #d2c9ff;
+    background-color: #eee5ff;
     padding: 0 0 20px;
     display: flex;
     flex-wrap: wrap;
@@ -102,7 +21,7 @@ body {
 }
 
 .container {
-    background-color: #d2c9ff;
+    background-color: #eee5ff;
     align-items: center;
 }
 
@@ -117,7 +36,7 @@ body {
     background-color: white;
     border-radius: 30px;
     background-color: white;
-    box-shadow: violet 1px 2px 7px;
+    box-shadow: #bb98ff 1px 2px 7px;
     margin-bottom: 10px;
 }
 
@@ -137,9 +56,8 @@ body {
     font-size: 20px;
     flex-grow: 3;
 }
-
 .sidebar {
-    box-shadow: violet 1px 4px 7px;
+    box-shadow: #bb98ff 1px 4px 7px;
     width: 200px;
     background-color: #f1f1f1;
     position: absolute;
@@ -169,7 +87,7 @@ a {
 }
 
 #card {
-    box-shadow: violet 1px 4px 7px;
+    box-shadow: #bb98ff 1px 4px 7px;
     flex-direction: row;
     width: 18rem;
     margin: 10px;
@@ -177,13 +95,13 @@ a {
 }
 
 #card-body {
-    box-shadow: violet 1px 4px 7px;
+    box-shadow: #bb98ff 1px 4px 7px;
     background-color: white;
 }
 /*-------------------Details CSS---------------------------*/
 .addBtn {
     padding: 10px 20px;
-    background: #c770f0;
+    background: #692be2;
     border: 0;
     outline: none;
     cursor: pointer;
@@ -202,7 +120,7 @@ a {
     border-radius: 6px;
     border: solid 2px;
     border-color: #c770f0;
-    box-shadow: 0px 0px 20px #c770f0;
+    box-shadow: 0px 0px 20px #bb98ff;
     position: absolute;
     top: 0;
     left: 50%;
@@ -255,7 +173,7 @@ a {
     align-items: center;
     margin-right: 150px;
     margin-left: 150px;
-    color: #c770f0;
+    color: #bb98ff;
 }
 
 .navbar-nav .nav-item .nav-link .icon {
@@ -271,7 +189,7 @@ a {
 
 .navbar-brand {
     margin-left: 20px;
-    color: #c770f0;
+    color: #bb98ff;
 }
 
 footer {
@@ -279,10 +197,49 @@ footer {
     justify-content: center;
     align-items: center;
     height: 50px;
-    background-color: #BF6CE6;
+    background-color: #4b1e9f;
+}
+
+#footerText {
+    color: #bb98ff;
+    padding-top: 10px;
 }
 
 #indexCard {
     margin-right: 10px;
-    box-shadow: violet 1px 4px 7px;
+    box-shadow: #bb98ff 1px 4px 7px;
 }
+
+#navbarElement {
+    background-color: #4b1e9f;
+}
+
+.sideElement {
+    background-color: #692be2;
+}
+
+.sideChild {
+        color: #bb99ff;
+ }
+
+.checkoutBtn {
+    background-color: #291056;
+    color: #bb99ff;
+}
+
+    .checkoutBtn:hover {
+        background-color: #291056;
+        color: #bb99ff;
+        box-shadow: #bb99ff 2px 4px 5px;
+    }
+
+.payBtn {
+    background-color: #692be2;
+    color: #bb99ff;
+}
+
+    .payBtn:hover {
+        background-color: #692be2;
+        color: #bb99ff;
+        box-shadow: #bb99ff 2px 4px 5px;
+    }

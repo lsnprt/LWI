@@ -8,12 +8,12 @@
                     <div class="row g-0">
                         <section class="col-lg-8">
                             <div class="p-5">
-                                <div class="d-flex justify-content-between align-items-center mb-5">
+                                <div class="d-flex justify-content-between mb-5">
                                     <h1 class="fw-bold mb-0 text-black">Betalningsuppgifter</h1>
                                 </div>
                                 <hr class="my-4">
 
-                                <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                <div class="row mb-4 d-flex justify-content-between">
                                     <form asp-controller=Lwi>
                                         <div class="mb-3">
                                             <label asp-for=Email class="dis fw-bold mb-2">E-mail adress</label>
@@ -68,7 +68,7 @@
                                                         <p class="fw-bold">Total</p>
                                                         <p class="fw-bold">@Model.Total.ToString("0.00 SEK")</p>
                                                     </div>
-                                                    <button asp-action="Checkout" class="btn btn-primary mt-2">
+                                                    <button asp-action="Checkout" class="btn mt-2 payBtn">
                                                         Pay @Model.Total.ToString("0.00 SEK")
                                                     </button>
                                                     <div asp-validation-summary="All"></div>
@@ -86,19 +86,19 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="col-lg-4 bg-primary bg-gradient">
+                        <section class="col-lg-4 sideElement">
                             <div class="p-5">
-                                <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                <h3 class="fw-bold mb-5 mt-2 pt-1 sideChild">Summary</h3>
                                 <hr class="my-4">
 
                                 <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="text-uppercase">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</h5>
-                                    <h5></h5>
+                                    <h5 class="text-uppercase sideChild">@Model.CourseIdsCount @(Model.CourseIdsCount == 1 ? "Artikel" : "Artiklar")</h5>
                                 </div>
                                 <hr class="my-4">
                                 <div class="d-flex justify-content-between mb-5">
-                                    <h5 class="text-uppercase">Total</h5>
-                                    <h5>@Model.Total.ToString("0.00 SEK")</h5>
+                                    <h5></h5>
+                                    <h5 class="text-uppercase sideChild">Total</h5>
+                                    <h5 class="sideChild">@Model.Total.ToString("0.00 SEK")</h5>
                                 </div>
                             </div>
                         </section>
