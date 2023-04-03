@@ -1,0 +1,7 @@
+﻿@model LWI.Views.Shared.Components.ShoppingCartCounter.ShoppingCartCounterVM
+
+
+@{string visibility = (Model.Items > 0 ? "visible" : "hidden");}
+        <div class="badge">
+            <span id="toAdd" style="visibility: @visibility" class="badge rounded-pill alert-danger translate-middle bg-danger">@Model.Items</span>
+        </div>

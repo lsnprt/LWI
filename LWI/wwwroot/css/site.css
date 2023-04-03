@@ -1,3 +1,10 @@
+body {
+    background-color: #F6E3FF;
+}
+
+
+/*--------------------------index--------------------------------------*/
+/*
 .first {
     width: 320px;
     height: 450px;
@@ -8,9 +15,28 @@
     border-style: solid;
     position: relative;
     flex: content;
+}*/
+
+/*.card {
+    margin-right: 10px;
+    box-shadow: violet 1px 4px 7px;
 }
 
-    .first span {
+.card-title {
+    font-family: Arial;
+    text-align: center;
+    font-size: 25px;*/
+}
+
+
+/*.card-text {
+    font-family: Arial;
+    position: center;
+    font-size: 18px;
+    text-align: justify;*/
+
+}
+/*        .first span {
         position: absolute;
         display: flex;
         right: 0;
@@ -56,19 +82,19 @@
     font-size: 18px;
     text-align: justify;
     margin-right: 30px;
-}
-
+}*/
 .wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: center;
     width: 100%;
     background-color: #d2c9ff;
 }
 
 .catalog-wrapper {
-    background-color: #F6E3FF;
+    background-color: #d2c9ff;
     padding: 0 0 20px;
     display: flex;
     flex-wrap: wrap;
@@ -76,8 +102,12 @@
 }
 
 .container {
-    background-color: #F6E3FF;
+    background-color: #d2c9ff;
     align-items: center;
+}
+
+.wrapper-item1{
+    text-align: center;
 }
 
 .wrapper-item2 {
@@ -225,6 +255,7 @@ a {
     align-items: center;
     margin-right: 150px;
     margin-left: 150px;
+    color: #c770f0;
 }
 
 .navbar-nav .nav-item .nav-link .icon {
@@ -240,6 +271,7 @@ a {
 
 .navbar-brand {
     margin-left: 20px;
+    color: #c770f0;
 }
 
 footer {
@@ -248,5 +280,9 @@ footer {
     align-items: center;
     height: 50px;
     background-color: #BF6CE6;
-    margin-top: auto;
+}
+
+#indexCard {
+    margin-right: 10px;
+    box-shadow: violet 1px 4px 7px;
 }

@@ -14,8 +14,8 @@
             <hr />
             <p class="card-text">@Model.DescriptionLong</p>
         </div>
-        <span style="position:absolute; padding: 10px 20px; bottom: 35px;">Pris: @Model.Price SEK</span>
-        <button type="submit" class="addBtn" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
+        <span style="position:absolute; padding: 10px 20px; bottom: 35px;">Pris: @Model.Price</span>
+        <button type="submit" id="addBtn" class="addBtn" disabled="@Model.InCart" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
     </div>
 </div>
 
@@ -26,7 +26,11 @@
 </div>
 <script>
     function openPopUp() {
-        let item = document.getElementById("toAdd")
+        let item = document.getElementById("toAdd");
+
+        let btn = document.getElementById("addBtn");
+        btn.disabled = true;
+
         const url = "@Url.Action(nameof(LWI.Controllers.LwiController.Details), new { id = Model.Id})";
         $.ajax({
             url: url,
@@ -37,9 +41,10 @@
                 document.getElementById("popUpH3").innerHTML = data.message,
                     document.getElementById("popUpImg").src = data.imgUrl,
                     document.getElementById("popUp").classList.add("openPopUpDiv"),
-                    item.innerText = parseInt(item.innerText) + data.item
+                    console.log(item.innerText)
+                    item.style.visibility = 'visible',
+                    item.innerText = parseInt(item.innerText) + 1
             },
-
 
         });
         setTimeout(function () {

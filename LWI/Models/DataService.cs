@@ -1,23 +1,31 @@
-﻿using LWI.Views.Lwi;
+﻿using Azure.Core;
+using Azure;
+using LWI.Views.Lwi;
 using Microsoft.EntityFrameworkCore;
 
 namespace LWI.Models
 {
-	public class DataService
-	{
-		ApplicationContext context;
+    public class DataService
+    {
+        ApplicationContext context;
+        IHttpContextAccessor httpContextAccessor;
+        StateService stateService;
 
-		//List<Course> shoppingBag = new List<Course>();
+        //List<Course> shoppingBag = new List<Course>();
 
-		public DataService(ApplicationContext context)
+        public DataService(ApplicationContext context, StateService state, IHttpContextAccessor httpContextAccessor)
+        {
+            this.httpContextAccessor = httpContextAccessor;
+            this.stateService = state;
+            this.context = context;
+        }
 
-		{
-			this.context = context;
-		}
-		List<Course> courses = new List<Course>()
-		{
-			new Course()
-			{
+
+
+        List<Course> courses = new List<Course>()
+        {
+            new Course()
+		  	{
 				Name = "Bli en glad pappa",
 				Teacher = "Nils",
 				DescriptionShort = "Med oss ska du lära dig att tvätta, diska, mata och byta blöjor.",
@@ -103,16 +111,64 @@ namespace LWI.Models
 				Category = "Hållbarher",
 				Price = 4999
 			},
-		};
-		internal void InitialiseDB()
-		{
-			foreach (Course c in courses)
-			{
-				context.Courses.Add(c);
-			}
+            new Course()
+            {
+                Name = "Pontus lilla röda",
+                Teacher = "Pontus",
+                DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
+                DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+                ImgName = "Csharp.png",
+                ImgAlt = "blabla",
+                Category = "Pontus kurser",
+                Price = 1999
+            },
+            new Course()
+            {
+                Name = "Grundkurs i C#",
+                Teacher = "Peter",
+                DescriptionShort = "En grundkurs i det objektorienterade språket C#",
+                DescriptionLong = "En grundkurs i det objektorienterade språket C#",
+                ImgName = "JS.png",
+                ImgAlt = "blabla",
+                Category = "Programmering",
+                Price = 0
 
-			context.SaveChanges();
-		}
+            },
+            new Course()
+            {
+                Name = "Sortera med Nadine #1",
+                Teacher = "Nadine",
+                DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+                DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+                ImgName = "ASP.jpg",
+                ImgAlt = "blabla",
+
+                Category = "Nadines kurser",
+                Price = 1999
+            },new Course()
+            {
+
+                Name = "Sortera med Nadine #2",
+                Teacher="Håkan",
+                DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+                DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+                ImgName = "python.png",
+                ImgAlt = "blabla",
+                Category = "Nadines kurser",
+                Price = 4999
+            },
+
+        };
+
+        internal void InitialiseDB()
+        {
+            foreach (Course c in courses)
+            {
+                context.Courses.Add(c);
+            }
+
+            context.SaveChanges();
+        }
 
 		public CatalogVM[] GetAllCourses()
 		{
@@ -134,7 +190,12 @@ namespace LWI.Models
 		}
 		public DetailsVM? GetCourse(int id)
 		{
-			return context.Courses
+            string? cookieCheck = httpContextAccessor.HttpContext.Request.Cookies["ShoppingCart"];
+            if (cookieCheck == null)
+                httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", ",");
+            bool itemInCart = stateService.GetCartIds().Contains(id);
+
+            return context.Courses
 				.Select(c => new DetailsVM
 				{
 					Category = c.Category,
@@ -150,22 +211,16 @@ namespace LWI.Models
 				;
 		}
 
-		//internal void AddToShoppingCart(DetailsVM model)
-		//{
-		//    var course = courses.Where(o => o.Id == model.Id).FirstOrDefault();
-		//    shoppingBag.Add(course);
-		//}
-
 		public async Task<ShoppingCartVM> GetShoppingCartVMAsync(int[] cartIds)
 		{
 			var total = await context.Courses
 				.Where(c => cartIds.Contains(c.Id))
 				.Select(c => c.Price).SumAsync();
 
-			var vm = new ShoppingCartVM
-			{
-				ItemCount = cartIds.Length,
-				Total = total.ToString("0.00 SEK"),
+            var vm = new ShoppingCartVM
+            {
+                ItemCount = cartIds.Length,
+                Total = total.ToString("0.00 SEK"),
 
 				shoppingCartItemVMs = await context
 				.Courses
@@ -182,74 +237,91 @@ namespace LWI.Models
 				}).ToArrayAsync()
 			};
 
-			return vm;
-		}
-		public string GetCourseName(int id)
-		{
-			return context.Courses.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
+            return vm;
+        }
+        public string GetCourseName(int id)
+        {
+            return context.Courses.Where(x => x.Id == id).Select(x => x.Name).FirstOrDefault();
 
-		}
+        }
 
-		public async Task<int> ProcessPayment(CheckoutVM model, int[] cartIds)
-		{
-			var newOrder = await context.Orders.AddAsync(new Order
-			{
-				OrderDate = DateTime.Now,
-				Total = model.Total,
-				CCNumber = model.CCNumber.Substring(model.CCNumber.Length - 4),
-				CCHolder = model.CCHolder,
-				Email = model.Email,
-				Address = model.Address,
-				City = model.City,
-				ZipCode = model.ZipCode,
-				Country = model.Country,
-				OrdersToCourses = new List<OrdersToCourses>()
-			});
+        public async Task<int> ProcessPayment(CheckoutVM model, int[] cartIds)
+        {
+            var newOrder = await context.Orders.AddAsync(new Order
+            {
+                OrderDate = DateTime.Now,
+                Total = model.Total,
+                CCNumber = model.CCNumber.Substring(model.CCNumber.Length - 4),
+                CCHolder = model.CCHolder,
+                Email = model.Email,
+                Address = model.Address,
+                City = model.City,
+                ZipCode = model.ZipCode,
+                Country = model.Country,
+                OrdersToCourses = new List<OrdersToCourses>()
+            });
 
-			foreach (int id in cartIds)
-			{
-				newOrder.Entity.OrdersToCourses.Add(new OrdersToCourses
-				{
-					CourseId = id,
-					OrderId = newOrder.Entity.Id
-				});
-			}
+            foreach (int id in cartIds)
+            {
+                newOrder.Entity.OrdersToCourses.Add(new OrdersToCourses
+                {
+                    CourseId = id,
+                    OrderId = newOrder.Entity.Id
+                });
+            }
 
-			context.SaveChanges();
-			return newOrder.Entity.Id;
-		}
+            context.SaveChanges();
+            return newOrder.Entity.Id;
+        }
 
-		internal CheckoutVM GetCheckoutVM(int[] cartIds)
-		{
-			return new CheckoutVM
-			{
-				CourseIdsCount = cartIds.Count(),
+        internal CheckoutVM GetCheckoutVM(int[] cartIds)
+        {
+            return new CheckoutVM
+            {
+                CourseIdsCount = cartIds.Count(),
 
-				Total = context
-			  .Courses
-			  .Where(c => cartIds.Contains(c.Id))
-			  .Select(c => c.Price)
-			  .Sum()
-			};
-		}
+                Total = context
+              .Courses
+              .Where(c => cartIds.Contains(c.Id))
+              .Select(c => c.Price)
+              .Sum()
+            };
+        }
 
-		internal async Task<PaymentSuccessVM> GetPaymentSuccessVMAsync(int id)
-		{
-			var order = await context
-				.Orders
-				.FirstOrDefaultAsync(o => o.Id == id);
+        internal async Task<PaymentSuccessVM> GetPaymentSuccessVMAsync(int id)
+        {
+            var order = await context
+                .Orders
+                .FirstOrDefaultAsync(o => o.Id == id);
 
-			if (order == null)
-			{
-				return null;
-			}
+            if (order == null)
+            {
+                return null;
+            }
 
-			return new PaymentSuccessVM
-			{
-				OrderNumber = order.Id,
-				CustomerEmail = order.Email,
-				CustomerName = order.CCHolder
-			};
-		}
-	}
+            stateService.EmptyCart();
+
+            return new PaymentSuccessVM
+            {
+                OrderNumber = order.Id,
+                CustomerEmail = order.Email,
+                CustomerName = order.CCHolder
+            };
+        }
+
+        internal object AddToCookie(int id)
+        {
+            string? cookieCheck = httpContextAccessor.HttpContext.Request.Cookies["ShoppingCart"];
+
+            if (cookieCheck == ",")
+            {
+                httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", $",{id}");
+            }
+            else
+            {
+                httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{id}");
+            }
+            return new { message = $"La till '{GetCourseName(id)}' i varukorgen!", ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg" };
+        }
+    }
 }
