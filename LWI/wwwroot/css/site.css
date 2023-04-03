@@ -284,3 +284,8 @@ footer {
     height: 50px;
     background-color: #BF6CE6;
 }
+
+#indexCard {
+    margin-right: 10px;
+    box-shadow: violet 1px 4px 7px;
+}
