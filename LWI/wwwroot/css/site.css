@@ -2,6 +2,9 @@ body {
     background-color: #F6E3FF;
 }
 
+
+/*--------------------------index--------------------------------------*/
+/*
 .first {
     width: 320px;
     height: 450px;
@@ -12,9 +15,36 @@ body {
     border-style: solid;
     position: relative;
     flex: content;
+}*/
+
+.card {
+    margin-right: 10px;
+    box-shadow: violet 1px 4px 7px;
 }
 
-    .first span {
+.card-title {
+    font-family: Arial;
+    text-align: center;
+    font-size: 25px;
+}
+
+.card-body {
+    /*    position: center;
+    box-shadow: violet 1px 4px 7px;
+    margin-right: 30px*/
+    margin: 10px;
+    position: center;
+    width: 18rem;
+}
+
+.card-text {
+    font-family: Arial;
+    position: center;
+    font-size: 18px;
+    text-align: justify;
+
+}
+/*        .first span {
         position: absolute;
         display: flex;
         right: 0;
@@ -60,8 +90,7 @@ body {
     font-size: 18px;
     text-align: justify;
     margin-right: 30px;
-}
-
+}*/
 .wrapper {
     display: flex;
     flex-direction: column;
