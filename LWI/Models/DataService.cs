@@ -212,6 +212,8 @@ namespace LWI.Models
                 return null;
             }
 
+            stateService.EmptyCart();
+
             return new PaymentSuccessVM
             {
                 OrderNumber = order.Id,

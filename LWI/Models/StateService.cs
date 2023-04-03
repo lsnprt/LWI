@@ -31,10 +31,9 @@ namespace LWI.Models
 
 		}
 
-        internal int EmptyCart()
+        internal void EmptyCart()
         {
             Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", "");
-            return 0;
         }
 
         internal int[] GetCartIds()

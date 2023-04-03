@@ -95,13 +95,11 @@ namespace LWI.Controllers
         public async Task<IActionResult> PaymentSuccessAsync(int id)
         {
             PaymentSuccessVM model = await dataService.GetPaymentSuccessVMAsync(id);
-
             if (model == null)
             {
                return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));
             }
 
-            ViewBag.NoOfItems = stateService.EmptyCart();
             return View(model);
         }
     }
