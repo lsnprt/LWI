@@ -17,7 +17,7 @@ body {
     flex: content;
 }*/
 
-.card {
+/*.card {
     margin-right: 10px;
     box-shadow: violet 1px 4px 7px;
 }
@@ -25,23 +25,15 @@ body {
 .card-title {
     font-family: Arial;
     text-align: center;
-    font-size: 25px;
+    font-size: 25px;*/
 }
 
-.card-body {
-    /*    position: center;
-    box-shadow: violet 1px 4px 7px;
-    margin-right: 30px*/
-    margin: 10px;
-    position: center;
-    width: 18rem;
-}
 
-.card-text {
+/*.card-text {
     font-family: Arial;
     position: center;
     font-size: 18px;
-    text-align: justify;
+    text-align: justify;*/
 
 }
 /*        .first span {
@@ -95,6 +87,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: center;
     width: 100%;
     background-color: #d2c9ff;
@@ -111,6 +104,10 @@ body {
 .container {
     background-color: #d2c9ff;
     align-items: center;
+}
+
+.wrapper-item1{
+    text-align: center;
 }
 
 .wrapper-item2 {
