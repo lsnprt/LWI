@@ -247,3 +247,19 @@ footer {
 .validationDiv ul li {
     list-style:none;
 }
+
+.accountHomePage {
+    display: flex;
+    justify-content: center;
+    /*align-items: center;*/
+}
+.accountCard {
+    align-items: center;
+    box-shadow: #bb98ff 1px 4px 7px;
+    display:flex;
+    flex-direction: column;
+    width: 18rem;
+    height: 18rem;
+    margin: 10px;
+    background-color: white;
+}
