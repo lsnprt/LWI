@@ -5,11 +5,12 @@
 <form asp-controller="Account" asp-action="Login">
     <label asp-for="Username"></label>
     <input asp-for="Username" />
-    <span asp-validation-for="Username"></span>
+    <span asp-validation-for="Username" class="text-danger"></span>
 
     <label asp-for="Password"></label>
     <input asp-for="Password" />
-    <span asp-validation-for="Password"></span>
+    <span asp-validation-for="Password" class="text-danger"></span>
 
     <input type="submit" value="Logga in" />
+    <div asp-validation-summary="ModelOnly" class="alert alert-danger validationDiv"></div>
 </form>

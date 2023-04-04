@@ -60,7 +60,8 @@ namespace LWI.Controllers
 
             if (result != null)
             {
-                return RedirectToAction(nameof(ErrorController.ProcedureError), nameof(ErrorController).Replace("Controller", string.Empty));
+                ModelState.AddModelError(string.Empty, result);
+                return View();
             }
 
             return RedirectToAction(nameof(AccountHomepageAsync).Replace("Async", string.Empty));

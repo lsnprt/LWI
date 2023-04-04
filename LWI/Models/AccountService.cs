@@ -46,7 +46,7 @@ namespace LWI.Models
                 lockoutOnFailure: false
                 );
 
-            return result.Succeeded ? null : "Kunde inte logga in";
+            return result.Succeeded ? null : "Fel användarnamn eller lösenord";
         }
     }
 }
