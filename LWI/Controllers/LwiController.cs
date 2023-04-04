@@ -24,6 +24,8 @@ namespace LWI.Controllers
             //Kör en gång för att initialisera DBn med rätt data
             //dataService.InitialiseDB();
 
+
+
             ViewBag.NoOfItems = stateService.NoOfCartItems();
             return View();
         }

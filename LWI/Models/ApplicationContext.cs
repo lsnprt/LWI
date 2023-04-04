@@ -1,11 +1,13 @@
 ﻿using LWI.Views.Lwi;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using System.Data;
 
 namespace LWI.Models
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext<CourseCreator,IdentityRole,string>
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
