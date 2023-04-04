@@ -2,13 +2,14 @@
 using LWI.Views.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace LWI.Controllers
 {
     public class AccountController : Controller
     {
         AccountService account;
-        public AccountController(AccountService account)
+        public AccountController(AccountService account, IHttpContextAccessor context)
         {
             this.account = account;
         }
@@ -72,6 +73,24 @@ namespace LWI.Controllers
         {
             await account.Logout();
             return RedirectToAction(nameof(Login));
+        }
+
+        [HttpGet("/addcourse")]
+        public IActionResult AddCourse()
+        {
+            return View();
+        }
+
+        [HttpPost("/addcourse")]
+        public async Task<IActionResult> AddCourseAsync(AddCourseVM model)
+        {
+            if (!ModelState.IsValid) 
+            {
+                return View(model);
+            }
+
+            await account.AddCourseAsync(model);
+            return View();
         }
     }
 }

@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AddCourseVM
+
+<h3>Lägg till en ny kurs</h3>
+<div class="container-sm">
+    <form asp-action="AddCourse" enctype="multipart/form-data">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name"></span>
+
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price"></span>
+
+        <label asp-for="DescriptionShort" class="form-label"></label>
+        <input asp-for="DescriptionShort" class="form-control" />
+        <span asp-validation-for="DescriptionShort"></span>
+
+        <label asp-for="DescriptionLong" class="form-label"></label>
+        <input asp-for="DescriptionLong" class="form-control" />
+        <span asp-validation-for="DescriptionLong"></span>
+
+        <label asp-for="Category" class="form-label"></label>
+        <input asp-for="Category" class="form-control" />
+        <span asp-validation-for="Category"></span>
+
+        <label asp-for="IsEco" class="form-check-label"></label>
+        <input asp-for="IsEco" class="form-check-input" />
+
+        <input type="submit" value="Skapa kurs" />
+    </form>
+</div>
