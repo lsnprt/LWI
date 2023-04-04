@@ -11,15 +11,19 @@ namespace LWI.Models
         UserManager<CourseCreator> userManager;
         SignInManager<CourseCreator> signInManager;
         RoleManager<IdentityRole> roleManager;
+        IHttpContextAccessor accessor;
         public AccountService(UserManager<CourseCreator> userManager,
         SignInManager<CourseCreator> signInManager,
         RoleManager<IdentityRole> roleManager,
-        ApplicationContext context)
+        ApplicationContext context,
+        IHttpContextAccessor accessor)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.context = context;
+            this.accessor = accessor;
+
         }
         public async Task<string> CreateAccount(CreateVM model)
         {
@@ -37,8 +41,9 @@ namespace LWI.Models
             return result.Succeeded ? null : "Ditt konto kunde inte skapas :( ";
         }
 
-        internal Task AddCourseAsync(AddCourseVM model)
+        internal async Task AddCourseAsync(AddCourseVM model)
         {
+            var userId = userManager.GetUserId(accessor.HttpContext.User);
             context.Courses
                 .Add(
                 new Course
@@ -51,12 +56,11 @@ namespace LWI.Models
                     Category = model.Category,
                     DescriptionLong = model.DescriptionLong,
                     DescriptionShort = model.DescriptionShort,
-
-
-                }
+                    CourseCreatorId = userId
+                    }
                 );
 
-            return Task.CompletedTask;
+            return;
         }
 
         internal async Task Logout()

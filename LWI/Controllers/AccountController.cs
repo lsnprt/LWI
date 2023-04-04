@@ -1,6 +1,7 @@
 ﻿using LWI.Models;
 using LWI.Views.Account;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 
@@ -9,9 +10,11 @@ namespace LWI.Controllers
     public class AccountController : Controller
     {
         AccountService account;
+        IHttpContextAccessor accessor;
         public AccountController(AccountService account, IHttpContextAccessor context)
         {
             this.account = account;
+            this.accessor = context;
         }
 
         [Authorize]
