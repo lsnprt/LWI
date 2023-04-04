@@ -1,4 +1,6 @@
 ﻿using LWI.Models;
+using LWI.Views.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LWI.Controllers
@@ -11,30 +13,64 @@ namespace LWI.Controllers
             this.account = account;
         }
 
+        [Authorize]
         [HttpGet("/account")]
-        public async Task<IActionResult> AccountHomepage()
+        public async Task<IActionResult> AccountHomepageAsync()
         {
             return View();
         }
 
         [HttpGet("/create")]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
-            var hej = await account.CreateAccount();
-            return Content(hej);
+            return View();
+        }
+
+        [HttpPost("/create")]
+        public async Task<IActionResult> CreateAsync(CreateVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            string result = await account.CreateAccount(model);
+
+            if (result != null)
+            {
+                return RedirectToAction(nameof(ErrorController.ProcedureError), nameof(ErrorController).Replace("Controller", string.Empty));
+            }
+         
+            return RedirectToAction(nameof(AccountHomepageAsync).Replace("Async", string.Empty));
         }
 
         [HttpGet("/login")]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
-
             return View();
         }
-        [HttpPost("/login")]
 
-        public async Task<IActionResult> Login()
+        [HttpPost("/login")]
+        public async Task<IActionResult> LoginAsync(LoginVM model)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            string result = await account.TryLoginAsync(model);
+
+            if (result != null)
+            {
+                return RedirectToAction(nameof(ErrorController.ProcedureError), nameof(ErrorController).Replace("Controller", string.Empty));
+            }
+
+            return RedirectToAction(nameof(AccountHomepageAsync).Replace("Async", string.Empty));
+        }
+
+        [HttpGet("/logout")]
+        public async Task<IActionResult> LogoutAsync()
+        {
+            await account.Logout();
+            return RedirectToAction(nameof(Login));
         }
     }
 }

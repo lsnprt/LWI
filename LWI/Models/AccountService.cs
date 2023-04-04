@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using LWI.Views.Account;
+using Microsoft.AspNetCore.Identity;
 
 namespace LWI.Models
 {
@@ -15,26 +16,37 @@ namespace LWI.Models
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
-        public async Task<string> CreateAccount()
+        public async Task<string> CreateAccount(CreateVM model)
         {
             var user = new CourseCreator
             {
-                UserName = "PH",
-                FirstName = "Pontus",
-                LastName = "Höglund",
-                Occupation = "MVC application developer",
-                Description = "27 år gammal och bor i Skellefteå, tyvärr"
+                UserName = model.Username,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Occupation = model.Profession,
+                Description = model.Description
             };
-            IdentityResult result = await userManager.CreateAsync(user, "Hej_123");
-            bool wasUserCreated = result.Succeeded;
-            if(wasUserCreated)
-            {
-                return "Din användare har skapats!";
-            }
-            else
-            {
-                return "Din användare skapades inte!";
-            }
+
+            IdentityResult result = await userManager.CreateAsync(user, model.Password);
+
+            return result.Succeeded ? null : "Ditt konto kunde inte skapas :( ";
+        }
+
+        internal async Task Logout()
+        {
+            await signInManager.SignOutAsync();
+        }
+
+        internal async Task<string> TryLoginAsync(LoginVM model)
+        {
+            SignInResult result = await signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                isPersistent: false,
+                lockoutOnFailure: false
+                );
+
+            return result.Succeeded ? null : "Kunde inte logga in";
         }
     }
 }
