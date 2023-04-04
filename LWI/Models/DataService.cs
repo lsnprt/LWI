@@ -2,6 +2,9 @@
 using Azure;
 using LWI.Views.Lwi;
 using Microsoft.EntityFrameworkCore;
+using LWI.Views.Account;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Identity.Client;
 
 namespace LWI.Models
 {
@@ -170,9 +173,9 @@ namespace LWI.Models
         //    context.SaveChanges();
         //}
 
-		public CatalogVM[] GetAllCourses()
+		public async Task<CatalogVM[]> GetAllCoursesAsync()
 		{
-			return context.Courses
+			return await context.Courses
 				.Select(c => new CatalogVM
 				{
 					Category = c.Category,
@@ -182,11 +185,11 @@ namespace LWI.Models
 					DescriptionShort = c.DescriptionShort,
 					ImgAlt = c.ImgAlt,
 					ImgName = c.ImgName,
-					//Teacher = c.Teacher,
+					Teacher = c.CourseCreator.UserName,
 					IsEco = c.IsEco
 				})
 				.OrderBy(c => c.Name)
-				.ToArray();
+				.ToArrayAsync();
 		}
 		public DetailsVM? GetCourse(int id)
 		{
@@ -322,6 +325,40 @@ namespace LWI.Models
                 httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", $"{cookieCheck},{id}");
             }
             return new { message = $"La till '{GetCourseName(id)}' i varukorgen!", ImgUrl = "/Photos_and_Icons/CARTMASTAH.jpg" };
+        }
+
+        internal async Task AddCourseAsync(AddCourseVM model, string userId)
+        {
+
+            await context.Courses
+                .AddAsync(
+                new Course
+                {
+                    Name = model.Name,
+                    Price = model.Price,
+                    ImgName = "isam.png",
+                    ImgAlt = "Hetaste utvecklaren in town",
+                    IsEco = model.IsEco,
+                    Category = model.Category,
+                    DescriptionLong = model.DescriptionLong,
+                    DescriptionShort = model.DescriptionShort,
+                    CourseCreatorId = userId
+                }
+                );
+
+            context.SaveChanges();
+            return;
+        }
+
+        internal Task<MyCoursesVM[]> getMyCoursesVMAsync(string userId)
+        {
+			return context.Courses.Where(c => c.CourseCreatorId == userId)
+				.Select(c => new MyCoursesVM
+				{
+					Id = c.Id,
+					Name = c.Name,
+					Price = c.Price
+				}).ToArrayAsync();
         }
     }
 }

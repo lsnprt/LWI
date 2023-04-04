@@ -1,6 +1,7 @@
 ﻿using LWI.Models;
 using LWI.Views.Account;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
@@ -9,12 +10,14 @@ namespace LWI.Controllers
 {
     public class AccountController : Controller
     {
+        DataService dataService;
         AccountService account;
         IHttpContextAccessor accessor;
-        public AccountController(AccountService account, IHttpContextAccessor context)
+        public AccountController(AccountService account, IHttpContextAccessor context, DataService service)
         {
             this.account = account;
             this.accessor = context;
+            this.dataService = service;
         }
 
         [Authorize]
@@ -92,8 +95,18 @@ namespace LWI.Controllers
                 return View(model);
             }
 
-            await account.AddCourseAsync(model);
-            return View();
+            string userId = account.getUserIdString();
+
+            await dataService.AddCourseAsync(model, userId);
+            return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
+        }
+
+        [HttpGet("/mycourses")]
+        public async Task<IActionResult> MyCoursesAsync(MyCoursesVM[] model)
+        {
+            string userId = account.getUserIdString();
+            model = await dataService.getMyCoursesVMAsync(userId);
+            return View(model);
         }
     }
 }

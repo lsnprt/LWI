@@ -1,4 +1,5 @@
 ﻿using LWI.Views.Account;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace LWI.Models
@@ -23,7 +24,6 @@ namespace LWI.Models
             this.signInManager = signInManager;
             this.context = context;
             this.accessor = accessor;
-
         }
         public async Task<string> CreateAccount(CreateVM model)
         {
@@ -41,26 +41,9 @@ namespace LWI.Models
             return result.Succeeded ? null : "Ditt konto kunde inte skapas :( ";
         }
 
-        internal async Task AddCourseAsync(AddCourseVM model)
+        internal string getUserIdString()
         {
-            var userId = userManager.GetUserId(accessor.HttpContext.User);
-            context.Courses
-                .Add(
-                new Course
-                {
-                    Name = model.Name,
-                    Price = model.Price,
-                    ImgName = "isam.png",
-                    ImgAlt = "Hetaste utvecklaren in town",
-                    IsEco = model.IsEco,
-                    Category = model.Category,
-                    DescriptionLong = model.DescriptionLong,
-                    DescriptionShort = model.DescriptionShort,
-                    CourseCreatorId = userId
-                    }
-                );
-
-            return;
+            return userManager.GetUserId(accessor.HttpContext.User).ToString();
         }
 
         internal async Task Logout()
