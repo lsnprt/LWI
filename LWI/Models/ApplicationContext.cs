@@ -30,6 +30,7 @@ namespace LWI.Models
                 .HasConversion(new EnumToStringConverter<Country>());
         }
 
+        public DbSet<CourseCreator> CourseCreators { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrdersToCourses> OrdersToCourses { get; set; }

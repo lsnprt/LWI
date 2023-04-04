@@ -10,9 +10,9 @@
         public string? ImgName { get; set; }
         public string? ImgAlt { get; set; }
         public string? Category { get; set; }
-        public string Teacher { get; set; }
         public bool IsEco { get; set; }
-
+        public string? CourseCreatorId { get; set; }
+        public CourseCreator? CourseCreator { get; set; }
         public List<OrdersToCourses> OrdersToCourses { get; set; }
     }
 }

@@ -99,7 +99,7 @@ namespace LWI.Controllers
             PaymentSuccessVM model = await dataService.GetPaymentSuccessVMAsync(id);
             if (model == null)
             {
-               return RedirectToAction(nameof(ErrorController.PaymentError), nameof(ErrorController).Replace("Controller", ""));
+               return RedirectToAction(nameof(ErrorController.ProcedureError), nameof(ErrorController).Replace("Controller", ""));
             }
 
             return View(model);

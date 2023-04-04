@@ -243,3 +243,7 @@ footer {
         color: #bb99ff;
         box-shadow: #bb99ff 2px 4px 5px;
     }
+
+.validationDiv ul li {
+    list-style:none;
+}

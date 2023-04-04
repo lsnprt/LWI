@@ -13,7 +13,9 @@ namespace LWI.Controllers
         }
 
         [HttpGet("/ShoppingCart/Checkout/Error")]
-        public IActionResult PaymentError()
+        [HttpGet("/create/error")]
+        [HttpGet("/login/error")]
+        public IActionResult ProcedureError()
         {
             return View();
         }
