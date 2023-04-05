@@ -13,45 +13,37 @@
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
+            <a class="nav-link" asp-controller="Lwi" asp-action="Index">
             <li class="nav-item active">
                 <i class="fa-sharp fa-solid fa-house"></i>
-                <a class="nav-link" asp-controller="Lwi" asp-action="Index">Homepage</a>
+                Homepage</a>
             </li>
+            <a class="nav-link center-block" asp-controller="Lwi" asp-action="Catalog">
             <li class="nav-item">
                 <i class="fa-sharp fa-solid fa-book"></i>
-                <a class="nav-link center-block" asp-controller="Lwi" asp-action="Catalog">Kurskatalog</a>
+                Kurskatalog</a>
             </li>
 
+            <a class="nav-link pull-right" asp-controller="Lwi" asp-action="ShoppingCart">
             <li class="nav-item">
+                    @await Component.InvokeAsync("ShoppingCartCounter")
                 <i class="fa-sharp fa-solid fa-shopping-cart"></i>
-                <a class="nav-link pull-right" asp-controller="Lwi" asp-action="ShoppingCart">Varukorg </a>
+                Varukorg </a>
             </li>
-    <li class="nav-item">
-        <i class="fa-sharp fa-solid fa-user-tie"></i>
-        <a class="nav-link pull-right" asp-controller="account" asp-action="LogIn">Logga in </a>
-    </li>
+            <a class="nav-link pull-right" asp-controller="account" asp-action="LogIn">
+            <li class="nav-item">
+                <i class="fa-sharp fa-solid fa-user-tie"></i>
+                Logga in </a>
+            </li>
         </ul>
 
     </div>
-    <div>
-        @await Component.InvokeAsync("ShoppingCartCounter")
-    </div>
-   
+    @*    <div>
+
+    </div>*@
+
 
     </>
 </nav>
 
-
-@*                <li class="nav-item">
-            <a class="nav-link pull-right" href="ShoppingCart">
-            <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
-            Varukorg <span class="badge badge-pill badge-secondary">@ViewBag.NoOfItems</span>
-            </a>
-            </li>*@
-@*     <li class="nav-item">
-            <i class="fa-sharp fa-solid fa-cart-shopping" style="color: #c770f0;"></i>
-            <a class="nav-link pull-right" href="ShoppingCart">Varukorg</a>
-            <i class="fa" style="font-size:15px">&#xf07a;</i>
-            <span> 5 </span>
-            </li>*@
 
