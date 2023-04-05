@@ -1,10 +1,8 @@
 ﻿using Microsoft.Build.Framework;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LWI.Views.Account
 {
-    public class AddCourseVM
+    public class EditCourseVM
     {
         [Required]
         public decimal Price { get; set; }
