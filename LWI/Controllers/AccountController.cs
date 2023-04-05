@@ -118,5 +118,12 @@ namespace LWI.Controllers
         {
             return Content(id.ToString());
         }
+
+        [Authorize]
+        [Route("/mycourses/remove/id")]
+        public async Task<IActionResult> RemoveCourseAsync()
+        {
+            return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
+        }
     }
 }
