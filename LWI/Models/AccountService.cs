@@ -1,5 +1,4 @@
 ﻿using LWI.Views.Account;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace LWI.Models
@@ -7,8 +6,6 @@ namespace LWI.Models
 
     public class AccountService
     {
-        ApplicationContext context;
-
         UserManager<CourseCreator> userManager;
         SignInManager<CourseCreator> signInManager;
         RoleManager<IdentityRole> roleManager;
@@ -22,7 +19,6 @@ namespace LWI.Models
             this.roleManager = roleManager;
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.context = context;
             this.accessor = accessor;
         }
         public async Task<string> CreateAccount(CreateVM model)

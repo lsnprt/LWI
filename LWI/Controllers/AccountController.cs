@@ -1,10 +1,7 @@
 ﻿using LWI.Models;
 using LWI.Views.Account;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Hosting.Internal;
 
 namespace LWI.Controllers
 {
@@ -27,12 +24,14 @@ namespace LWI.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet("/create")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost("/create")]
         public async Task<IActionResult> CreateAsync(CreateVM model)
         {
@@ -74,6 +73,7 @@ namespace LWI.Controllers
             return RedirectToAction(nameof(AccountHomepageAsync).Replace("Async", string.Empty));
         }
 
+        [Authorize]
         [HttpGet("/logout")]
         public async Task<IActionResult> LogoutAsync()
         {
@@ -81,12 +81,14 @@ namespace LWI.Controllers
             return RedirectToAction(nameof(Login));
         }
 
+        [Authorize]
         [HttpGet("/addcourse")]
         public IActionResult AddCourse()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost("/addcourse")]
         public async Task<IActionResult> AddCourseAsync(AddCourseVM model)
         {
@@ -101,6 +103,7 @@ namespace LWI.Controllers
             return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
         }
 
+        [Authorize]
         [HttpGet("/mycourses")]
         public async Task<IActionResult> MyCoursesAsync(MyCoursesVM[] model)
         {

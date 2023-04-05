@@ -1,10 +1,6 @@
-﻿using Azure.Core;
-using Azure;
-using LWI.Views.Lwi;
+﻿using LWI.Views.Lwi;
 using Microsoft.EntityFrameworkCore;
 using LWI.Views.Account;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Identity.Client;
 
 namespace LWI.Models
 {
