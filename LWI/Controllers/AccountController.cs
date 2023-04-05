@@ -10,11 +10,11 @@ namespace LWI.Controllers
         DataService dataService;
         AccountService account;
         IHttpContextAccessor accessor;
-        public AccountController(AccountService account, IHttpContextAccessor context, DataService service)
+        public AccountController(AccountService account, IHttpContextAccessor accessor, DataService dataService)
         {
             this.account = account;
-            this.accessor = context;
-            this.dataService = service;
+            this.accessor = accessor;
+            this.dataService = dataService;
         }
 
         [Authorize]
