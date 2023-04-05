@@ -11,7 +11,7 @@
 				<div class="card">
 					<article class="card-group-item">
 						<header class="card-header">
-							<h5 class="title">Choose category </h5>
+							<h6 class="title">Category </h6>
 						</header>
 						<div class="filter-content">
 							<div class="card-body">
@@ -78,15 +78,15 @@
 						<header class="card-header"><h6 class="title">Price</h6></header>
 						<div class="filter-content">
 							<div id="card-body" class="card-body">
-								<label class="btn btn-danger">
+								<label >
 									<input class="form-check-input" type="radio" value="FreeCourses" name="priceFilter">
 									<span class="form-check-label">Free</span>
 								</label>
-								<label class="btn btn-primary">
+								<label >
 									<input class="form-check-input" type="radio" value="nonFreeCourses" name="priceFilter">
 									<span class="form-check-label">Money!</span>
 								</label>
-								<label class="btn btn-info">
+								<label >
 									<input class="form-check-input" type="radio" value="AllIn" name="priceFilter" checked>
 									<span class="form-check-label">All courses</span>
 								</label>
@@ -109,8 +109,8 @@
 						 course-price="@course.Price"
 						 course-teacher="@course.Teacher"
 						 course-category="@course.Category" id="card">
-						<a  asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" style="display:flex;flex-direction:column">
-							<img src="~/images/@course.ImgName" class="card-img-top" style="border:1px solid #5D3570; border-radius:5px	" alt="@course.ImgAlt">
+						<a  asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" id="card-content">
+							<img src="~/images/@course.ImgName" class="card-img-top"  alt="@course.ImgAlt">
 							<div class="card-body">
 								<h5 class="card-title">@course.Name</h5>
 								<p class="card-text">@course.DescriptionShort</p>
