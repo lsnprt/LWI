@@ -114,8 +114,23 @@ namespace LWI.Controllers
         [HttpGet("/mycourses/id")]
         public async Task<IActionResult> EditCourseAsync(int id)
         {
-            EditCourseVM[] model = await dataService.GetEditCourseVMAsync(id);
+            EditCourseVM model = await dataService.GetEditCourseVMAsync(id);
             return View(model);
+        }
+
+        [Authorize]
+        [HttpPost("/mycourses/id")]
+        public async Task<IActionResult> EditCourseAsync(EditCourseVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            string userId = account.getUserIdString();
+
+            await dataService.EditCourseAsync(model);
+            return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
         }
 
         [Authorize]
@@ -142,5 +157,7 @@ namespace LWI.Controllers
             string result = await account.UpdateProfile(model, userId);
             return Content(result);
         }
+
+
     }
 }

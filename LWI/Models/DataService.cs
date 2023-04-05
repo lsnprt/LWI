@@ -360,11 +360,11 @@ namespace LWI.Models
 				}).ToArrayAsync();
         }
 
-        internal Task<EditCourseVM[]> GetEditCourseVMAsync(int id)
+        internal Task<EditCourseVM> GetEditCourseVMAsync(int id)
         {
 			return context.Courses
 				.Where(c => c.Id == id).
-				Select(c => new EditCourseVM()
+                Select(c => new EditCourseVM()
 				{
 					Name = c.Name,
 					Price = c.Price,
@@ -372,7 +372,12 @@ namespace LWI.Models
 					DescriptionLong = c.DescriptionLong,
 					DescriptionShort = c.DescriptionShort,
 					IsEco = c.IsEco
-				}).ToArrayAsync();
+				}).FirstOrDefaultAsync();
+        }
+
+        internal Task EditCourseAsync(EditCourseVM model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

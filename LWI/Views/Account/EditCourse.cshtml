@@ -1,31 +1,44 @@
 ﻿@model EditCourseVM
 
-<h3>Redigera kursen</h3>
-<div class="container-sm">
-    <form asp-action="EditCourseAsync">
-        <label asp-for="Name" class="form-label"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name"></span>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-5 gy-4">
 
-        <label asp-for="Price" class="form-label"></label>
-        <input asp-for="Price" class="form-control" />
-        <span asp-validation-for="Price"></span>
+            <h3 class="display-4 text-center py-3">Redigera kurs</h3>
 
-        <label asp-for="DescriptionShort" class="form-label"></label>
-        <input asp-for="DescriptionShort" class="form-control" />
-        <span asp-validation-for="DescriptionShort"></span>
+            <form asp-action="EditCourseAsync">
+                <div class="mb-3">
+                    <label asp-for="Name" class="fw-bold form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Price" class="fw-bold form-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DescriptionShort" class="fw-bold form-label"></label>
+                    <input asp-for="DescriptionShort" class="form-control" />
+                    <span asp-validation-for="DescriptionShort"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="DescriptionLong" class="fw-bold form-label"></label>
+                    <textarea asp-for="DescriptionLong" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="DescriptionLong"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Category" class="fw-bold form-label"></label>
+                    <input asp-for="Category" class="form-control mb-2" />
+                    <span asp-validation-for="Category"></span>
+                </div>
+                <div class="form-check mb-3">
+                    <label asp-for="IsEco" class="fw-bold form-check-label"></label>
+                    <input asp-for="IsEco" class="form-check-input" />
+                </div>
 
-        <label asp-for="DescriptionLong" class="form-label"></label>
-        <input asp-for="DescriptionLong" class="form-control" />
-        <span asp-validation-for="DescriptionLong"></span>
-
-        <label asp-for="Category" class="form-label"></label>
-        <input asp-for="Category" class="form-control" />
-        <span asp-validation-for="Category"></span>
-
-        <label asp-for="IsEco" class="form-check-label"></label>
-        <input asp-for="IsEco" class="form-check-input" />
-
-        <input type="submit" value="Skapa kurs" />
-    </form>
+                <input type="submit" class="btn payBtn" value="Skapa kurs" />
+            </form>
+        </div>
+    </div>
 </div>
