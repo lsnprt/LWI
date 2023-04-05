@@ -3,22 +3,22 @@
 <hr class="my-4">
 
 <div class="row mb-4 d-flex justify-content-between align-items-center">
-    <div class="col-md-2 col-lg-2 col-xl-2">
+    <div class="col-2">
         <img src="/images/@Model.ImgName"
              class="img-fluid rounded-3" alt="@Model.ImgAlt">
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-3 me-3">
+    <div class="col-3">
         <h6 class="text-muted">@Model.Category</h6>
-        <h6 class="text-black mb-0">@Model.Name</h6>
+        <h6 class="text-black">@Model.Name</h6>
     </div>
 
-    <div class="col-md-1 col-lg-1 col-xl-1 offset-lg-1">
+    <div class="col-1">
         <h6><span class="badge rounded-pill bg-success @(Model.IsEco ? "" : "invisible")" >Bra miljöval!</span></h6>
     </div>
-    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6 class="mb-0">@Model.Price</h6>
+    <div class="col-2">
+        <h6 class="text-black">@Model.Price</h6>
     </div>
-    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+    <div class="col-1 text-end">
         <a asp-action="RemoveFromCart" asp-route-id="@Model.Id" class="text-muted"><i class="fas fa-times"></i></a>
     </div>
 </div>
