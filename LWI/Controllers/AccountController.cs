@@ -111,5 +111,12 @@ namespace LWI.Controllers
             model = await dataService.getMyCoursesVMAsync(userId);
             return View(model);
         }
+
+        [Authorize]
+        [HttpGet("/mycourses/id")]
+        public async Task<IActionResult> EditCourseAsync(int id)
+        {
+            return Content(id.ToString());
+        }
     }
 }
