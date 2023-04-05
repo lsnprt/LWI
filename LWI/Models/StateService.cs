@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.Tracing;
-using System.Text.RegularExpressions;
-using Azure;
+﻿using System.Text.RegularExpressions;
 
 namespace LWI.Models
 {
@@ -12,7 +10,7 @@ namespace LWI.Models
             Accessor = accessor;
         }
 
-        public async Task<string> NoOfCartItems()
+        public string NoOfCartItems()
         {
             var cartCookie = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
             if (cartCookie != null & cartCookie != "," & cartCookie != "")

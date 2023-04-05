@@ -10,9 +10,9 @@ namespace LWI.Views.Shared.Components.ShoppingCartCounter
         {
             this.service = service;
         }
-        public async Task<IViewComponentResult> InvokeAsync()
+        public IViewComponentResult Invoke()
         {
-            ShoppingCartCounterVM model = new() {Items = int.Parse(await service.NoOfCartItems()) };
+            ShoppingCartCounterVM model = new() {Items = int.Parse(service.NoOfCartItems()) };
             return View(model);
         }
     }

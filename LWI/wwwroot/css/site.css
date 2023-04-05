@@ -1,5 +1,12 @@
+header {
+    background-color:#291056;
+}
+
 body {
     background-color: #eee5ff;
+    padding: 0;
+    margin: 0;
+    height: 100%
 }
 
 .wrapper {
@@ -16,8 +23,7 @@ body {
     background-color: #eee5ff;
     padding: 0 0 20px;
     display: flex;
-    flex-wrap: wrap;
-    height: fit-content auto;
+    /*flex-wrap: wrap;*/
 }
 
 .container {
@@ -25,7 +31,7 @@ body {
     align-items: center;
 }
 
-.wrapper-item1{
+.wrapper-item1 {
     text-align: center;
 }
 
@@ -38,6 +44,7 @@ body {
     background-color: white;
     box-shadow: #bb98ff 1px 2px 7px;
     margin-bottom: 10px;
+    
 }
 
 .image {
@@ -56,20 +63,18 @@ body {
     font-size: 20px;
     flex-grow: 3;
 }
+
 .sidebar {
     box-shadow: #bb98ff 1px 4px 7px;
     width: 200px;
     background-color: #f1f1f1;
-    position: absolute;
     height: 100%;
     overflow: initial;
 }
 
 div.content {
-    margin-left: 200px;
-    /*margin-top: 100px;*/
     padding: 10px 16px;
-    height: 1000px;
+    height: auto;
 }
 
 a {
@@ -97,6 +102,34 @@ a {
 #card-body {
     box-shadow: #bb98ff 1px 4px 7px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-top {
+    border: 1px solid #5D3570;
+    border-radius: 5px;
+    object-fit: contain;
+    width: 100%;
+    height: 150px;
+}
+
+#card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+#rowDiv {
+    justify-content: center;
+}
+
+#full-rwrapper {
+    position: relative;
+    min-height: 100vh;
+}
+
+#header-catalog {
+    padding-bottom: 2.5rem;
 }
 /*-------------------Details CSS---------------------------*/
 .addBtn {
@@ -163,16 +196,16 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .fa-sharp {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 150px;
-    margin-left: 150px;
+    margin-right: 100px;
+    margin-left: 100px;
     color: #bb98ff;
 }
 
@@ -183,9 +216,12 @@ a {
 
 .badge {
     font-size: xx-small;
-    margin-left: -87px;
-    margin-bottom: 1rem;
+    margin-left: -240px;
+    margin-bottom: 1.5rem;
 }
+
+
+
 
 .navbar-brand {
     margin-left: 20px;
@@ -198,6 +234,10 @@ footer {
     align-items: center;
     height: 50px;
     background-color: #4b1e9f;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 #footerText {
@@ -219,8 +259,8 @@ footer {
 }
 
 .sideChild {
-        color: #bb99ff;
- }
+    color: #bb99ff;
+}
 
 .checkoutBtn {
     background-color: #291056;
@@ -248,18 +288,7 @@ footer {
     list-style:none;
 }
 
-.accountHomePage {
-    display: flex;
-    justify-content: center;
-    /*align-items: center;*/
+.portalIcon {
+    color: #291056;
 }
-.accountCard {
-    align-items: center;
-    box-shadow: #bb98ff 1px 4px 7px;
-    display:flex;
-    flex-direction: column;
-    width: 18rem;
-    height: 18rem;
-    margin: 10px;
-    background-color: white;
-}
+

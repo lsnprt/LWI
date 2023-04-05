@@ -1,0 +1,16 @@
+﻿@model MyCoursesVM
+
+<div class="col w-33 d-flex align-items-stretch">
+    <div class="card mb-3">
+        <img src="~/images/@Model.ImgUrl" class="img-fluid" alt="The picture for the course" >
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">Price: @Model.Price</p>
+            <p class="card-text">@Model.DescriptionShort</p>
+        </div>
+        <br />
+        <div class="card-body">
+            <a asp-action="EditProfile" class="btn w-100 payBtn mb-2">Redigera</a>
+        </div>
+    </div>
+</div>
