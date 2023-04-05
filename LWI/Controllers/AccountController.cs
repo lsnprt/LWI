@@ -44,7 +44,7 @@ namespace LWI.Controllers
             {
                 return RedirectToAction(nameof(ErrorController.ProcedureError), nameof(ErrorController).Replace("Controller", string.Empty));
             }
-         
+
             return RedirectToAction(nameof(AccountHomepage));
         }
 
@@ -92,7 +92,7 @@ namespace LWI.Controllers
         [HttpPost("/addcourse")]
         public async Task<IActionResult> AddCourseAsync(AddCourseVM model)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -124,6 +124,24 @@ namespace LWI.Controllers
         public async Task<IActionResult> RemoveCourseAsync()
         {
             return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
+        }
+        
+        [Authorize]
+        [HttpGet("/editprofile")]
+        public IActionResult EditProfile()
+        {
+            string userId = account.getUserIdString();
+            var user = account.GetAccount(userId);
+            return View(user);
+        }
+        
+        [Authorize]
+        [HttpPost("/editprofile")]
+        public async Task<IActionResult> EditProfile(EditProfileVM model)
+        {
+            string userId = account.getUserIdString();
+            string result = await account.UpdateProfile(model, userId);
+            return Content(result);
         }
     }
 }

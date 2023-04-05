@@ -37,6 +37,11 @@ namespace LWI.Models
             return result.Succeeded ? null : "Ditt konto kunde inte skapas :( ";
         }
 
+        internal object GetAccount(string userId)
+        {
+            throw new NotImplementedException();
+        }
+
         internal string getUserIdString()
         {
             return userManager.GetUserId(accessor.HttpContext.User).ToString();
@@ -57,6 +62,11 @@ namespace LWI.Models
                 );
 
             return result.Succeeded ? null : "Fel användarnamn eller lösenord";
+        }
+
+        internal Task<string> UpdateProfile(EditProfileVM model, string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }
