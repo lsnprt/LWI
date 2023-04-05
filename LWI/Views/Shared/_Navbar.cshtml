@@ -1,49 +1,63 @@
-﻿    <!-- Navbar -->
+﻿	<!-- Navbar -->
 
 <nav class="navbar navbar-expand-lg navbar-dark" id="navbarElement">
-    <a class="navbar-brand" asp-action="index">
-        <i class="fa-solid fa-dragon" <br /> Lär dig med Isam</i> <br>
+	<a class="navbar-brand" asp-action="index">
+		<i class="fa-solid fa-dragon" <br /> Lär dig med Isam</i> <br>
 
-    </a>
-
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-
-    </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-        <ul class="navbar-nav">
-            <a class="nav-link" asp-controller="Lwi" asp-action="Index">
-            <li class="nav-item active">
-                <i class="fa-sharp fa-solid fa-house"></i>
-                Homepage</a>
-            </li>
-            <a class="nav-link center-block" asp-controller="Lwi" asp-action="Catalog">
-            <li class="nav-item">
-                <i class="fa-sharp fa-solid fa-book"></i>
-                Kurskatalog</a>
-            </li>
-
-            <a class="nav-link pull-right" asp-controller="Lwi" asp-action="ShoppingCart">
-            <li class="nav-item">
-                    @await Component.InvokeAsync("ShoppingCartCounter")
-                <i class="fa-sharp fa-solid fa-shopping-cart"></i>
-                Varukorg </a>
-            </li>
-            <a class="nav-link pull-right" asp-controller="account" asp-action="LogIn">
-            <li class="nav-item">
-                <i class="fa-sharp fa-solid fa-user-tie"></i>
-                Logga in </a>
-            </li>
-        </ul>
-
-    </div>
-    @*    <div>
-
-    </div>*@
+	</a>
 
 
-    </>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+
+	</button>
+	<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+		<ul class="navbar-nav">
+			<a class="nav-link" asp-controller="Lwi" asp-action="Index">
+			<li class="nav-item active">
+				<i class="fa-sharp fa-solid fa-house"></i>
+				Homepage</a>
+			</li>
+			<a class="nav-link center-block" asp-controller="Lwi" asp-action="Catalog">
+			<li class="nav-item">
+				<i class="fa-sharp fa-solid fa-book"></i>
+				Kurskatalog</a>
+			</li>
+
+			<a class="nav-link pull-right" asp-controller="Lwi" asp-action="ShoppingCart">
+			<li class="nav-item">
+					@await Component.InvokeAsync("ShoppingCartCounter")
+				<i class="fa-sharp fa-solid fa-shopping-cart"></i>
+				Varukorg </a>
+			</li>
+			@if (User.Identity.IsAuthenticated)
+			{
+				<a class="nav-link pull-right" asp-controller="account" asp-action="LogOut">
+				<li class="nav-item">
+					<i class="fa-sharp fa-solid fa-user-tie"></i>
+					Log Out
+
+					</a>
+				;
+			}
+			else
+			{
+					<a class="nav-link pull-right" asp-controller="account" asp-action="LogIn">
+				<li class="nav-item">
+					<i class="fa-sharp fa-solid fa-user-tie"></i>
+					Log In
+
+					</a>
+			}
+		</ul>
+
+	</div>
+	@*    <div>
+
+	</div>*@
+
+
+	</>
 </nav>
 
 
