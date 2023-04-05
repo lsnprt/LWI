@@ -135,8 +135,9 @@ namespace LWI.Controllers
 
         [Authorize]
         [Route("/mycourses/remove/id")]
-        public async Task<IActionResult> RemoveCourseAsync()
+        public async Task<IActionResult> RemoveCourseAsync(int id)
         {
+            await dataService.RemoveCourseAsync(id);
             return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
         }
         
@@ -157,7 +158,5 @@ namespace LWI.Controllers
             string result = await account.UpdateProfile(model, userId);
             return Content(result);
         }
-
-
     }
 }

@@ -21,141 +21,141 @@ namespace LWI.Models
 
 
 
-   //     List<Course> courses = new List<Course>()
-   //     {
-   //         new Course()
-		 // 	{
-			//	Name = "Bli en glad pappa",
-			//	Teacher = "Nils",
-			//	DescriptionShort = "Med oss ska du lära dig att tvätta, diska, mata och byta blöjor.",
-			//	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-			//	ImgName = "hecan.png",
-			//	ImgAlt = "glad pappa kurs",
-			//	Category = "Hållbarhet",
-			//	Price =0
-			//},
-			//new Course()
-			//{
-			//	Name = "Lar dig JS.",
-			//	Teacher = "Pontus",
-			//	DescriptionShort = "Lär dig JS mest älskade programmering språk i planeten.",
-			//	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-			//	ImgName = "JS.png",
-			//	ImgAlt = "JS course",
-			//	Category = "Programming",
-			//	Price = 3999
-			//},new Course()
-			//{
-			//	Name = "Arabiska for Swedes.",
-			//	Teacher = "Isam",
-			//	DescriptionShort = "Tala Arabiska som om du kommer ifrån mitt i Syrien.",
-			//	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-			//	ImgName = "Arabiska.jpg",
-			//	ImgAlt = "Arabiska course",
-			//	Category = "Languages",
-			//	Price = 1999
-			//},new Course()
-			//{
-			//	Name = "Franska for Swedes.",
-			//	Teacher = "Nadine",
-			//	DescriptionShort = "Tala Arabiska som om du kommer ifrån mitt i Paris.",
-			//	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-			//	ImgName = "Franska.png",
-			//	ImgAlt = "Franska course",
-			//	Category = "Languages",
-			//	Price = 1999
-			//},
-			//new Course()
-			//{
-			//	Name = "Bästa C# kurs bara i 48 månader.",
-			//	Teacher = "Pontus",
-			//	DescriptionShort = "Lär dig de första några stegen i c#.",
-			//	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-			//	ImgName = "Csharp.png",
-			//	ImgAlt = "Csharp course",
-			//	Category = "Programming",
-			//	Price = 1999
-			//},
-			//new Course()
-			//{
-			//	Name = "Database and relational illusion of new world order.",
-			//	Teacher = "Isam",
-			//	DescriptionShort = "An introduction to your new journey to the bottom of hollow.",
-			//	DescriptionLong = "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
-			//	ImgName = "Great_Seal_of_the_United_States_(reverse).svg.png",
-			//	ImgAlt = "new world order pic",
-			//	Category = "Database",
-			//	Price = 9999
+        //     List<Course> courses = new List<Course>()
+        //     {
+        //         new Course()
+        // 	{
+        //	Name = "Bli en glad pappa",
+        //	Teacher = "Nils",
+        //	DescriptionShort = "Med oss ska du lära dig att tvätta, diska, mata och byta blöjor.",
+        //	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //	ImgName = "hecan.png",
+        //	ImgAlt = "glad pappa kurs",
+        //	Category = "Hållbarhet",
+        //	Price =0
+        //},
+        //new Course()
+        //{
+        //	Name = "Lar dig JS.",
+        //	Teacher = "Pontus",
+        //	DescriptionShort = "Lär dig JS mest älskade programmering språk i planeten.",
+        //	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //	ImgName = "JS.png",
+        //	ImgAlt = "JS course",
+        //	Category = "Programming",
+        //	Price = 3999
+        //},new Course()
+        //{
+        //	Name = "Arabiska for Swedes.",
+        //	Teacher = "Isam",
+        //	DescriptionShort = "Tala Arabiska som om du kommer ifrån mitt i Syrien.",
+        //	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //	ImgName = "Arabiska.jpg",
+        //	ImgAlt = "Arabiska course",
+        //	Category = "Languages",
+        //	Price = 1999
+        //},new Course()
+        //{
+        //	Name = "Franska for Swedes.",
+        //	Teacher = "Nadine",
+        //	DescriptionShort = "Tala Arabiska som om du kommer ifrån mitt i Paris.",
+        //	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //	ImgName = "Franska.png",
+        //	ImgAlt = "Franska course",
+        //	Category = "Languages",
+        //	Price = 1999
+        //},
+        //new Course()
+        //{
+        //	Name = "Bästa C# kurs bara i 48 månader.",
+        //	Teacher = "Pontus",
+        //	DescriptionShort = "Lär dig de första några stegen i c#.",
+        //	DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //	ImgName = "Csharp.png",
+        //	ImgAlt = "Csharp course",
+        //	Category = "Programming",
+        //	Price = 1999
+        //},
+        //new Course()
+        //{
+        //	Name = "Database and relational illusion of new world order.",
+        //	Teacher = "Isam",
+        //	DescriptionShort = "An introduction to your new journey to the bottom of hollow.",
+        //	DescriptionLong = "Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
+        //	ImgName = "Great_Seal_of_the_United_States_(reverse).svg.png",
+        //	ImgAlt = "new world order pic",
+        //	Category = "Database",
+        //	Price = 9999
 
-			//},
-			//new Course()
-			//{
-			//	Name = "Sortera med Nadine #1",
-			//	Teacher = "Alessandro",
-			//	DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-			//	DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-			//	ImgName = "Källsortering(1).png",
-			//	ImgAlt = "blabla",
-			//	Category = "Hållbarhet",
-			//	Price = 1999
-			//},new Course()
-			//{
+        //},
+        //new Course()
+        //{
+        //	Name = "Sortera med Nadine #1",
+        //	Teacher = "Alessandro",
+        //	DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+        //	DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+        //	ImgName = "Källsortering(1).png",
+        //	ImgAlt = "blabla",
+        //	Category = "Hållbarhet",
+        //	Price = 1999
+        //},new Course()
+        //{
 
-			//	Name = "Sortera med Nadine #2",
-			//	Teacher="Alessandro",
-			//	DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
-			//	DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
-			//	ImgName = "Källsortering(2).png",
-			//	ImgAlt = "blabla",
-			//	Category = "Hållbarher",
-			//	Price = 4999
-			//},
-   //         new Course()
-   //         {
-   //             Name = "Pontus lilla röda",
-   //             Teacher = "Pontus",
-   //             DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
-   //             DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
-   //             ImgName = "Csharp.png",
-   //             ImgAlt = "blabla",
-   //             Category = "Pontus kurser",
-   //             Price = 1999
-   //         },
-   //         new Course()
-   //         {
-   //             Name = "Grundkurs i C#",
-   //             Teacher = "Peter",
-   //             DescriptionShort = "En grundkurs i det objektorienterade språket C#",
-   //             DescriptionLong = "En grundkurs i det objektorienterade språket C#",
-   //             ImgName = "JS.png",
-   //             ImgAlt = "blabla",
-   //             Category = "Programmering",
-   //             Price = 0
+        //	Name = "Sortera med Nadine #2",
+        //	Teacher="Alessandro",
+        //	DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+        //	DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+        //	ImgName = "Källsortering(2).png",
+        //	ImgAlt = "blabla",
+        //	Category = "Hållbarher",
+        //	Price = 4999
+        //},
+        //         new Course()
+        //         {
+        //             Name = "Pontus lilla röda",
+        //             Teacher = "Pontus",
+        //             DescriptionShort = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //             DescriptionLong = "Lär dig allt du behöver veta för att skapa din egna revolution",
+        //             ImgName = "Csharp.png",
+        //             ImgAlt = "blabla",
+        //             Category = "Pontus kurser",
+        //             Price = 1999
+        //         },
+        //         new Course()
+        //         {
+        //             Name = "Grundkurs i C#",
+        //             Teacher = "Peter",
+        //             DescriptionShort = "En grundkurs i det objektorienterade språket C#",
+        //             DescriptionLong = "En grundkurs i det objektorienterade språket C#",
+        //             ImgName = "JS.png",
+        //             ImgAlt = "blabla",
+        //             Category = "Programmering",
+        //             Price = 0
 
-   //         },
-   //         new Course()
-   //         {
-   //             Name = "Sortera med Nadine #1",
-   //             Teacher = "Nadine",
-   //             DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-   //             DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
-   //             ImgName = "ASP.jpg",
-   //             ImgAlt = "blabla",
+        //         },
+        //         new Course()
+        //         {
+        //             Name = "Sortera med Nadine #1",
+        //             Teacher = "Nadine",
+        //             DescriptionShort = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+        //             DescriptionLong = "I Nadines första sorteringskurs lär vi oss hur man sorterar papper",
+        //             ImgName = "ASP.jpg",
+        //             ImgAlt = "blabla",
 
-   //             Category = "Nadines kurser",
-   //             Price = 1999
-   //         },new Course()
-   //         {
+        //             Category = "Nadines kurser",
+        //             Price = 1999
+        //         },new Course()
+        //         {
 
-   //             Name = "Sortera med Nadine #2",
-   //             Teacher="Håkan",
-   //             DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
-   //             DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
-   //             ImgName = "python.png",
-   //             ImgAlt = "blabla",
-   //             Category = "Nadines kurser",
-   //             Price = 4999
-   //         },
+        //             Name = "Sortera med Nadine #2",
+        //             Teacher="Håkan",
+        //             DescriptionShort = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+        //             DescriptionLong = "I Nadines andra sorteringskurs lär vi oss hur man sorterar tegel",
+        //             ImgName = "python.png",
+        //             ImgAlt = "blabla",
+        //             Category = "Nadines kurser",
+        //             Price = 4999
+        //         },
 
         //};
 
@@ -169,72 +169,72 @@ namespace LWI.Models
         //    context.SaveChanges();
         //}
 
-		public async Task<CatalogVM[]> GetAllCoursesAsync()
-		{
-			return await context.Courses
-				.Select(c => new CatalogVM
-				{
-					Category = c.Category,
-					Price = c.Price.ToString("0.00 SEK"),
-					Name = c.Name,
-					Id = c.Id,
-					DescriptionShort = c.DescriptionShort,
-					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName,
-					Teacher = c.CourseCreator.UserName,
-					IsEco = c.IsEco
-				})
-				.OrderBy(c => c.Name)
-				.ToArrayAsync();
-		}
-		public DetailsVM? GetCourse(int id)
-		{
+        public async Task<CatalogVM[]> GetAllCoursesAsync()
+        {
+            return await context.Courses
+                .Select(c => new CatalogVM
+                {
+                    Category = c.Category,
+                    Price = c.Price.ToString("0.00 SEK"),
+                    Name = c.Name,
+                    Id = c.Id,
+                    DescriptionShort = c.DescriptionShort,
+                    ImgAlt = c.ImgAlt,
+                    ImgName = c.ImgName,
+                    Teacher = c.CourseCreator.UserName,
+                    IsEco = c.IsEco
+                })
+                .OrderBy(c => c.Name)
+                .ToArrayAsync();
+        }
+        public DetailsVM? GetCourse(int id)
+        {
             string? cookieCheck = httpContextAccessor.HttpContext.Request.Cookies["ShoppingCart"];
             if (cookieCheck == null)
                 httpContextAccessor.HttpContext.Response.Cookies.Append("ShoppingCart", ",");
             bool itemInCart = stateService.GetCartIds().Contains(id);
 
             return context.Courses
-				.Select(c => new DetailsVM
-				{
-					Category = c.Category,
-					Price = c.Price.ToString("0.00 SEK"),
-					Name = c.Name,
-					Id = c.Id,
-					DescriptionLong = c.DescriptionLong,
-					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName,
-					IsEco = c.IsEco
-				})
-				.FirstOrDefault(c => c.Id == id)
-				;
-		}
+                .Select(c => new DetailsVM
+                {
+                    Category = c.Category,
+                    Price = c.Price.ToString("0.00 SEK"),
+                    Name = c.Name,
+                    Id = c.Id,
+                    DescriptionLong = c.DescriptionLong,
+                    ImgAlt = c.ImgAlt,
+                    ImgName = c.ImgName,
+                    IsEco = c.IsEco
+                })
+                .FirstOrDefault(c => c.Id == id)
+                ;
+        }
 
-		public async Task<ShoppingCartVM> GetShoppingCartVMAsync(int[] cartIds)
-		{
-			var total = await context.Courses
-				.Where(c => cartIds.Contains(c.Id))
-				.Select(c => c.Price).SumAsync();
+        public async Task<ShoppingCartVM> GetShoppingCartVMAsync(int[] cartIds)
+        {
+            var total = await context.Courses
+                .Where(c => cartIds.Contains(c.Id))
+                .Select(c => c.Price).SumAsync();
 
             var vm = new ShoppingCartVM
             {
                 ItemCount = cartIds.Length,
                 Total = total.ToString("0.00 SEK"),
 
-				shoppingCartItemVMs = await context
-				.Courses
-				.Where(c => cartIds.Contains(c.Id))
-				.Select(c => new ShoppingCartItemVM
-				{
-					Id = c.Id,
-					Name = c.Name,
-					Price = c.Price.ToString("0.00 SEK"),
-					Category = c.Category,
-					ImgAlt = c.ImgAlt,
-					ImgName = c.ImgName,
-					IsEco = c.IsEco
-				}).ToArrayAsync()
-			};
+                shoppingCartItemVMs = await context
+                .Courses
+                .Where(c => cartIds.Contains(c.Id))
+                .Select(c => new ShoppingCartItemVM
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Price = c.Price.ToString("0.00 SEK"),
+                    Category = c.Category,
+                    ImgAlt = c.ImgAlt,
+                    ImgName = c.ImgName,
+                    IsEco = c.IsEco
+                }).ToArrayAsync()
+            };
 
             return vm;
         }
@@ -348,36 +348,64 @@ namespace LWI.Models
 
         internal Task<MyCoursesVM[]> getMyCoursesVMAsync(string userId)
         {
-			return context.Courses
-				.Where(c => c.CourseCreatorId == userId)
-				.Select(c => new MyCoursesVM
-				{
-					Id = c.Id,
-					Name = c.Name,
-					Price = c.Price,
-					DescriptionShort = c.DescriptionShort,
-					ImgUrl = c.ImgName
-				}).ToArrayAsync();
+            return context.Courses
+                .Where(c => c.CourseCreatorId == userId)
+                .Select(c => new MyCoursesVM
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Price = c.Price,
+                    DescriptionShort = c.DescriptionShort,
+                    ImgUrl = c.ImgName
+                }).ToArrayAsync();
         }
 
         internal Task<EditCourseVM> GetEditCourseVMAsync(int id)
         {
-			return context.Courses
-				.Where(c => c.Id == id).
+            return context.Courses
+                .Where(c => c.Id == id).
                 Select(c => new EditCourseVM()
-				{
-					Name = c.Name,
-					Price = c.Price,
-					Category = c.Category,
-					DescriptionLong = c.DescriptionLong,
-					DescriptionShort = c.DescriptionShort,
-					IsEco = c.IsEco
-				}).FirstOrDefaultAsync();
+                {
+                    Name = c.Name,
+                    Price = c.Price,
+                    Category = c.Category,
+                    DescriptionLong = c.DescriptionLong,
+                    DescriptionShort = c.DescriptionShort,
+                    IsEco = c.IsEco,
+                    Id = c.Id
+                }).FirstOrDefaultAsync();
         }
 
-        internal Task EditCourseAsync(EditCourseVM model)
+        internal async Task EditCourseAsync(EditCourseVM model)
         {
-            throw new NotImplementedException();
+            var courseToEdit = await context.Courses.
+                Where(c => c.Id == model.Id)
+                .SingleOrDefaultAsync();
+            if (courseToEdit != null)
+            {
+                courseToEdit.Name = model.Name;
+                courseToEdit.Price = model.Price;
+                courseToEdit.DescriptionLong = model.DescriptionLong;
+                courseToEdit.DescriptionShort = model.DescriptionShort;
+                courseToEdit.IsEco = model.IsEco;
+            }
+
+            context.SaveChanges();
+            return;
+        }
+
+        internal async Task RemoveCourseAsync(int id)
+        {
+            var toRemove = await context.Courses
+                .Where(c => c.Id == id)
+                .FirstOrDefaultAsync();
+
+            if (toRemove != null) 
+            {
+                context.Courses.Remove(toRemove);
+            }
+
+            await context.SaveChangesAsync();
         }
     }
 }

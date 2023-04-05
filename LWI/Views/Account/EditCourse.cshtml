@@ -11,6 +11,7 @@
                     <label asp-for="Name" class="fw-bold form-label"></label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name"></span>
+
                 </div>
                 <div class="mb-3">
                     <label asp-for="Price" class="fw-bold form-label"></label>
@@ -32,12 +33,12 @@
                     <input asp-for="Category" class="form-control mb-2" />
                     <span asp-validation-for="Category"></span>
                 </div>
-                <div class="form-check mb-3">
+                <div class="form-check">
                     <label asp-for="IsEco" class="fw-bold form-check-label"></label>
                     <input asp-for="IsEco" class="form-check-input" />
                 </div>
-
-                <input type="submit" class="btn payBtn" value="Skapa kurs" />
+                <input class="invisible" asp-for="Id" value=@Model.Id />
+                <input type="submit" class="btn payBtn" value="Spara förändringar" />
             </form>
         </div>
     </div>
