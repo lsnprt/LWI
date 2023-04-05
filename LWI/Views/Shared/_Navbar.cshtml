@@ -3,8 +3,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark" id="navbarElement">
     <a class="navbar-brand" asp-action="index">
         <i class="fa-solid fa-dragon" <br /> Lär dig med Isam</i> <br>
-        @*<font face="Arial" size="2" style="color:darkgrey">Lär dig med Isam</font>*@
+
     </a>
+
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,24 +15,33 @@
         <ul class="navbar-nav">
             <li class="nav-item active">
                 <i class="fa-sharp fa-solid fa-house"></i>
-                <a class="nav-link" asp-action="Index">Homepage</a>
+                <a class="nav-link" asp-controller="Lwi" asp-action="Index">Homepage</a>
             </li>
             <li class="nav-item">
                 <i class="fa-sharp fa-solid fa-book"></i>
-                <a class="nav-link center-block" asp-action="Catalog">Kurskatalog</a>
+                <a class="nav-link center-block" asp-controller="Lwi" asp-action="Catalog">Kurskatalog</a>
             </li>
 
             <li class="nav-item">
                 <i class="fa-sharp fa-solid fa-shopping-cart"></i>
-                <a class="nav-link pull-right" asp-action="ShoppingCart">Varukorg </a>
+                <a class="nav-link pull-right" asp-controller="Lwi" asp-action="ShoppingCart">Varukorg </a>
             </li>
-
+    <li class="nav-item">
+        <i class="fa-sharp fa-solid fa-user-tie"></i>
+        <a class="nav-link pull-right" asp-controller="account" asp-action="LogIn">Logga in </a>
+    </li>
         </ul>
-        <div>
-            @await Component.InvokeAsync("ShoppingCartCounter")
-        </div>
-        </>
+
+    </div>
+    <div>
+        @await Component.InvokeAsync("ShoppingCartCounter")
+    </div>
+   
+
+    </>
 </nav>
+
+
 @*                <li class="nav-item">
             <a class="nav-link pull-right" href="ShoppingCart">
             <i class="fas fa-shopping-cart" style="color: #c770f0;"></i>
