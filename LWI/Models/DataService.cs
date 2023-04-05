@@ -348,7 +348,8 @@ namespace LWI.Models
 
         internal Task<MyCoursesVM[]> getMyCoursesVMAsync(string userId)
         {
-			return context.Courses.Where(c => c.CourseCreatorId == userId)
+			return context.Courses
+				.Where(c => c.CourseCreatorId == userId)
 				.Select(c => new MyCoursesVM
 				{
 					Id = c.Id,
@@ -356,6 +357,21 @@ namespace LWI.Models
 					Price = c.Price,
 					DescriptionShort = c.DescriptionShort,
 					ImgUrl = c.ImgName
+				}).ToArrayAsync();
+        }
+
+        internal Task<EditCourseVM[]> GetEditCourseVMAsync(int id)
+        {
+			return context.Courses
+				.Where(c => c.Id == id).
+				Select(c => new EditCourseVM()
+				{
+					Name = c.Name,
+					Price = c.Price,
+					Category = c.Category,
+					DescriptionLong = c.DescriptionLong,
+					DescriptionShort = c.DescriptionShort,
+					IsEco = c.IsEco
 				}).ToArrayAsync();
         }
     }

@@ -2,7 +2,7 @@
 
 <h3>Lägg till en ny kurs</h3>
 <div class="container-sm">
-    <form asp-action="AddCourseAsync" enctype="multipart/form-data">
+    <form asp-action="AddCourseAsync">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name"></span>

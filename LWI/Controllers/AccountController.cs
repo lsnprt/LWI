@@ -24,14 +24,12 @@ namespace LWI.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpGet("/create")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize]
         [HttpPost("/create")]
         public async Task<IActionResult> CreateAsync(CreateVM model)
         {
@@ -116,7 +114,8 @@ namespace LWI.Controllers
         [HttpGet("/mycourses/id")]
         public async Task<IActionResult> EditCourseAsync(int id)
         {
-            return Content(id.ToString());
+            EditCourseVM[] model = await dataService.GetEditCourseVMAsync(id);
+            return View(model);
         }
 
         [Authorize]
