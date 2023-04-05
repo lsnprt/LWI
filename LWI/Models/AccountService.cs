@@ -64,9 +64,22 @@ namespace LWI.Models
             return result.Succeeded ? null : "Fel användarnamn eller lösenord";
         }
 
-        internal Task<string> UpdateProfile(EditProfileVM model, string userId)
+        internal async Task<string> UpdateProfile(EditProfileVM model, string userId)
         {
-            throw new NotImplementedException();
+            var user = context.Users.Where(u => u.Id == userId).FirstOrDefault();
+            if (model.Profession != null)
+                user.Occupation = model.Profession;
+            if (model.FirstName != null)
+                user.FirstName = model.FirstName;
+            if (model.LastName != null)
+                user.LastName = model.LastName;
+            if (model.Description != null)
+                user.Description = model.Description;
+
+            context.SaveChanges();
+
+            return "Ändringarna är genomförda!";
+
         }
     }
 }
