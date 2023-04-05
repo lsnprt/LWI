@@ -19,6 +19,7 @@ namespace LWI.Views.Account
         [Required(ErrorMessage = "Ange Kategori")]
         [Display(Name = "Kurskategori")]
         public string? Category { get; set; }
+        public int Id { get; set; }
         public bool IsEco { get; set; }
     }
 }

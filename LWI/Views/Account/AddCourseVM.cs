@@ -14,11 +14,13 @@ namespace LWI.Views.Account
         [Display(Name = "Kort Beskrivning")]
         public string? DescriptionShort { get; set; }
         [Required(ErrorMessage = "Ange Lång Beskrivning")]
-        [Display(Name = "Beskrivning")]
+        [Display(Name = "Lång Beskrivning")]
         public string? DescriptionLong { get; set; }
         [Required(ErrorMessage = "Ange Kategori")]
         [Display(Name = "Kurskategori")]
         public string? Category { get; set; }
+
+        [Display(Name = "Är kursen miljövänlig?")]
         public bool IsEco { get; set; }
     }
 }
