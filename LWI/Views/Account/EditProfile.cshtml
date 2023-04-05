@@ -1,0 +1,24 @@
+﻿@model EditProfileVM
+
+<h3>Uppdatera din profil</h3>
+@Model.FirstName - @Model.LastName - @Model.Profession - @Model.Description
+<form asp-controller="Account" asp-action="EditProfile">
+
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" value=""/>
+    <span asp-validation-for="FirstName" class="text-danger"></span>
+
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" value="" />
+    <span asp-validation-for="LastName" class="text-danger"></span>
+
+    <label asp-for="Profession"></label>
+    <input asp-for="Profession" value="" />
+    <span asp-validation-for="Profession" class="text-danger"></span>
+
+    <label asp-for="Description"></label>
+    <input asp-for="Description" value="" />
+    <span asp-validation-for="Description" class="text-danger"></span>
+
+    <input type="submit" value="Uppdatera profil" />
+</form>
