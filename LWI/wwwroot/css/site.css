@@ -1,3 +1,7 @@
+header {
+    background-color:#291056;
+}
+
 body {
     background-color: #eee5ff;
     padding: 0;
@@ -283,3 +287,8 @@ footer {
 .validationDiv ul li {
     list-style:none;
 }
+
+.portalIcon {
+    color: #291056;
+}
+

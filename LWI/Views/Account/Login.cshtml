@@ -1,16 +1,27 @@
 ﻿@model LoginVM
 
-<h3>Logga in</h3>
-
-<form asp-controller="Account" asp-action="Login">
-    <label asp-for="Username"></label>
-    <input asp-for="Username" />
-    <span asp-validation-for="Username" class="text-danger"></span>
-
-    <label asp-for="Password"></label>
-    <input asp-for="Password" />
-    <span asp-validation-for="Password" class="text-danger"></span>
-
-    <input type="submit" value="Logga in" />
-    <div asp-validation-summary="ModelOnly" class="alert alert-danger validationDiv"></div>
-</form>
+<div class="container mx-5 my-2">
+    <div class="row mx-5">
+        <div class="col mx-5">
+            <div class="card mx-5 mt-3 mb-3 px-5">
+                <div class="card-body px-4 py-4">
+                    <h2 class="display-5 text-center py-2">Logga In</h2>
+                    <form asp-controller="Account" asp-action="Login" class="px-5">
+                        <div class="form-group mb-3">
+                            <label asp-for="Username" class="fw-bold"></label>
+                            <input asp-for="Username" class="form-control" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Password" class="fw-bold"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <input type="submit" class="btn payBtn" value="Logga in" />
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger validationDiv"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

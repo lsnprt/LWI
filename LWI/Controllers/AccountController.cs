@@ -19,7 +19,7 @@ namespace LWI.Controllers
 
         [Authorize]
         [HttpGet("/account")]
-        public async Task<IActionResult> AccountHomepageAsync()
+        public IActionResult AccountHomepage()
         {
             return View();
         }
@@ -45,7 +45,7 @@ namespace LWI.Controllers
                 return RedirectToAction(nameof(ErrorController.ProcedureError), nameof(ErrorController).Replace("Controller", string.Empty));
             }
          
-            return RedirectToAction(nameof(AccountHomepageAsync).Replace("Async", string.Empty));
+            return RedirectToAction(nameof(AccountHomepage));
         }
 
         [HttpGet("/login")]
@@ -70,7 +70,7 @@ namespace LWI.Controllers
                 return View();
             }
 
-            return RedirectToAction(nameof(AccountHomepageAsync).Replace("Async", string.Empty));
+            return RedirectToAction(nameof(AccountHomepage));
         }
 
         [Authorize]
