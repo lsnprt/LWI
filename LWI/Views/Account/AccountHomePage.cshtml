@@ -1,6 +1,63 @@
-﻿<p>@User.Identity.Name</p>
-
-<a asp-action="EditProfile">Redigera min profil</a>
-<a asp-action="MyCourses">Mina kurser</a>
-<a asp-action="AddCourse">Skapa en ny kurs</a>
-<a asp-action="Logout">Logga ut</a>
+﻿<div class="container mx-5 my-2">
+    <div class="row mx-5">
+        <div class="col mx-5">
+            <div class="card mx-5 mt-3 mb-4 px-5">
+                <div class="card-body px-4 py-4">
+                    <h2 class="display-5 text-center py-2">Lärarportal</h2>
+                    <p>Välkommen, <strong>@User.Identity.Name</strong>!</p>
+                    <div class="row mb-4">
+                        <div class="col d-flex align-items-stretch">
+                            <div class="card">
+                                <div class="text-center px-4 py-4">
+                                    <i class="fa-solid fa-user-pen portalIcon fa-7x"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Mitt Konto</h5>
+                                    <p class="card-text">Här kan du se och redigera dina uppgifter</p>
+                                </div>
+                                <br />
+                                <div class="card-body">
+                                    <a asp-action="EditProfile" class="btn w-100 payBtn mb-2">Till Min Profil</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-stretch">
+                            <div class="card">
+                                <div class="text-center px-4 py-4">
+                                    <i class="fa-solid fa-book portalIcon fa-7x"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Mina Kurser</h5>
+                                    <p class="card-text">Här kan du se och redigera dina kurser på platformen.</p>
+                                </div>
+                                <div class="card-body">
+                                    <a asp-action="MyCourses" class="btn w-100 payBtn mb-2">Till Mina Kurser</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col d-flex align-items-stretch">
+                            <div class="card">
+                                <div class="text-center px-4 py-4">
+                                    <i class="fa-solid fa-book-medical portalIcon fa-7x"></i>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Ny kurs</h5>
+                                    <p class="card-text">Här kan du skapa en ny kurs och ladda upp din material.</p>
+                                </div>
+                                <div class="card-body">
+                                    <a asp-action="AddCourse" class="btn w-100 payBtn mb-2">Skapa en ny kurs</a>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row mx-5">
+                        <div class="col d-flex justify-content-center">
+                            <a asp-action="Logout" class="btn w-50 payBtn mb-2 mx-2">Logga ut</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

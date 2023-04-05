@@ -353,7 +353,9 @@ namespace LWI.Models
 				{
 					Id = c.Id,
 					Name = c.Name,
-					Price = c.Price
+					Price = c.Price,
+					DescriptionShort = c.DescriptionShort,
+					ImgUrl = c.ImgName
 				}).ToArrayAsync();
         }
     }
