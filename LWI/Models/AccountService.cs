@@ -63,5 +63,10 @@ namespace LWI.Models
 
             return result.Succeeded ? null : "Fel användarnamn eller lösenord";
         }
+
+        internal Task<string> UpdateProfile(EditProfileVM model, string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
