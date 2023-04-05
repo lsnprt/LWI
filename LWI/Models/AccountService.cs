@@ -6,7 +6,6 @@ namespace LWI.Models
 
     public class AccountService
     {
-        ApplicationContext context;
         UserManager<CourseCreator> userManager;
         SignInManager<CourseCreator> signInManager;
         RoleManager<IdentityRole> roleManager;
@@ -21,7 +20,6 @@ namespace LWI.Models
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.accessor = accessor;
-            this.context = context;
         }
         public async Task<string> CreateAccount(CreateVM model)
         {
@@ -39,15 +37,9 @@ namespace LWI.Models
             return result.Succeeded ? null : "Ditt konto kunde inte skapas :( ";
         }
 
-        internal EditProfileVM GetAccount(string userId)
+        internal object GetAccount(string userId)
         {
-            return context.Users.Where(u => u.Id == userId).Select(u => new EditProfileVM
-            {
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                Description = u.Description,
-                Profession = u.Occupation,
-            }).FirstOrDefault();;
+            throw new NotImplementedException();
         }
 
         internal string getUserIdString()
@@ -70,24 +62,6 @@ namespace LWI.Models
                 );
 
             return result.Succeeded ? null : "Fel användarnamn eller lösenord";
-        }
-
-        internal async Task<string> UpdateProfile(EditProfileVM model, string userId)
-        {
-            var user = context.Users.Where(u => u.Id == userId).FirstOrDefault();
-            if (model.Profession != null)
-                user.Occupation = model.Profession;
-            if (model.FirstName != null)
-                user.FirstName = model.FirstName;
-            if (model.LastName != null)
-                user.LastName = model.LastName;
-            if (model.Description != null)
-                user.Description = model.Description;
-
-            context.SaveChanges();
-
-            return "Ändringarna är genomförda!";
-
         }
     }
 }
