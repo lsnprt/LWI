@@ -192,12 +192,18 @@ a {
     width: 100%;
 }
 
+.text-body {
+    display: flex;
+    margin-top: 20px;
+    margin-right: 900px;
+}
+
 .navbar-nav .nav-item .nav-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: -10px;
+    margin-left: -10px;
 }
 
 .fa-sharp {
@@ -212,16 +218,16 @@ a {
 .navbar-nav .nav-item .nav-link .icon {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
+/*    display: inline-block;*/
 }
 
 .badge {
     font-size: xx-small;
-    margin-left: -240px;
-    margin-bottom: 1.5rem;
+    position: absolute;
+    margin-left: 50px;
+    margin-top: -10px;
+/*    display: inline-block;*/
 }
-
-
-
 
 .navbar-brand {
     margin-left: 20px;
