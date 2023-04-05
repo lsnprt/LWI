@@ -112,6 +112,21 @@ namespace LWI.Controllers
             return View(model);
         }
 
+        [Authorize]
+        [HttpGet("/mycourses/id")]
+        public async Task<IActionResult> EditCourseAsync(int id)
+        {
+            return Content(id.ToString());
+        }
+
+        [Authorize]
+        [Route("/mycourses/remove/id")]
+        public async Task<IActionResult> RemoveCourseAsync()
+        {
+            return RedirectToAction(nameof(MyCoursesAsync).Replace("Async", string.Empty));
+        }
+        
+        [Authorize]
         [HttpGet("/editprofile")]
         public IActionResult EditProfile()
         {
@@ -119,6 +134,8 @@ namespace LWI.Controllers
             var user = account.GetAccount(userId);
             return View(user);
         }
+        
+        [Authorize]
         [HttpPost("/editprofile")]
         public async Task<IActionResult> EditProfile(EditProfileVM model)
         {

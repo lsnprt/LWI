@@ -1,16 +1,17 @@
 ﻿@model MyCoursesVM
 
 <div class="col w-33 d-flex align-items-stretch">
-    <div class="card mb-3">
+    <div class="card mb-3 align-items-stretch">
         <img src="~/images/@Model.ImgUrl" class="img-fluid" alt="The picture for the course" >
-        <div class="card-body">
+        <div class="card-body h-75">
             <h5 class="card-title">@Model.Name</h5>
             <p class="card-text">Price: @Model.Price</p>
             <p class="card-text">@Model.DescriptionShort</p>
         </div>
         <br />
-        <div class="card-body">
-            <a asp-action="EditProfile" class="btn w-100 payBtn mb-2">Redigera</a>
+        <div class="card-body h-25">
+            <a asp-action="EditCourse" asp-route-id=@Model.Id class="btn w-100 payBtn mb-2">Redigera</a>
+            <a asp-action="RemoveCourse" asp-route-id=@Model.Id class="btn w-100 btn-warning mb-2">Ta bort</a>
         </div>
     </div>
 </div>
