@@ -31,10 +31,10 @@ namespace LWI.Controllers
         }
 
         [HttpGet("/Catalog")]
-        public IActionResult Catalog()
+        public async Task<IActionResult> CatalogAsync()
         {
             ViewBag.NoOfItems = stateService.NoOfCartItems();
-            CatalogVM[] model = dataService.GetAllCourses();
+            CatalogVM[] model = await dataService.GetAllCoursesAsync();
             return View(model);
         }
 
