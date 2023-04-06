@@ -1,21 +1,25 @@
 ﻿@model DetailsVM
-@{
-    string Img = "";
-}
+
 <div class="popUpWrapper">
-    <a asp-action="Catalog" class="text-body" style="left: 20px; top: 110px;">
-        <i class="fas fa-long-arrow-alt-left me-2"></i>Tillbaka till kurskatalogen
-    </a>
-    <div class="card mt-3 mb-3" style="width: 35rem; height: 35rem;">
+    <div class="card mt-3 mb-3">
         <img src="/images/@Model.ImgName" class="card-img-top" alt="...">
         <div class="card-body">
-            <h2 class="card-title">@Model.Name</h2>
-            <h5 class="card-title">@Model.Category</h5>
-            <hr />
-            <p class="card-text">@Model.DescriptionLong</p>
+            <div class="mb-2">
+                <h2 class="card-title">@Model.Name</h2>
+                <h5 class="card-subtitle mb-2 text-muted">@Model.Category</h5>
+                <hr />
+                <p class="card-text">@Model.DescriptionLong</p>
+                <p><strong>Pris:</strong> @Model.Price</p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" id="addBtn" class="btn addBtn payBtn align-self-center" disabled="@Model.InCart" onclick="openPopUp()">Lägg till i din varukorg</button>
+            </div>
         </div>
-        <span style="position:absolute; padding: 10px 20px; bottom: 35px;">Pris: @Model.Price</span>
-        <button type="submit" id="addBtn" class="addBtn payBtn" disabled="@Model.InCart" value="Lägg till i varukorg" onclick="openPopUp()">Lägg till i varukorg</button>
+        <div class="card-footer">
+            <a asp-action="Catalog">
+                <i class="fas fa-long-arrow-alt-left me-2"></i>Tillbaka till kurskatalogen
+            </a>
+        </div>
     </div>
 </div>
 
@@ -42,7 +46,7 @@
                     document.getElementById("popUpImg").src = data.imgUrl,
                     document.getElementById("popUp").classList.add("openPopUpDiv"),
                     console.log(item.innerText)
-                    item.style.visibility = 'visible',
+                item.style.visibility = 'visible',
                     item.innerText = parseInt(item.innerText) + 1
             },
 

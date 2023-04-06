@@ -136,16 +136,13 @@ a {
 .addBtn {
     padding: 10px 20px;
     background: #692be2;
-    border: 0;
-    outline: none;
     cursor: pointer;
     font-size: 15px;
     font-weight: 500;
     border-radius: 20px;
-    margin: 25px;
-    position: absolute;
+    /*
     right: 10px;
-    bottom: 10px;
+    bottom: 10px;*/
 }
 
 .popUp {
