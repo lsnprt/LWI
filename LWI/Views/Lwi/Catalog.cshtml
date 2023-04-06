@@ -1,128 +1,128 @@
 @model CatalogVM[]
 
 <div class="catalog-wrapper">
-	<div class="sidebar">
-		<div class="row">
-			<aside id="row-sm-4" class="row-sm-4">
-				<div id="filter-header">
-					<h3 id="filters-title">Filters</h3>
-					<span><img src="~/images/filter1.jpg" width="50" /></span>
-				</div>
-				<div class="card">
-					<article class="card-group-item">
-						<header class="card-header">
-							<h6 class="title">Category </h6>
-						</header>
-						<div class="filter-content">
-							<div class="card-body">
-								@{
-									var categoryList = Model.DistinctBy(x => x.Category).ToArray();
-								}
-								@foreach (var item in categoryList)
-								{
-									<label class="form-check">
-										<input class="form-check-input" type="radio" name="categoryFilter" value="@item.Category">
-										<span class="form-check-label">
-											@item.Category
-										</span>
-									</label>
-								}
-								<label class="form-check">
-									<input class="form-check-input" type="radio" name="categoryFilter" value="AllCategories" checked>
-									<span class="form-check-label">
-										All Categories
-									</span>
-								</label>
+    <div class="sidebar">
+        <div class="row">
+            <aside id="row-sm-4" class="row-sm-4">
+                <div id="filter-header">
+                    <h3 id="filters-title">Filter</h3>
+                    <span><img src="~/images/filter1.jpg" width="50" /></span>
+                </div>
+                <div class="card">
+                    <article class="card-group-item">
+                        <header class="card-header pt-3">
+                            <h6 class="title">Kategori</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                @{
+                                    var categoryList = Model.DistinctBy(x => x.Category).ToArray();
+                                }
+                                @foreach (var item in categoryList)
+                                {
+                                    <label class="form-check">
+                                        <input class="form-check-input" type="radio" name="categoryFilter" value="@item.Category">
+                                        <span class="form-check-label">
+                                            @item.Category
+                                        </span>
+                                    </label>
+                                }
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="categoryFilter" value="AllCategories" checked>
+                                    <span class="form-check-label">
+                                        Alla kategorier
+                                    </span>
+                                </label>
 
-							</div> <!-- card-body.// -->
-						</div>
-					</article> <!-- card-group-item.// -->
-				</div> <!-- card.// -->
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- card-group-item.// -->
+                </div> <!-- card.// -->
 
-				<div class="card">
-					<article class="card-group-item">
-						<header class="card-header">
-							<h6 class="title">Instructor </h6>
-						</header>
-						<div class="filter-content">
-							<div class="card-body">
-								<form>
-									@{
-										var teacherList = Model.DistinctBy(x => x.Teacher).ToArray();
-									}
-									@foreach (var item in teacherList)
-									{
-										<label class="form-check">
-											<input class="form-check-input" name="teacherFilter" type="radio" value="@item.Teacher">
-											<span class="form-check-label">
-												@item.Teacher
-											</span>
-										</label> <!-- form-check.// -->
-									}
-									<label class="form-check">
-										<input class="form-check-input" name="teacherFilter" type="radio" value="all" checked>
-										<span class="form-check-label">
-											All instructors
-										</span>
-									</label>  <!-- form-check.// -->
-								</form>
+                <div class="card">
+                    <article class="card-group-item">
+                        <header class="card-header pt-3">
+                            <h6 class="title">Lärare</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <form>
+                                    @{
+                                        var teacherList = Model.DistinctBy(x => x.Teacher).ToArray();
+                                    }
+                                    @foreach (var item in teacherList)
+                                    {
+                                        <label class="form-check">
+                                            <input class="form-check-input" name="teacherFilter" type="radio" value="@item.Teacher">
+                                            <span class="form-check-label">
+                                                @item.Teacher
+                                            </span>
+                                        </label> <!-- form-check.// -->
+                                    }
+                                    <label class="form-check">
+                                        <input class="form-check-input" name="teacherFilter" type="radio" value="all" checked>
+                                        <span class="form-check-label">
+                                            Alla lärare
+                                        </span>
+                                    </label>  <!-- form-check.// -->
+                                </form>
 
-							</div> <!-- card-body.// -->
-						</div>
-				</div> <!-- card.// -->
-				</article> <!-- card-group-item.// -->
-			</aside> <!-- col.// -->
-			<aside class="row-sm-4">
-				<div class="card">
-					<article class="card-group-item">
-						<header class="card-header"><h6 class="title">Price</h6></header>
-						<div class="filter-content">
-							<div id="card-body" class="card-body">
-								<label >
-									<input class="form-check-input" type="radio" value="FreeCourses" name="priceFilter">
-									<span class="form-check-label">Free</span>
-								</label>
-								<label >
-									<input class="form-check-input" type="radio" value="nonFreeCourses" name="priceFilter">
-									<span class="form-check-label">Money!</span>
-								</label>
-								<label >
-									<input class="form-check-input" type="radio" value="AllIn" name="priceFilter" checked>
-									<span class="form-check-label">All courses</span>
-								</label>
-							</div> <!-- card-body.// -->
-						</div>
-					</article> <!-- card-group-item.// -->
-				</div> <!-- card.// -->
-			</aside> <!-- col.// -->
-		</div> <!-- row.// -->
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- card-group-item.// -->
+                </div> <!-- card.// -->
+            </aside> <!-- col.// -->
+            <aside class="row-sm-4">
+                <div class="card">
+                    <article class="card-group-item">
+                        <header class="card-header pt-3">
+                            <h6 class="title">Pris</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div id="card-body" class="card-body">
+                                <label>
+                                    <input class="form-check-input" type="radio" value="FreeCourses" name="priceFilter">
+                                    <span class="form-check-label">Gratiskurser</span>
+                                </label>
+                                <label>
+                                    <input class="form-check-input" type="radio" value="nonFreeCourses" name="priceFilter">
+                                    <span class="form-check-label">Premiumkurser</span>
+                                </label>
+                                <label>
+                                    <input class="form-check-input" type="radio" value="AllIn" name="priceFilter" checked>
+                                    <span class="form-check-label">Alla kurser</span>
+                                </label>
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- card-group-item.// -->
+                </div> <!-- card.// -->
+            </aside> <!-- col.// -->
+        </div> <!-- row.// -->
 
-	</div>
-	<!--container end.//-->
+    </div>
+    <!--container end.//-->
 
-	<div class="content" >
-		<div class="container" >
-			<div id="rowDiv" class="row">
-				@foreach (var course in Model)
-				{
-					<div class="card course"
-						 course-price="@course.Price"
-						 course-teacher="@course.Teacher"
-						 course-category="@course.Category" id="card">
-						<a  asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" id="card-content">
-							<img src="~/images/@course.ImgName" class="card-img-top"  alt="@course.ImgAlt">
-							<div class="card-body">
-								<h5 class="card-title">@course.Name</h5>
-								<p class="card-text">@course.DescriptionShort</p>
-							</div>
-							<div class="card-footer text-muted" style="padding-bottom:0;margin-bottom:0">
-								<p><strong>Price:</strong> @course.Price</p>
-							</div>
-						</a>
-					</div>
-				}
-			</div>
-		</div>
-	</div>
+    <div class="content p-5">
+            <div id="rowDiv" class="row">
+                @foreach (var course in Model)
+                {
+                    <div class="card course"
+                         course-price="@course.Price"
+                         course-teacher="@course.Teacher"
+                         course-category="@course.Category" id="card">
+                        <a asp-controller="Lwi" asp-action="Details" asp-route-id="@course.Id" id="card-content">
+                            <img src="~/images/@course.ImgName" class="card-img-top" alt="@course.ImgAlt">
+                            <div class="card-body">
+                                <h5 class="card-title">@course.Name</h5>
+                                <p class="card-text">@course.DescriptionShort</p>
+                            </div>
+                            <div class="card-footer text-muted" style="padding-bottom:0;margin-bottom:0">
+                                <p><strong>Price:</strong> @course.Price</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+    </div>
 </div>
 

@@ -1,12 +1,9 @@
 ﻿@model MyCoursesVM[]
 
-<div class="container mx-5 my-2">
-    <div class="row mx-5">
-        <div class="col mx-5">
-            <div class="card mx-5 mt-3 mb-4 px-5">
+            <div class="card mx-3 mt-3 mb-4 px-2">
                 <div class="card-body px-4 py-4">
                     <h2 class="display-5 text-center py-2 mb-3">Mina kurser</h2>
-                    <div class="row mt-2 mb-2 row-cols-3">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
                         @{
                             foreach (var c in Model)
                             {
@@ -14,13 +11,5 @@
                             }
                         }
                     </div>
-                    <div class="row mx-5">
-                        <div class="col d-flex justify-content-center">
-                            <a asp-action="Logout" class="btn w-50 payBtn mb-2 mx-2">Logga ut</a>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
